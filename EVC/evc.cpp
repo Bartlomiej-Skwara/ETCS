@@ -27,6 +27,7 @@
 #include "NationalFN/nationalfn.h"
 #include "TrackConditions/track_condition.h"
 #include "TrainSubsystems/subsystems.h"
+#include "OnboardTests/onboard_test.h"
 #include "LX/level_crossing.h"
 #include "STM/stm.h"
 #include "Euroradio/terminal.h"
@@ -196,6 +197,7 @@ void on_platform_ready()
     setup_stm_control();
     set_message_filters();
     initialize_national_functions();
+    load_onboard_tests();
     platform->delay(500).then(update).detach();
 }
 void update()

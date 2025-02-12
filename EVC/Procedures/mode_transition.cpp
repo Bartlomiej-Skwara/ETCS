@@ -25,6 +25,7 @@
 #include "../TrainSubsystems/train_interface.h"
 #include "../TrainSubsystems/cold_movement.h"
 #include "../Procedures/reversing.h"
+#include "../OnboardTests/onboard_test.h"
 #include <map>
 #include "platform_runtime.h"
 cond mode_conditions[78];

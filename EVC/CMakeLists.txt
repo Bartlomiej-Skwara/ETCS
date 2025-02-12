@@ -13,6 +13,7 @@ Time/clock.cpp Position/geographical.cpp DMI/text_messages.cpp DMI/windows.cpp D
 TrainSubsystems/power.cpp TrainSubsystems/brake.cpp TrainSubsystems/train_interface.cpp TrainSubsystems/cold_movement.cpp TrainSubsystems/asc.cpp
 language/language.cpp Version/version.cpp Version/translate.cpp Config/config.cpp
 NationalFN/nationalfn.cpp NationalFN/asfa.cpp
+OnboardTests/onboard_test.cpp OnboardTests/self_test.cpp OnboardTests/main_brake_test.cpp
 ../platform/platform.cpp ../platform/platform_runtime.cpp
 ../libs/liborts/serverlib.cpp ../libs/liborts/common.cpp
 )

@@ -27,7 +27,7 @@ void update_acks()
         if (active_dialog != dialog_sequence::None) {
             std::string active = active_window_dmi["active"];
             if (active != "menu_main" && active != "menu_override" && active != "menu_spec" && 
-            active != "menu_settings" && active != "menu_radio" && active != "menu_ntc") {
+            active != "menu_settings" && active != "menu_radio" && active != "menu_ntc" && active != "startup_test_window") {
                 close_window();
                 last_ack_time = get_milliseconds();
             }

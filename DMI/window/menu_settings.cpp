@@ -34,9 +34,13 @@ menu_settings::menu_settings() : menu(get_text("Settings"))
     {
         write_command("RemoveVBC","");
     }, false};
+    entries[6] = { get_text("Component testing"), "", []
+    {
+        write_command("ComponentTesting","");
+    }, false };
     buildMenu();
 };
-void menu_settings::setEnabled(bool language, bool volume, bool brightness, bool version, bool setvbc, bool removevbc)
+void menu_settings::setEnabled(bool language, bool volume, bool brightness, bool version, bool setvbc, bool removevbc, bool componentTesting)
 {
     buttons[0]->setEnabled(language);
     buttons[1]->setEnabled(volume);
@@ -44,4 +48,5 @@ void menu_settings::setEnabled(bool language, bool volume, bool brightness, bool
     buttons[3]->setEnabled(version);
     buttons[4]->setEnabled(setvbc);
     buttons[5]->setEnabled(removevbc);
+    buttons[6]->setEnabled(componentTesting);
 }

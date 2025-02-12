@@ -39,6 +39,8 @@ extern bool bot_driver;
 extern bool EB_command;
 extern bool SB_command;
 extern bool desk_open;
+extern double pipe_pressure;
+extern double brakecyl_pressure;
 double or_dist;
 int ack_button_light;
 ORserver::ParameterManager manager;
@@ -306,6 +308,18 @@ void SetParameters()
     };
     manager.AddParameter(p);
 
+    p = new ORserver::Parameter("pipe_pressure");
+    p->SetValue = [](std::string val) {
+        pipe_pressure = stod(val);
+    };
+    manager.AddParameter(p);
+
+    p = new ORserver::Parameter("brakecyl_pressure");
+    p->SetValue = [](std::string val) {
+        brakecyl_pressure = stod(val);
+    };
+    manager.AddParameter(p);
+
     p = new ORserver::Parameter("imperial");
     p->SetValue = [](std::string val) {
         set_persistent_command("imperial", val);
@@ -450,6 +464,8 @@ void start_or_iface()
     register_parameter("serie");
     register_parameter("language");
     register_parameter("bot_driver");
+    register_parameter("pipe_pressure");
+    register_parameter("brakecyl_pressure");
     register_parameter("imperial");
 }
 

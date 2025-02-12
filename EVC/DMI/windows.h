@@ -13,6 +13,7 @@ enum struct dialog_sequence
 {
     None,
     StartUp,
+    StartUpTest,
     Main,
     Shunting,
     Override,

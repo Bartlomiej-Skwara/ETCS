@@ -23,6 +23,7 @@
 #include "../window/menu_override.h"
 #include "../window/menu_spec.h"
 #include "../window/menu_settings.h"
+#include "../window/menu_tests.h"
 #include "../window/menu_ntc.h"
 #include "../window/track_ahead_free.h"
 #include <functional>
@@ -65,9 +66,10 @@ void setWindow(json &data)
         extern bool showSpeeds;
         setPlanning(!display_taf && (mode == Mode::FS || (mode == Mode::OS && showSpeeds)));
         setTAF(display_taf);
-    }
-    else
-    {
+    } else if (name == "startup_test_window") {
+        setPlanning(false);
+        setTAF(false);
+    } else {
         bool same = name == active_name;
         if (name == "menu_main") {
             menu_main *m;
@@ -100,11 +102,16 @@ void setWindow(json &data)
             m->setEnabled(enabled["Adhesion"].get<bool>(), enabled["SRspeed"].get<bool>(), enabled["TrainIntegrity"].get<bool>());
             w = m;
         } else if (name == "menu_settings") {
-            menu_settings *m;
+            menu_settings* m;
             if (same) m = (menu_settings*)active;
             else m = new menu_settings();
-            json &enabled = j["enabled"];
-            m->setEnabled(enabled["Language"].get<bool>(), enabled["Volume"].get<bool>(), enabled["Brightness"].get<bool>(), enabled["SystemVersion"].get<bool>(), enabled["SetVBC"].get<bool>(), enabled["RemoveVBC"].get<bool>());
+            json& enabled = j["enabled"];
+            m->setEnabled(enabled["Language"].get<bool>(), enabled["Volume"].get<bool>(), enabled["Brightness"].get<bool>(), enabled["SystemVersion"].get<bool>(), enabled["SetVBC"].get<bool>(), enabled["RemoveVBC"].get<bool>(), true); // enabled["ComponentTesting"].get<bool>());
+            w = m;
+        } else if(name =="component_tests_window") {
+            menu_tests* m;
+            if (same) m = (menu_tests*)active;
+            else m = new menu_tests();
             w = m;
         } else if (name == "menu_ntc") {
             menu_ntc *m;

@@ -8,7 +8,6 @@
  */
 #include "train_interface.h"
 #include "../TrackConditions/track_condition.h"
-#include "train_interface.h"
 #include "../STM/stm.h"
 #include <nlohmann/json.hpp>
 using json = nlohmann::json;

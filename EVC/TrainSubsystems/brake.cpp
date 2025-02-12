@@ -13,13 +13,17 @@
 #include "../Time/clock.h"
 #include "brake.h"
 #include "../Procedures/stored_information.h"
+#include "../OnboardTests/onboard_test.h"
 #include "../Euroradio/session.h"
 #include "../STM/stm.h"
 #include "../language/language.h"
 extern bool SB;
 extern bool EB;
+extern std::vector<OnboardTest> LoadedOnboardTests;
 bool brake_acknowledgeable;
 bool brake_acknowledged;
+double pipe_pressure;
+double brakecyl_pressure;
 std::list<brake_command_information> brake_conditions;
 std::list<brake_command_information> emergency_brake_conditions;
 void trigger_brake_reason(int reason)
@@ -151,6 +155,12 @@ void handle_brake_command()
         brake_conditions.clear();
         emergency_brake_conditions.clear();
         return;
+    }
+    for (const auto& item : LoadedOnboardTests) {
+        if (item.Procedure->running) {
+            item.Procedure->handle_test_brake_command();
+            return;
+        }
     }
     for (auto it = brake_conditions.begin(); it!=brake_conditions.end();) {
         if (it->revoke(*it))

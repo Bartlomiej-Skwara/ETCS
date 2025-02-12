@@ -5,7 +5,7 @@ set (SOURCES init.cpp monitor.cpp graphics/drawing.cpp graphics/component.cpp gr
             messages/messages.cpp graphics/flash.cpp softkeys/softkey.cpp
             window/window_main.cpp state/time_hour.cpp window/subwindow.cpp window/data_entry.cpp window/data_validation.cpp 
             window/nav_buttons.cpp window/menu.cpp window/menu_main.cpp window/menu_override.cpp window/menu_radio.cpp 
-            window/menu_spec.cpp window/menu_settings.cpp window/menu_ntc.cpp window/track_ahead_free.cpp 
+            window/menu_spec.cpp window/menu_settings.cpp window/menu_ntc.cpp window/track_ahead_free.cpp window/menu_tests.cpp
             window/driver_id.cpp window/volume.cpp window/brightness.cpp
             window/input_data.cpp window/fixed_train_data.cpp window/keyboard.cpp 
             window/train_data.cpp  STM/stm_objects.cpp ../EVC/Packets/STM/message.cpp

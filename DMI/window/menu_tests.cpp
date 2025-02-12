@@ -6,13 +6,20 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
-#ifndef _MENU_SETTINGS_H
-#define _MENU_SETTINGS_H
-#include "menu.h"
-class menu_settings : public menu
+#include "menu_tests.h"
+#include "../tcp/server.h"
+
+menu_tests::menu_tests() : menu(get_text("Component testing"))
 {
-    public:
-    menu_settings();
-    void setEnabled(bool language, bool volume, bool brightness, bool version, bool setvbc, bool removevbc, bool componentTesting);
-};
-#endif
+    entries[0] = {get_text("Test1"), "", []
+    {
+        write_command("Adhesion","");
+    }, false};
+    
+    buildMenu();
+}
+
+void menu_tests::setEnabled()
+{
+
+}
