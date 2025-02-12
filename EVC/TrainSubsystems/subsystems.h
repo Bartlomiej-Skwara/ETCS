@@ -7,7 +7,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 #pragma once
-#include "OnboardTests/onboard_test.h"
+#include "../OnboardTests/onboard_test.h"
 #include "train_interface.h"
 #include "asc.h"
 
