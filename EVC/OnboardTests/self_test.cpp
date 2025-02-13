@@ -13,7 +13,7 @@
 #include "../Supervision/supervision.h"
 
 
-void SelfTestProcedure::proceed(OnboardTest test)
+void SelfTestProcedure::proceed(OnboardTest test, bool startup)
 {
 	return;
 	running = true;

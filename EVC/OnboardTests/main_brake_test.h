@@ -13,9 +13,12 @@
 class MainBrakeTestProcedure : public IOnboardTestProcedure
 {
 public:
-	virtual void proceed(OnboardTest test);
+	virtual void proceed(OnboardTest test, bool startup);
 	virtual void handle_test_brake_command();
 
 	int step = 0;
 	text_message* message_to_ack;
+	int64_t last_pressure_change;
+	double prev_pipe_pressure;
+	double prev_brakecyl_pressure;
 };

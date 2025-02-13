@@ -30,7 +30,7 @@ class IOnboardTestProcedure
 {
 public:
     virtual ~IOnboardTestProcedure() {}
-    virtual void proceed(OnboardTest test) = 0;
+    virtual void proceed(OnboardTest test, bool startup) = 0;
     virtual void handle_test_brake_command() = 0;
     bool running = false;
 };

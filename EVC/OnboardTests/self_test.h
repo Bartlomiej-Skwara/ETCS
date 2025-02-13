@@ -12,6 +12,6 @@
 class SelfTestProcedure : public IOnboardTestProcedure
 {
 public:
-	virtual void proceed(OnboardTest test);
+	virtual void proceed(OnboardTest test, bool startup);
 	virtual void handle_test_brake_command();
 };

@@ -19,6 +19,7 @@ bool isolated;
 bool failed;
 bool SB_command;
 bool EB_command;
+bool release_command;
 int V_set_display = -1;
 double V_set;
 double brake_pressure;

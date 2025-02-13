@@ -176,6 +176,7 @@ void handle_brake_command()
     }
     SB_command = !brake_conditions.empty();
     EB_command = !emergency_brake_conditions.empty();
+    release_command = false;
     if (mode == Mode::RV) {
         EB_command |= SB | EB;
     } else {

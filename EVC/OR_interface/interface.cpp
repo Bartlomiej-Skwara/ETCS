@@ -179,6 +179,13 @@ void SetParameters()
     };
     manager.AddParameter(p);
 
+
+    p = new ORserver::Parameter("etcs::releasebrake");
+    p->GetValue = []() {
+        return release_command ? "true" : "false";
+        };
+    manager.AddParameter(p);
+
     p = new ORserver::Parameter("etcs::tractioncutoff");
     p->GetValue = []() {
         return traction_cutoff_active ? "true" : "false";
