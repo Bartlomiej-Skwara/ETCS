@@ -32,8 +32,6 @@
 #include "Euroradio/terminal.h"
 #include "platform_runtime.h"
 
-#include <random>
-
 #ifdef RADIO_CFM
 #include "../EVC/Euroradio/tcp_cfm.h"
 #include "console_platform.h"
@@ -186,9 +184,7 @@ void on_platform_ready()
         platform->quit();
     }).detach();
 
-    std::random_device rd;
-    nid_engine = rd() & 0xFFFFFFUL;
-
+    nid_engine = 50000;
     start_dmi();
     start_or_iface();
     start_logging();
