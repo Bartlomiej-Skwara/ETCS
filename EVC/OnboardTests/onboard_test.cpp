@@ -12,8 +12,6 @@
 #include "../DMI/windows.h"
 #include <string>
 #include <vector>
-#include <fstream>
-#include <iostream>
 #include <nlohmann/json.hpp>
 
 using json = nlohmann::json;
@@ -21,14 +19,11 @@ std::vector<OnboardTest> LoadedOnboardTests;
 
 void load_onboard_tests()
 {
-    std::ifstream file("onboard_tests.json");
-    if (!file.is_open()) {
+    auto contents = platform->read_file("onboard_tests.json");
+    if (!contents)
         return;
-    }
 
-    json j;
-    file >> j;
-    file.close();
+    json j = json::parse(*contents);
 
     if (!j.contains("Tests") || !j["Tests"].is_array()) {
         return;
