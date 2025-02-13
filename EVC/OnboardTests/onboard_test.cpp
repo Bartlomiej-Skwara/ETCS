@@ -61,7 +61,7 @@ void load_onboard_tests()
 void perform_startup_tests() {
     for (const auto& item : LoadedOnboardTests) {
         if (item.PrepareOnStartup) {
-            item.Procedure->proceed(item);
+            item.Procedure->proceed(item, true);
         }
     }
 }
