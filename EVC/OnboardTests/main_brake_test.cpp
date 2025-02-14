@@ -61,7 +61,8 @@ void MainBrakeTestProcedure::handle_test_brake_command() {
 		failed = true;
 		EB_command = true;
 		release_command = false;
-		add_message(text_message(get_text("Test zakonczony niepowodzeniem!"), true, false, false, [time](text_message& t) { return false; }));
+		int delta = time - last_pressure_change;
+		add_message(text_message(get_text("Test zakonczony niepowodzeniem! " + delta), true, false, false, [time](text_message& t) { return false; }));
 	}
 
 	if (step == 1 && message_to_ack != nullptr && message_to_ack->acknowledged)
