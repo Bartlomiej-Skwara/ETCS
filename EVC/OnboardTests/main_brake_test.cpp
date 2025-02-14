@@ -36,7 +36,7 @@ void MainBrakeTestProcedure::proceed(OnboardTest test, bool startup)
 
 	if (startup && step == 0) {
 		int64_t time = get_milliseconds();
-		message_to_ack = &add_message(text_message(get_text("Wymagany test hamulcow. Potwierdz, aby rozpoczac."), true, true, false, [this](text_message& t) { return running; }));
+		message_to_ack = &add_message(text_message(get_text("Wymagany test hamulcow. Potwierdz, aby rozpoczac."), true, true, false, [this](text_message& t) { return step > 1; }));
 		step = 1;
 	}
 	else {
