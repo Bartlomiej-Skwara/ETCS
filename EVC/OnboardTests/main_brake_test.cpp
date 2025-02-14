@@ -56,7 +56,7 @@ void MainBrakeTestProcedure::handle_test_brake_command() {
 		prev_pipe_pressure = pipe_pressure;
 	}
 
-	if ((step > 1 && last_pressure_change > 0 && time - last_pressure_change > 10000) || (step == 1 && pipe_pressure < 4.5)) {
+	if ((step > 1 && last_pressure_change > 0 && time - last_pressure_change > 10000) || (step == 1 && pipe_pressure < 4.5 && message_to_ack != nullptr && message_to_ack->acknowledged)) {
 		running = false;
 		failed = true;
 		EB_command = true;
