@@ -61,7 +61,7 @@ void MainBrakeTestProcedure::handle_test_brake_command() {
 		failed = true;
 		EB_command = true;
 		release_command = false;
-		int delta = time - last_pressure_change;
+		std::string delta = std::to_string(time - last_pressure_change);
 		add_message(text_message(get_text("Test zakonczony niepowodzeniem! " + delta), true, false, false, [time](text_message& t) { return false; }));
 	}
 
