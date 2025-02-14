@@ -36,9 +36,8 @@ void MainBrakeTestProcedure::proceed(OnboardTest test, bool startup)
 
 	if (startup && step == 0) {
 		int64_t time = get_milliseconds();
-		message_to_ack = &add_message(text_message(get_text("Wymagany test hamulcow. Potwierdz, aby rozpoczac."), true, true, false, [time](text_message& t) { return time + 60000 < get_milliseconds(); }));
+		message_to_ack = &add_message(text_message(get_text("Wymagany test hamulcow. Potwierdz, aby rozpoczac."), true, true, false, [time](text_message& t) { return false; }));
 		step = 1;
-
 	}
 	else {
 		step = 1;
@@ -62,13 +61,13 @@ void MainBrakeTestProcedure::handle_test_brake_command() {
 		failed = true;
 		EB_command = true;
 		release_command = false;
-		add_message(text_message(get_text("Test zakonczony niepowodzeniem!"), true, false, false, [time](text_message& t) { return time + 60000 < get_milliseconds(); }));
+		add_message(text_message(get_text("Test zakonczony niepowodzeniem!"), true, false, false, [time](text_message& t) { return false; }));
 	}
 
 	if (step == 1 && message_to_ack != nullptr && message_to_ack->acknowledged)
 	{
 		message_to_ack = nullptr;
-		add_message(text_message(get_text("Test trwa ..."), true, false, false, [this](text_message& t) { return !(running || EB_command || release_command); }));
+		add_message(text_message(get_text("Test trwa ..."), true, false, false, [this](text_message& t) { return !running; }));
 		platform->delay(1000).then([this]() {
 			step = 2;
 			}).detach();
@@ -78,7 +77,7 @@ void MainBrakeTestProcedure::handle_test_brake_command() {
 		EB_command = true;
 		release_command = false;
 		step = 3;
-		add_message(text_message(get_text("Test hamulcow ..."), true, false, false, [this](text_message& t) { return !(EB_command || release_command); }));
+		add_message(text_message(get_text("Test hamulcow ..."), true, false, false, [this](text_message& t) { return !EB_command || !running; }));
 	}
 	else if (step == 3) {
 		if (pipe_pressure < 0.5 && brakecyl_pressure > 1) {
@@ -92,7 +91,7 @@ void MainBrakeTestProcedure::handle_test_brake_command() {
 			EB_command = true;
 			release_command = false;
 			step = 5;
-			add_message(text_message(get_text("Test hamulcow ..."), true, false, false, [this](text_message& t) { return !(EB_command || release_command); }));
+			add_message(text_message(get_text("Test hamulcow ..."), true, false, false, [this](text_message& t) { return !EB_command || !running; }));
 		}
 	}
 	else if (step == 5) {
