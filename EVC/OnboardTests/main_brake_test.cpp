@@ -38,10 +38,14 @@ void MainBrakeTestProcedure::proceed(OnboardTest test, bool startup)
 		int64_t time = get_milliseconds();
 		message_to_ack = &add_message(text_message(get_text("Wymagany test hamulcow. Potwierdz, aby rozpoczac."), true, true, false, [time](text_message& t) { return time + 60000 < get_milliseconds(); }));
 		step = 1;
+
 	}
 	else {
 		step = 1;
 	}
+
+	prev_brakecyl_pressure = brakecyl_pressure;
+	prev_pipe_pressure = pipe_pressure;
 }
 
 void MainBrakeTestProcedure::handle_test_brake_command() {
@@ -49,6 +53,8 @@ void MainBrakeTestProcedure::handle_test_brake_command() {
 
 	if (abs(prev_brakecyl_pressure - brakecyl_pressure) > 0.01 || abs(prev_pipe_pressure - pipe_pressure) > 0.01) {
 		last_pressure_change = get_milliseconds();
+		prev_brakecyl_pressure = brakecyl_pressure;
+		prev_pipe_pressure = pipe_pressure;
 	}
 
 	if (step > 1 && last_pressure_change > 0 && time - last_pressure_change > 10000) {
