@@ -56,7 +56,7 @@ void MainBrakeTestProcedure::handle_test_brake_command() {
 		prev_pipe_pressure = pipe_pressure;
 	}
 
-	if (step > 1 && last_pressure_change > 0 && time - last_pressure_change > 10000) {
+	if ((step > 1 && last_pressure_change > 0 && time - last_pressure_change > 10000) || (step == 1 && pipe_pressure < 4.5)) {
 		running = false;
 		failed = true;
 		EB_command = true;
@@ -90,7 +90,7 @@ void MainBrakeTestProcedure::handle_test_brake_command() {
 		}
 	}
 	else if (step == 4) {
-		if (pipe_pressure > 4.9 && brakecyl_pressure < 0.1) {
+		if (pipe_pressure > 4.5 && brakecyl_pressure < 0.1) {
 			EB_command = true;
 			release_command = false;
 			step = 5;
@@ -105,7 +105,7 @@ void MainBrakeTestProcedure::handle_test_brake_command() {
 		}
 	}
 	else if (step == 6) {
-		if (pipe_pressure > 4.9 && brakecyl_pressure < 0.1) {
+		if (pipe_pressure > 4.5 && brakecyl_pressure < 0.1) {
 			running = false;
 			EB_command = false;
 			release_command = false;
