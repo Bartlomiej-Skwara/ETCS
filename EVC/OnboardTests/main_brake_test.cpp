@@ -66,6 +66,10 @@ void MainBrakeTestProcedure::handle_test_brake_command() {
 
 	if (step == 1 && message_to_ack != nullptr && message_to_ack->acknowledged)
 	{
+		prev_brakecyl_pressure = brakecyl_pressure;
+		prev_pipe_pressure = pipe_pressure;
+		last_pressure_change = get_milliseconds();
+
 		message_to_ack = nullptr;
 		add_message(text_message(get_text("Test trwa ..."), true, false, false, [this](text_message& t) { return !running; }));
 		platform->delay(1000).then([this]() {
@@ -73,7 +77,6 @@ void MainBrakeTestProcedure::handle_test_brake_command() {
 			}).detach();
 	}
 	else if (step == 2) {
-		last_pressure_change = get_milliseconds();
 		EB_command = true;
 		release_command = false;
 		step = 3;
