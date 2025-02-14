@@ -47,7 +47,7 @@ void MainBrakeTestProcedure::proceed(OnboardTest test, bool startup)
 void MainBrakeTestProcedure::handle_test_brake_command() {
 	int64_t time = get_milliseconds();
 
-	if (prev_brakecyl_pressure != brakecyl_pressure || prev_pipe_pressure != pipe_pressure) {
+	if (abs(prev_brakecyl_pressure - brakecyl_pressure) > 0.01 || abs(prev_pipe_pressure - pipe_pressure) > 0.01) {
 		last_pressure_change = get_milliseconds();
 	}
 
@@ -62,7 +62,7 @@ void MainBrakeTestProcedure::handle_test_brake_command() {
 	if (step == 1 && message_to_ack != nullptr && message_to_ack->acknowledged)
 	{
 		message_to_ack = nullptr;
-		add_message(text_message(get_text("Test trwa ..."), true, false, false, [time](text_message& t) { return time + 60000 < get_milliseconds(); }));
+		add_message(text_message(get_text("Test trwa ..."), true, false, false, [this](text_message& t) { return !(running || EB_command || release_command); }));
 		platform->delay(1000).then([this]() {
 			step = 2;
 			}).detach();
@@ -72,7 +72,7 @@ void MainBrakeTestProcedure::handle_test_brake_command() {
 		EB_command = true;
 		release_command = false;
 		step = 3;
-		add_message(text_message(get_text("Test hamulcow ..."), true, false, false, [time](text_message& t) { return !EB_command; }));
+		add_message(text_message(get_text("Test hamulcow ..."), true, false, false, [this](text_message& t) { return !(EB_command || release_command); }));
 	}
 	else if (step == 3) {
 		if (pipe_pressure < 0.5 && brakecyl_pressure > 1) {
@@ -86,7 +86,7 @@ void MainBrakeTestProcedure::handle_test_brake_command() {
 			EB_command = true;
 			release_command = false;
 			step = 5;
-			add_message(text_message(get_text("Test hamulcow ..."), true, false, false, [time](text_message& t) { return !EB_command; }));
+			add_message(text_message(get_text("Test hamulcow ..."), true, false, false, [this](text_message& t) { return !(EB_command || release_command); }));
 		}
 	}
 	else if (step == 5) {
