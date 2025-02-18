@@ -16,6 +16,7 @@
 #include "../DMI/text_message.h"
 #include "../language/language.h"
 #include "../Supervision/supervision.h"
+#include "../platform/platform.h"
 
 extern double pipe_pressure;
 extern double brakecyl_pressure;
@@ -29,8 +30,10 @@ extern double brakecyl_pressure;
    Step 5 - Second braking, waiting for the brake to apply
    Step 6 - Second releasing, waiting for the brake to release
 */
-void MainBrakeTestProcedure::proceed(OnboardTest test, bool startup)
+void MainBrakeTestProcedure::proceed(bool startup)
 {
+	auto time = platform->get_local_time();
+
 	running = true;
 	step = 0;
 
@@ -49,6 +52,7 @@ void MainBrakeTestProcedure::proceed(OnboardTest test, bool startup)
 
 void MainBrakeTestProcedure::handle_test_brake_command() {
 	int64_t time = get_milliseconds();
+	result = 0;
 
 	if (abs(prev_brakecyl_pressure - brakecyl_pressure) > 0.01 || abs(prev_pipe_pressure - pipe_pressure) > 0.01) {
 		last_pressure_change = get_milliseconds();
@@ -61,8 +65,9 @@ void MainBrakeTestProcedure::handle_test_brake_command() {
 		failed = true;
 		EB_command = true;
 		release_command = false;
-		std::string delta = std::to_string(time - last_pressure_change);
-		add_message(text_message(get_text("Test zakonczony niepowodzeniem! " + delta), true, false, false, [time](text_message& t) { return false; }));
+		add_message(text_message(get_text("Test zakonczony niepowodzeniem!"), true, false, false, [time](text_message& t) { return false; }));
+		result = -1;
+		save_onboard_tests();
 	}
 
 	if (step == 1 && message_to_ack != nullptr && message_to_ack->acknowledged)
@@ -111,6 +116,8 @@ void MainBrakeTestProcedure::handle_test_brake_command() {
 			EB_command = false;
 			release_command = false;
 			add_message(text_message(get_text("Test OK!"), true, false, false, [time](text_message& t) { return time + 60000 < get_milliseconds(); }));
+			result = 1;
+			save_onboard_tests();
 		}
 	}
 }

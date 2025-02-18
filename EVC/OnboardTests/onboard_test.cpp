@@ -9,6 +9,7 @@
 #include "onboard_test.h"
 #include "main_brake_test.h"
 #include "self_test.h"
+#include "../platform/platform.h"
 #include "../DMI/windows.h"
 #include <string>
 #include <vector>
@@ -19,63 +20,100 @@ std::vector<OnboardTest> LoadedOnboardTests;
 
 void load_onboard_tests()
 {
-    auto contents = platform->read_file("onboard_tests.json");
-    if (!contents)
-        return;
+	auto contents = platform->read_file("onboard_tests.json");
+	if (!contents)
+		return;
 
-    json j = json::parse(*contents);
+	json j = json::parse(*contents);
 
-    if (!j.contains("Tests") || !j["Tests"].is_array()) {
-        return;
-    }
+	if (!j.contains("Tests") || !j["Tests"].is_array()) {
+		return;
+	}
 
-    LoadedOnboardTests.clear();
+	LoadedOnboardTests.clear();
 
-    for (const auto& item : j["Tests"]) {
-        if (!item.contains("Type"))
-            continue;
+	for (const auto& item : j["Tests"]) {
+		if (!item.contains("Type"))
+			continue;
 
-        IOnboardTestProcedure* procedure;
-        std::string type = item["Type"].get<std::string>();
-        if (type == "MainBrakeTest") {
-            procedure = new MainBrakeTestProcedure();
-        } else if (type == "SelfTest") {
-            procedure = new SelfTestProcedure();
-        }
-        else {
-            procedure = nullptr;
-        }
+		IOnboardTestProcedure* procedure;
+		std::string type = item["Type"].get<std::string>();
+		if (type == "MainBrakeTest") {
+			procedure = new MainBrakeTestProcedure();
+		}
+		else if (type == "SelfTest") {
+			procedure = new SelfTestProcedure();
+		}
+		else {
+			procedure = nullptr;
+		}
 
-        LoadedOnboardTests.push_back({
-            item["Type"].get<std::string>(),
-            procedure,
-            item.contains("ValidityTime") ? item["ValidityTime"].get<int>() : -1,
-            item.contains("ValidityTimeReminder") ? item["ValidityTimeReminder"].get<int>() : -1,
-            item.contains("ValidityDistance") ? item["ValidityDistance"].get<int>() : -1,
-            item.contains("PrepareOnStartup") ? item["PrepareOnStartup"].get<bool>() : false,
-            item.contains("LastExecutionTime") ? item["LastExecutionTime"].get<int>() : -1
-            });
-    }
+		LoadedOnboardTests.push_back({
+			item["Type"].get<std::string>(),
+			procedure,
+			item.contains("ValidityTime") ? item["ValidityTime"].get<int>() : -1,
+			item.contains("ValidityTimeReminder") ? item["ValidityTimeReminder"].get<int>() : -1,
+			item.contains("ValidityDistance") ? item["ValidityDistance"].get<int>() : -1,
+			item.contains("PrepareOnStartup") ? item["PrepareOnStartup"].get<bool>() : false,
+			item.contains("LastSuccessTimestamp") ? item["LastSuccessTimestamp"].get<int>() : -1,
+			item.contains("LastFailureTimestamp") ? item["LastFailureTimestamp"].get<int>() : -1
+			});
+	}
+
+	save_onboard_tests();
 }
 
 void perform_startup_tests() {
-    for (const auto& item : LoadedOnboardTests) {
-        if (item.PrepareOnStartup) {
-            item.Procedure->proceed(item, true);
-        }
-    }
+	for (const auto& item : LoadedOnboardTests) {
+		if (item.PrepareOnStartup) {
+			item.Procedure->proceed(true);
+		}
+	}
 }
 
 bool any_test_in_progress() {
-    for (const auto& item : LoadedOnboardTests) {
-        if (item.Procedure->running) {
-            return true;
-        }
-    }
+	for (const auto& item : LoadedOnboardTests) {
+		if (item.Procedure->running) {
+			return true;
+		}
+	}
 
-    if (active_dialog == dialog_sequence::StartUpTest) {
-        active_dialog = dialog_sequence::StartUp;
-    }
+	if (active_dialog == dialog_sequence::StartUpTest) {
+		active_dialog = dialog_sequence::StartUp;
+	}
 
-    return false;
+	return false;
+}
+
+void save_onboard_tests() {
+	for (auto& item : LoadedOnboardTests) {
+		switch (item.Procedure->result) {
+		case 1:
+			item.LastSuccessTimestamp = platform->get_local_time().to_unix_timestamp();
+			break;
+		case -1:
+			item.LastFailureTimestamp = platform->get_local_time().to_unix_timestamp();
+			break;
+		default:
+			break;
+		}
+		item.Procedure->result = 0;
+	}
+
+	json json_array = json::array();
+	for (auto& item : LoadedOnboardTests) {
+		json::object_t test =
+		{
+			{"Type", item.Type},
+			{"ValidityTime", item.ValidityTime },
+			{"ValidityTimeReminder", item.ValidityTimeReminder},
+			{"PrepareOnStartup", item.PrepareOnStartup},
+			{"LastSuccessTimestamp", item.LastSuccessTimestamp},
+			{"LastFailureTimestamp", item.LastFailureTimestamp},
+		};
+		json_array.push_back(test);
+	}
+	json::object_t main_obj = { {"Tests", json_array} };
+	json main_json(main_obj);
+	platform->write_file("onboard_tests.json", main_json.dump(1));
 }

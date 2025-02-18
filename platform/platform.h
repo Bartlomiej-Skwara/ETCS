@@ -58,6 +58,58 @@ public:
 		int hour;
 		int minute;
 		int second;
+
+		long to_unix_timestamp() {
+			int daysInMonth[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+			bool isLeapYear = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+			if (isLeapYear) {
+				daysInMonth[1] = 29;
+			}
+			long days = 0;
+			for (int y = 1970; y < year; ++y) {
+				days += (y % 4 == 0 && (y % 100 != 0 || y % 400 == 0)) ? 366 : 365;
+			}
+			for (int m = 0; m < month - 1; ++m) {
+				days += daysInMonth[m];
+			}
+			days += (day - 1);
+			return days * 86400 + hour * 3600 + minute * 60 + second;
+		}
+
+		void from_unix_timestamp(long timestamp) {
+			int daysInMonth[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+			year = 1970;
+			long days = timestamp / 86400;
+			long remainingSeconds = timestamp % 86400;
+
+			while (true) {
+				bool isLeapYear = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+				int yearDays = isLeapYear ? 366 : 365;
+				if (days >= yearDays) {
+					days -= yearDays;
+					++year;
+				}
+				else {
+					break;
+				}
+			}
+
+			bool isLeapYear = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+			if (isLeapYear) {
+				daysInMonth[1] = 29;
+			}
+
+			month = 1;
+			while (days >= daysInMonth[month - 1]) {
+				days -= daysInMonth[month - 1];
+				++month;
+			}
+
+			day = days + 1;
+			hour = remainingSeconds / 3600;
+			minute = (remainingSeconds % 3600) / 60;
+			second = remainingSeconds % 60;
+		}
 	};
 
 	virtual int64_t get_timer() = 0;

@@ -12,25 +12,31 @@
 #pragma once
 
 void load_onboard_tests();
+void save_onboard_tests();
 void perform_startup_tests();
 bool any_test_in_progress();
 class IOnboardTestProcedure;
 
-struct OnboardTest {
+class OnboardTest
+{
+public:
     std::string Type;
     IOnboardTestProcedure* Procedure;
     int ValidityTime;
     int ValidityTimeReminder;
     int ValidityDistance;
     bool PrepareOnStartup;
-    int LastExecutionTime;
+    int LastSuccessTimestamp;
+    int LastFailureTimestamp;
 };
 
 class IOnboardTestProcedure
 {
 public:
     virtual ~IOnboardTestProcedure() {}
-    virtual void proceed(OnboardTest test, bool startup) = 0;
+    virtual void proceed(bool startup) = 0;
     virtual void handle_test_brake_command() = 0;
+
     bool running = false;
+    int result = 0; // 0 - no change, 1 - changed to succes, -1 - changed to fail
 };

@@ -13,7 +13,7 @@
 class MainBrakeTestProcedure : public IOnboardTestProcedure
 {
 public:
-	virtual void proceed(OnboardTest test, bool startup);
+	virtual void proceed(bool startup);
 	virtual void handle_test_brake_command();
 
 	int step = 0;
