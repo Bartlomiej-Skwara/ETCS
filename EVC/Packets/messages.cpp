@@ -384,6 +384,8 @@ void check_valid_data(std::vector<eurobalise_telegram> telegrams, dist_base bg_r
     std::vector<eurobalise_telegram> read_telegrams;
     for (int i=0; i<telegrams.size(); i++) {
         eurobalise_telegram t = telegrams[i];
+        platform->debug_print("tellegram "+std::to_string(i)+" error "+std::to_string(t.readerror)+" N_PIG "+std::to_string(t.N_PIG));
+
         if (!t.readerror) {
             m_version = t.M_VERSION;
             nid_bg = t.NID_BG;
