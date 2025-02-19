@@ -426,12 +426,16 @@ void check_valid_data(std::vector<eurobalise_telegram> telegrams, dist_base bg_r
 
     bool accepted1 = true;
     if (read_telegrams.size() == 0)
+    {
+        platform->debug_print("Balise error. size == 0");
         accepted1 = false;
+    }
 
     if (linked && link_expected != linking.end() && !reading_bg_link)
         return;
 
     if (n_total == -1) {
+        platform->debug_print("Balise error. n_total == -1");
         accepted1 = false;
     } else {
         for (int pig=0; pig<=n_total; pig++) {
@@ -460,9 +464,18 @@ void check_valid_data(std::vector<eurobalise_telegram> telegrams, dist_base bg_r
                     break;
                 }
             }
+
             if (reject)
+            {
+                platform->debug_print("Balise error. pig"+std::to_string(pig)+"not found");
                 accepted1 = false;
+            }
         }
+    }
+
+    for (int i=0; i<read_telegrams.size(); i++) {
+        eurobalise_telegram t = read_telegrams[i];
+        platform->debug_print("Read tellegram "+std::to_string(i)+" N_PIG "+std::to_string(t.N_PIG));
     }
 
     std::vector<eurobalise_telegram> message;
