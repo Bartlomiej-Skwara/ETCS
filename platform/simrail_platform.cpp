@@ -93,7 +93,9 @@ bool SimrailBasePlatform::write_file(const std::string_view path, const std::str
 }
 
 void SimrailBasePlatform::debug_print(const std::string_view msg) {
-	api::debug_print(msg.data(), msg.size());
+	if (!logging_socket)
+		return;
+	logging_socket->broadcast(str);
 }
 
 Promise<void> SimrailBasePlatform::delay(int ms) {
