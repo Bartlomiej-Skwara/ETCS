@@ -59,6 +59,19 @@ public:
 		int minute;
 		int second;
 
+		std::string to_string_dd_mm_yyyy_hh_ii() const {
+			char buffer[20];
+			std::sprintf(buffer, "%02d.%02d.%04d %02d:%02d", day, month, year, hour, minute);
+			return std::string(buffer);
+		}
+
+
+		std::string to_string_dd_mm_hh_ii() const {
+			char buffer[20];
+			std::sprintf(buffer, "%02d.%02d %02d:%02d", day, month, hour, minute);
+			return std::string(buffer);
+		}
+
 		long to_unix_timestamp() {
 			int daysInMonth[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 			bool isLeapYear = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
@@ -76,7 +89,20 @@ public:
 			return days * 86400 + hour * 3600 + minute * 60 + second;
 		}
 
-		void from_unix_timestamp(long timestamp) {
+		DateTime(std::initializer_list<int> il) {
+			if (il.size() != 6) {
+				return;
+			}
+			auto it = il.begin();
+			year = *it++;
+			month = *it++;
+			day = *it++;
+			hour = *it++;
+			minute = *it++;
+			second = *it;
+		}
+
+		DateTime(long timestamp) {
 			int daysInMonth[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 			year = 1970;
 			long days = timestamp / 86400;

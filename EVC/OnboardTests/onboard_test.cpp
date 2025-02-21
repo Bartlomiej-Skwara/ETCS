@@ -17,6 +17,7 @@
 
 using json = nlohmann::json;
 std::vector<OnboardTest> LoadedOnboardTests;
+json LoadedOnboardTestsJson;
 
 void load_onboard_tests()
 {
@@ -110,10 +111,12 @@ void save_onboard_tests() {
 			{"PrepareOnStartup", item.PrepareOnStartup},
 			{"LastSuccessTimestamp", item.LastSuccessTimestamp},
 			{"LastFailureTimestamp", item.LastFailureTimestamp},
+			{"InProgress", item.Procedure->running},
 		};
 		json_array.push_back(test);
 	}
 	json::object_t main_obj = { {"Tests", json_array} };
 	json main_json(main_obj);
+	LoadedOnboardTestsJson = main_json;
 	platform->write_file("onboard_tests.json", main_json.dump(1));
 }

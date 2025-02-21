@@ -24,6 +24,10 @@ menu::~menu()
     }
     delete hourGlass;
 }
+bool menu::getHourGlass()
+{
+    return hourGlass->graphics.size() > 0;
+}
 void menu::setHourGlass(bool show)
 {
     if (show)

@@ -31,5 +31,6 @@ class menu : public subwindow
     void buildMenu();
     void setLayout() override;
     void setHourGlass(bool show);
+    bool getHourGlass();
 };
 #endif

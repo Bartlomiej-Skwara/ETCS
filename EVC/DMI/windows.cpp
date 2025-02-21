@@ -41,6 +41,7 @@ bool message_when_level_selected = false;
 int data_entry_type = 0;
 int data_entry_type_tiu = -1;
 extern bool bot_driver;
+extern std::vector<OnboardTest> LoadedOnboardTests;
 std::map<std::string, std::string> const_train_data;
 std::map<std::string, std::vector<std::string>> custom_train_data_inputs;
 
@@ -415,7 +416,7 @@ void update_dmi_windows()
     bool changed = prev_dialog != active_dialog || prev_step != active_dialog_step;
     prev_dialog = active_dialog;
     prev_step = active_dialog_step;
-    if (any_test_in_progress()) {
+    if (any_test_in_progress() && active_dialog != dialog_sequence::Settings) {
         active_dialog = dialog_sequence::StartUpTest;
         active_window_dmi = startup_test_window;
     } else {
@@ -885,8 +886,12 @@ void update_dmi_windows()
 
             }
             else if (active_dialog_step == "S8-1") {
-                if (changed)
-                    active_window_dmi = R"({"active":"component_tests_window"})"_json;
+                if (any_test_in_progress()) {
+                    active_window_dmi = R"({"active":"component_tests_window","hour_glass":true,"enabled":{"ComponentTesting":true,"Exit":false}})"_json;
+                }
+                else {
+                    active_window_dmi = R"({"active":"component_tests_window","hour_glass":false,"enabled":{"ComponentTesting":true,"Exit":true}})"_json;
+                }
             }
         }
     }
@@ -1718,7 +1723,7 @@ void update_dialog_step(std::string step, std::string step2)
             active_dialog = dialog_sequence::None;
         }
     } else if (active_dialog == dialog_sequence::Settings) {
-        if (active_window_dmi["active"] != "menu_settings" || !active_window_dmi["enabled"].contains(step) || !active_window_dmi["enabled"][step])
+        if ((active_window_dmi["active"] != "menu_settings" && active_window_dmi["active"] != "component_tests_window") || !active_window_dmi["enabled"].contains(step) || !active_window_dmi["enabled"][step])
             return;
         if (step == "Language")
             active_dialog_step = "S2";
@@ -1732,8 +1737,17 @@ void update_dialog_step(std::string step, std::string step2)
             active_dialog_step = "S6-1";
         else if (step == "RemoveVBC")
             active_dialog_step = "S7-1";
-        else if (step == "ComponentTesting")
+        else if (step == "ComponentTesting") {
             active_dialog_step = "S8-1";
+            if (step2 != "") {
+                int test_no = stoi(step2);
+                if (test_no > -1 && test_no < LoadedOnboardTests.size()) {
+                    if (LoadedOnboardTests[test_no].Procedure != nullptr) {
+                        LoadedOnboardTests[test_no].Procedure->proceed(false);
+                    }
+                }
+            }
+        }
     }
     if (active_dialog != prev_seq || active_dialog_step != prev_step) {
         any_button_pressed_async = true;

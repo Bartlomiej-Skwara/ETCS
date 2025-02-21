@@ -16,6 +16,7 @@ public:
 	virtual void proceed(bool startup);
 	virtual void handle_test_brake_command();
 
+	bool triggered_manually = false;
 	int step = 0;
 	text_message* message_to_ack;
 	int64_t last_pressure_change;

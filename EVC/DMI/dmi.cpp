@@ -63,6 +63,7 @@ extern bool EB_command;
 extern bool SB_command;
 extern MonitoringStatus monitoring;
 extern SupervisionStatus supervision;
+extern json LoadedOnboardTestsJson;
 bool message_when_driver_ack_level = false;
 bool message_when_driver_ack_mode = false;
 bool bot_driver = false;
@@ -443,6 +444,10 @@ void dmi_update_func()
         j["GradientProfile"] = "[]"_json;
         j["SpeedTargets"] = "[]"_json;
         j["ActiveTrackConditions"] = "[]"_json;
+    }
+    if (active_window_dmi["active"] == "component_tests_window")
+    {
+        j["OnboardTests"] = LoadedOnboardTestsJson;
     }
     json j2;
     j2["Status"] = j;

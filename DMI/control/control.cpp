@@ -109,9 +109,14 @@ void setWindow(json &data)
             m->setEnabled(enabled["Language"].get<bool>(), enabled["Volume"].get<bool>(), enabled["Brightness"].get<bool>(), enabled["SystemVersion"].get<bool>(), enabled["SetVBC"].get<bool>(), enabled["RemoveVBC"].get<bool>(), true); // enabled["ComponentTesting"].get<bool>());
             w = m;
         } else if(name =="component_tests_window") {
+            json& onboard_tests = data["Status"]["OnboardTests"];
+            bool hour = j.contains("hour_glass") && j["hour_glass"].get<bool>();
             menu_tests* m;
             if (same) m = (menu_tests*)active;
-            else m = new menu_tests();
+            else m = new menu_tests(onboard_tests);
+            if (same && hour != m->getHourGlass()) m = new menu_tests(onboard_tests);
+            m->setHourGlass(hour);
+            m->setEnabled(!hour);
             w = m;
         } else if (name == "menu_ntc") {
             menu_ntc *m;

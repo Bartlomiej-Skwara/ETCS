@@ -46,6 +46,7 @@ void MainBrakeTestProcedure::proceed(bool startup)
 		step = 1;
 	}
 
+	triggered_manually = !startup;
 	prev_brakecyl_pressure = brakecyl_pressure;
 	prev_pipe_pressure = pipe_pressure;
 }
@@ -70,13 +71,15 @@ void MainBrakeTestProcedure::handle_test_brake_command() {
 		save_onboard_tests();
 	}
 
-	if (step == 1 && message_to_ack != nullptr && message_to_ack->acknowledged)
+	if (step == 1 && (message_to_ack != nullptr && message_to_ack->acknowledged || triggered_manually))
 	{
 		prev_brakecyl_pressure = brakecyl_pressure;
 		prev_pipe_pressure = pipe_pressure;
 		last_pressure_change = get_milliseconds();
 
 		message_to_ack = nullptr;
+		triggered_manually = false;
+
 		add_message(text_message(get_text("Test trwa ..."), true, false, false, [this](text_message& t) { return !running; }));
 		platform->delay(1000).then([this]() {
 			step = 2;

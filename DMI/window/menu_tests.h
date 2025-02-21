@@ -12,7 +12,7 @@
 class menu_tests: public menu
 {
     public:
-    menu_tests();
-    void setEnabled();
+    menu_tests(json onboard_tests);
+    void setEnabled(bool enabled);
 };
 #endif
