@@ -33,7 +33,8 @@ extern std::vector<OnboardTest> LoadedOnboardTests;
 */
 void MainBrakeTestProcedure::proceed(bool startup)
 {
-	auto time = platform->get_local_time();
+	auto time = platform->get_local_time().to_unix_timestamp();
+	add_message(text_message("Timestamp = " + std::to_string(time), true, true, false, [this](text_message& t) { return false; }));
 
 	running = true;
 	step = 0;
