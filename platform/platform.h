@@ -82,10 +82,10 @@ public:
 			for (int y = 1970; y < year; ++y) {
 				days += (y % 4 == 0 && (y % 100 != 0 || y % 400 == 0)) ? 366 : 365;
 			}
-			for (int m = 0; m < month - 1; ++m) {
+			for (int m = 0; m < month; ++m) {
 				days += daysInMonth[m];
 			}
-			days += (day - 1);
+			days += day;
 			return days * 86400 + hour * 3600 + minute * 60 + second;
 		}
 

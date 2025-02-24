@@ -26,6 +26,7 @@ public:
     int ValidityTimeReminder;
     int ValidityDistance;
     bool PrepareOnStartup;
+    bool CanBeStartedManually;
     int LastSuccessTimestamp;
     int LastFailureTimestamp;
 };

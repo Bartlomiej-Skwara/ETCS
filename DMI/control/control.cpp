@@ -106,7 +106,7 @@ void setWindow(json &data)
             if (same) m = (menu_settings*)active;
             else m = new menu_settings();
             json& enabled = j["enabled"];
-            m->setEnabled(enabled["Language"].get<bool>(), enabled["Volume"].get<bool>(), enabled["Brightness"].get<bool>(), enabled["SystemVersion"].get<bool>(), enabled["SetVBC"].get<bool>(), enabled["RemoveVBC"].get<bool>(), true); // enabled["ComponentTesting"].get<bool>());
+            m->setEnabled(enabled["Language"].get<bool>(), enabled["Volume"].get<bool>(), enabled["Brightness"].get<bool>(), enabled["SystemVersion"].get<bool>(), enabled["SetVBC"].get<bool>(), enabled["RemoveVBC"].get<bool>(), enabled["ComponentTesting"].get<bool>());
             w = m;
         } else if(name =="component_tests_window") {
             json& onboard_tests = data["Status"]["OnboardTests"];

@@ -39,10 +39,10 @@ void load_onboard_tests()
 
 		IOnboardTestProcedure* procedure;
 		std::string type = item["Type"].get<std::string>();
-		if (type == "MainBrakeTest") {
+		if (type == "ETCS braking test") {
 			procedure = new MainBrakeTestProcedure();
 		}
-		else if (type == "SelfTest") {
+		else if (type == "Self test") {
 			procedure = new SelfTestProcedure();
 		}
 		else {
@@ -56,6 +56,7 @@ void load_onboard_tests()
 			item.contains("ValidityTimeReminder") ? item["ValidityTimeReminder"].get<int>() : -1,
 			item.contains("ValidityDistance") ? item["ValidityDistance"].get<int>() : -1,
 			item.contains("PrepareOnStartup") ? item["PrepareOnStartup"].get<bool>() : false,
+			item.contains("CanBeStartedManually") ? item["CanBeStartedManually"].get<bool>() : false,
 			item.contains("LastSuccessTimestamp") ? item["LastSuccessTimestamp"].get<int>() : -1,
 			item.contains("LastFailureTimestamp") ? item["LastFailureTimestamp"].get<int>() : -1
 			});
@@ -109,6 +110,7 @@ void save_onboard_tests() {
 			{"ValidityTime", item.ValidityTime },
 			{"ValidityTimeReminder", item.ValidityTimeReminder},
 			{"PrepareOnStartup", item.PrepareOnStartup},
+			{"CanBeStartedManually", item.CanBeStartedManually},
 			{"LastSuccessTimestamp", item.LastSuccessTimestamp},
 			{"LastFailureTimestamp", item.LastFailureTimestamp},
 			{"InProgress", item.Procedure->running},

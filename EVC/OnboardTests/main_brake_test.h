@@ -18,7 +18,7 @@ public:
 
 	bool triggered_manually = false;
 	int step = 0;
-	text_message* message_to_ack;
+	text_message* message;
 	int64_t last_pressure_change;
 	double prev_pipe_pressure;
 	double prev_brakecyl_pressure;

@@ -13,18 +13,26 @@
 
 menu_tests::menu_tests(json onboard_tests) : menu(get_text("Component testing"))
 {
-	int i = 0;
+	int button = 0;
+	int test = 0;
 	if (onboard_tests.contains("Tests"))
 	{
 		for (const auto& item : onboard_tests["Tests"])
 		{
+			bool is_visible = item["CanBeStartedManually"];
+
+			if (!is_visible) {
+				test++;
+				continue;
+			}
+
 			int last_success = item["LastSuccessTimestamp"];
 			int last_fail = item["LastFailureTimestamp"];
 			std::string visible_status;
 			std::string visible_time;
 			if (item["InProgress"])
 			{
-				visible_status = "W trakcie ...";
+				visible_status = "In progress...";
 				visible_time = "";
 			}
 			else {
@@ -37,16 +45,18 @@ menu_tests::menu_tests(json onboard_tests) : menu(get_text("Component testing"))
 					visible_time = BasePlatform::DateTime(last_success).to_string_dd_mm_hh_ii();
 				}
 				else if (last_fail > last_success) {
-					visible_status = "\nERROR\n";
+					visible_status = "\nFailed\n";
 					visible_time = BasePlatform::DateTime(last_fail).to_string_dd_mm_hh_ii();
 				}
 			}
 
-			entries[i] = { get_text(item["Type"]) + visible_status + visible_time, "", [i]
+			entries[button] = { get_text(item["Type"]) + visible_status + visible_time, "", [test]
 			{
-				write_command("ComponentTesting", std::to_string(i));
+				write_command("ComponentTesting", std::to_string(test));
 			}, false };
-			i++;
+
+			test++;
+			button++;
 		}
 	}
 	buildMenu();

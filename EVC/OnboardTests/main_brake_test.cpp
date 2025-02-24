@@ -20,6 +20,7 @@
 
 extern double pipe_pressure;
 extern double brakecyl_pressure;
+extern std::vector<OnboardTest> LoadedOnboardTests;
 
 /*
    Step 0 - Start of the procedure
@@ -38,9 +39,35 @@ void MainBrakeTestProcedure::proceed(bool startup)
 	step = 0;
 
 	if (startup && step == 0) {
-		int64_t time = get_milliseconds();
-		message_to_ack = &add_message(text_message(get_text("Wymagany test hamulcow. Potwierdz, aby rozpoczac."), true, true, false, [this](text_message& t) { return step > 1; }));
-		step = 1;
+		for (const auto& item : LoadedOnboardTests) {
+			if (item.Procedure == this) {
+				long current_timestamp = platform->get_local_time().to_unix_timestamp();
+				long last_success_timestamp = item.LastSuccessTimestamp;
+				long last_failure_timestamp = item.LastFailureTimestamp;
+				long delta_time = current_timestamp - last_success_timestamp;
+ 				if ((item.ValidityTime > 0 && delta_time > item.ValidityTime) || last_failure_timestamp > last_success_timestamp) {
+					int64_t time = get_milliseconds();
+					message = &add_message(text_message(get_text("ETCS brake test required. Confirm to proceed."), true, true, false, [this](text_message& t) { return step > 1; }));
+					step = 1;
+				}
+ 				else if (item.ValidityTime > 0 && delta_time > item.ValidityTimeReminder) {
+					int64_t time = get_milliseconds();
+					message = &add_message(text_message(get_text("ETCS brake test recommended."), true, false, false, [time](text_message& t) { return time + 30000 < get_milliseconds(); }));
+					running = false;
+					EB_command = false;
+					release_command = false;
+					save_onboard_tests();
+					return;
+				}
+				else {
+					running = false;
+					EB_command = false;
+					release_command = false;
+					save_onboard_tests();
+					return;
+				}
+			}
+		}
 	}
 	else {
 		step = 1;
@@ -61,26 +88,26 @@ void MainBrakeTestProcedure::handle_test_brake_command() {
 		prev_pipe_pressure = pipe_pressure;
 	}
 
-	if ((step > 1 && last_pressure_change > 0 && time - last_pressure_change > 10000) || (step == 1 && pipe_pressure < 4.5 && message_to_ack != nullptr && message_to_ack->acknowledged)) {
+	if ((step > 1 && last_pressure_change > 0 && time - last_pressure_change > 10000) || (step == 1 && pipe_pressure < 4.5 && message != nullptr && message->acknowledged)) {
 		running = false;
 		failed = true;
 		EB_command = true;
 		release_command = false;
-		add_message(text_message(get_text("Test zakonczony niepowodzeniem!"), true, false, false, [time](text_message& t) { return false; }));
+		add_message(text_message(get_text("Test failed!"), true, false, false, [time](text_message& t) { return false; }));
 		result = -1;
 		save_onboard_tests();
 	}
 
-	if (step == 1 && (message_to_ack != nullptr && message_to_ack->acknowledged || triggered_manually))
+	if (step == 1 && (message != nullptr && message->acknowledged || triggered_manually))
 	{
 		prev_brakecyl_pressure = brakecyl_pressure;
 		prev_pipe_pressure = pipe_pressure;
 		last_pressure_change = get_milliseconds();
 
-		message_to_ack = nullptr;
+		message = nullptr;
 		triggered_manually = false;
 
-		add_message(text_message(get_text("Test trwa ..."), true, false, false, [this](text_message& t) { return !running; }));
+		add_message(text_message(get_text("Test in progress..."), true, false, false, [this](text_message& t) { return !running; }));
 		platform->delay(1000).then([this]() {
 			step = 2;
 			}).detach();
@@ -89,7 +116,7 @@ void MainBrakeTestProcedure::handle_test_brake_command() {
 		EB_command = true;
 		release_command = false;
 		step = 3;
-		add_message(text_message(get_text("Test hamulcow ..."), true, false, false, [this](text_message& t) { return !EB_command || !running; }));
+		add_message(text_message(get_text("Braking test..."), true, false, false, [this](text_message& t) { return !EB_command || !running; }));
 	}
 	else if (step == 3) {
 		if (pipe_pressure < 0.5 && brakecyl_pressure > 1) {
@@ -103,7 +130,7 @@ void MainBrakeTestProcedure::handle_test_brake_command() {
 			EB_command = true;
 			release_command = false;
 			step = 5;
-			add_message(text_message(get_text("Test hamulcow ..."), true, false, false, [this](text_message& t) { return !EB_command || !running; }));
+			add_message(text_message(get_text("Braking test..."), true, false, false, [this](text_message& t) { return !EB_command || !running; }));
 		}
 	}
 	else if (step == 5) {
@@ -118,7 +145,7 @@ void MainBrakeTestProcedure::handle_test_brake_command() {
 			running = false;
 			EB_command = false;
 			release_command = false;
-			add_message(text_message(get_text("Test OK!"), true, false, false, [time](text_message& t) { return time + 60000 < get_milliseconds(); }));
+			add_message(text_message(get_text("Test successful!"), true, false, false, [time](text_message& t) { return time + 30000 < get_milliseconds(); }));
 			result = 1;
 			save_onboard_tests();
 		}
