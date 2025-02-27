@@ -33,16 +33,13 @@ extern std::vector<OnboardTest> LoadedOnboardTests;
 */
 void MainBrakeTestProcedure::proceed(bool startup)
 {
-	auto time = platform->get_local_time().to_unix_timestamp();
-	add_message(text_message("Timestamp = " + std::to_string(time), true, true, false, [this](text_message& t) { return false; }));
-
 	running = true;
 	step = 0;
 
 	if (startup && step == 0) {
 		for (const auto& item : LoadedOnboardTests) {
 			if (item.Procedure == this) {
-				long current_timestamp = platform->get_local_time().to_unix_timestamp();
+				long current_timestamp = platform->get_timestamp();
 				long last_success_timestamp = item.LastSuccessTimestamp;
 				long last_failure_timestamp = item.LastFailureTimestamp;
 				long delta_time = current_timestamp - last_success_timestamp;

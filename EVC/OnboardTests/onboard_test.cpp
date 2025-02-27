@@ -91,10 +91,10 @@ void save_onboard_tests() {
 	for (auto& item : LoadedOnboardTests) {
 		switch (item.Procedure->result) {
 		case 1:
-			item.LastSuccessTimestamp = platform->get_local_time().to_unix_timestamp();
+			item.LastSuccessTimestamp = platform->get_timestamp();
 			break;
 		case -1:
-			item.LastFailureTimestamp = platform->get_local_time().to_unix_timestamp();
+			item.LastFailureTimestamp = platform->get_timestamp();
 			break;
 		default:
 			break;
