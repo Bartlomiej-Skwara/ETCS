@@ -232,6 +232,14 @@ int64_t SdlPlatform::get_timer() {
 	return libc_time_impl.get_timer();
 }
 
+int64_t SdlPlatform::get_timestamp() {
+	return libc_time_impl.get_timestamp();
+}
+
+SdlPlatform::DateTime SdlPlatform::get_local_time() {
+	return libc_time_impl.get_local_time();
+}
+
 std::optional<std::string> SdlPlatform::read_file(const std::string_view path, FileType type) {
 	return fstream_file_impl.read_file((type == ETCS_ASSET_FILE ? assets_dir : (type == ETCS_CONFIG_FILE ? config_dir : storage_dir)) + std::string(path));
 }

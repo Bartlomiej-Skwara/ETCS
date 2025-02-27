@@ -174,6 +174,10 @@ int64_t ConsolePlatform::get_timer() {
 	return libc_time_impl.get_timer();
 }
 
+int64_t ConsolePlatform::get_timestamp() {
+	return libc_time_impl.get_timestamp();
+}
+
 ConsolePlatform::DateTime ConsolePlatform::get_local_time() {
 	return libc_time_impl.get_local_time();
 }

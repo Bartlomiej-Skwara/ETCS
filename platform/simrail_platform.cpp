@@ -15,6 +15,8 @@ using namespace PlatformUtil;
 
 namespace api {
 	IMPORT_FUNC("simrail_base_v1", "get_timer") int64_t get_timer();
+	IMPORT_FUNC("simrail_base_v1", "get_timestamp") int64_t get_timestamp();
+	IMPORT_FUNC("simrail_base_v1", "get_local_time") void get_local_time(tm *ptr);
 	IMPORT_FUNC("simrail_base_v1", "read_file") char* read_file(const char* t, size_t tlen, size_t* len);
 	IMPORT_FUNC("simrail_base_v1", "write_file") uint32_t write_file(const char* t, size_t tlen, const char* c, size_t len);
 	IMPORT_FUNC("simrail_base_v1", "debug_print") void debug_print(const char* t, size_t len);
@@ -76,6 +78,19 @@ SimrailBasePlatform::SimrailBasePlatform() {
 
 int64_t SimrailBasePlatform::get_timer() {
 	return api::get_timer();
+}
+
+int64_t SimrailBasePlatform::get_timestamp() {
+	return api::get_timestamp();
+}
+
+SimrailBasePlatform::DateTime SimrailBasePlatform::get_local_time() {
+	tm datetime = {};
+	api::get_local_time(&datetime);
+	return BasePlatform::DateTime {
+		datetime->tm_year + 1900, datetime->tm_mon, datetime->tm_mday - 1,
+		datetime->tm_hour, datetime->tm_min, datetime->tm_sec
+	};
 }
 
 std::optional<std::string> SimrailBasePlatform::read_file(const std::string_view path, FileType file_type) {

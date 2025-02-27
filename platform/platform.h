@@ -139,10 +139,8 @@ public:
 	};
 
 	virtual int64_t get_timer() = 0;
-	virtual DateTime get_local_time()
-	{
-		return {0,0,0,0,0,0};
-	}
+	virtual int64_t get_timestamp() = 0;
+	virtual DateTime get_local_time() = 0;
 
 	virtual std::unique_ptr<BusSocket> open_socket(const std::string_view bus, uint32_t tid) = 0;
 	virtual std::optional<std::string> read_file(const std::string_view path, FileType file_type=ETCS_ASSET_FILE) = 0;

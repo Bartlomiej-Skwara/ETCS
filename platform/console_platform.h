@@ -52,6 +52,7 @@ public:
 	~ConsolePlatform() override;
 
 	int64_t get_timer() override;
+	int64_t get_timestamp() override;
 	DateTime get_local_time() override;
 
 	std::unique_ptr<BusSocket> open_socket(const std::string_view channel, uint32_t tid) override;
