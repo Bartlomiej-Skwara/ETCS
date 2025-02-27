@@ -88,8 +88,8 @@ SimrailBasePlatform::DateTime SimrailBasePlatform::get_local_time() {
 	tm datetime = {};
 	api::get_local_time(&datetime);
 	return BasePlatform::DateTime {
-		datetime->tm_year + 1900, datetime->tm_mon, datetime->tm_mday - 1,
-		datetime->tm_hour, datetime->tm_min, datetime->tm_sec
+		datetime.tm_year + 1900, datetime.tm_mon, datetime.tm_mday - 1,
+		datetime.tm_hour, datetime.tm_min, datetime.tm_sec
 	};
 }
 
