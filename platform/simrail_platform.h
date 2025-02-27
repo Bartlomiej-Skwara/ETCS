@@ -147,6 +147,8 @@ public:
 	~SimrailUiPlatform() override;
 
 	int64_t get_timer() override { return base.get_timer(); };
+	int64_t get_timestamp() override { return base.get_timestamp(); }
+	DateTime get_local_time() override { return base.get_local_time(); }
 
 	std::unique_ptr<BusSocket> open_socket(const std::string_view channel, uint32_t tid) override { return base.open_socket(channel, tid); };
 	std::optional<std::string> read_file(const std::string_view path, FileType file_type=ETCS_ASSET_FILE) override { return base.read_file(path); };
