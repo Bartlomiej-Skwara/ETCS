@@ -14,6 +14,7 @@
 #include "../TrainSubsystems/cold_movement.h"
 #include "../STM/stm.h"
 #include "../DMI/track_ahead_free.h"
+#include "../OnboardTests/onboard_test.h"
 optional<level_transition_information> ongoing_transition;
 optional<level_transition_information> sh_transition;
 std::vector<level_information> priority_levels;
@@ -163,8 +164,11 @@ void perform_transition()
 }
 void update_level_status()
 {
-    if (mode == Mode::IS && level != Level::Unknown) {
-        driver_set_level({ Level::Unknown, -1 });
+    if (mode == Mode::IS) {
+        if (any_test_in_progress())
+            interrupt_all_tests();
+        if(level != Level::Unknown)
+            driver_set_level({ Level::Unknown, -1 });
         return;
     }
     if (level_timer_started && level_timer + T_ACK*1000 < get_milliseconds()) {

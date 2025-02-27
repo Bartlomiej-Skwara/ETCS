@@ -54,14 +54,12 @@ void MainBrakeTestProcedure::proceed(bool startup)
 					running = false;
 					EB_command = false;
 					release_command = false;
-					save_onboard_tests();
 					return;
 				}
 				else {
 					running = false;
 					EB_command = false;
 					release_command = false;
-					save_onboard_tests();
 					return;
 				}
 			}
@@ -79,6 +77,16 @@ void MainBrakeTestProcedure::proceed(bool startup)
 void MainBrakeTestProcedure::handle_test_brake_command() {
 	int64_t time = get_milliseconds();
 	result = 0;
+
+	if (!running) {
+		running = false;
+		failed = true;
+		EB_command = false;
+		release_command = true;
+		result = 0;
+		save_onboard_tests();
+		return;
+	}
 
 	if (abs(prev_brakecyl_pressure - brakecyl_pressure) > 0.01 || abs(prev_pipe_pressure - pipe_pressure) > 0.01) {
 		last_pressure_change = get_milliseconds();

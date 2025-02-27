@@ -87,6 +87,14 @@ bool any_test_in_progress() {
 	return false;
 }
 
+void interrupt_all_tests() {
+	for (const auto& item : LoadedOnboardTests) {
+		if (item.Procedure->running) {
+			item.Procedure->running = false;
+		}
+	}
+}
+
 void save_onboard_tests() {
 	for (auto& item : LoadedOnboardTests) {
 		switch (item.Procedure->result) {

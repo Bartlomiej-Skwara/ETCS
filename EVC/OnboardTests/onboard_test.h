@@ -15,6 +15,7 @@ void load_onboard_tests();
 void save_onboard_tests();
 void perform_startup_tests();
 bool any_test_in_progress();
+void interrupt_all_tests();
 class IOnboardTestProcedure;
 
 class OnboardTest
