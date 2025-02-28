@@ -32,7 +32,7 @@ menu_tests::menu_tests(json onboard_tests) : menu(get_text("Component testing"))
 			std::string visible_time;
 			if (item["InProgress"])
 			{
-				visible_status = "In progress...";
+				visible_status = get_text("In progress...");
 				visible_time = "";
 			}
 			else {
@@ -41,16 +41,16 @@ menu_tests::menu_tests(json onboard_tests) : menu(get_text("Component testing"))
 					visible_time = "";
 				}
 				else if (last_success > last_fail) {
-					visible_status = "\nOK\n";
+					visible_status = get_text("OK");
 					visible_time = BasePlatform::DateTime(last_success).to_string_dd_mm_hh_ii();
 				}
 				else if (last_fail > last_success) {
-					visible_status = "\nFailed\n";
+					visible_status = get_text("Failed");
 					visible_time = BasePlatform::DateTime(last_fail).to_string_dd_mm_hh_ii();
 				}
 			}
 
-			entries[button] = { get_text(item["Type"]) + visible_status + visible_time, "", [test]
+			entries[button] = { get_text(item["Type"]) + '\n' + visible_status + '\n' + visible_time, "", [test]
 			{
 				write_command("ComponentTesting", std::to_string(test));
 			}, false };

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-09 12:41+0100\n"
+"POT-Creation-Date: 2025-02-28 14:39+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,10 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: ../DMI/graphics/display.cpp:44
+msgid "EVC not connected!"
+msgstr ""
 
 #: ../DMI/window/brightness.cpp:13 ../DMI/window/menu_settings.cpp:21
 msgid "Brightness"
@@ -162,6 +166,10 @@ msgstr ""
 msgid "Remove VBC"
 msgstr ""
 
+#: ../DMI/window/menu_settings.cpp:37 ../DMI/window/menu_tests.cpp:14
+msgid "Component testing"
+msgstr ""
+
 #: ../DMI/window/menu_spec.cpp:11
 msgid "Special"
 msgstr ""
@@ -180,6 +188,22 @@ msgstr ""
 
 #: ../DMI/window/menu_spec.cpp:26
 msgid "BMM reaction inhibition"
+msgstr ""
+
+#: ../DMI/window/menu_tests.cpp:35
+msgid "In progress..."
+msgstr ""
+
+#: ../DMI/window/menu_tests.cpp:44
+msgid "OK"
+msgstr ""
+
+#: ../DMI/window/menu_tests.cpp:48
+msgid "Failed"
+msgstr ""
+
+#: ../DMI/window/menu_tests.cpp:53
+msgid "Type"
 msgstr ""
 
 #: ../DMI/window/train_data.cpp:14 ../DMI/window/train_data.cpp:18
