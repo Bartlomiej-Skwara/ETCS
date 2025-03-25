@@ -30,10 +30,10 @@ jobs:
         path: ${{github.workspace}}/locales
 
     - name: Configure
-      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=Release -A x64 -DSIMRAIL=${{matrix.sr_flag}}
+      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=RelWithDebInfo -A x64 -DSIMRAIL=${{matrix.sr_flag}}
 
     - name: Build
-      run: cmake --build ${{github.workspace}}/build --config Release
+      run: cmake --build ${{github.workspace}}/build --config RelWithDebInfo
 
     - name: Install
       run: cmake --install ${{github.workspace}}/build --prefix ${{github.workspace}}/dist
