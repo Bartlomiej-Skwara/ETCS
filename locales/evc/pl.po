@@ -484,3 +484,42 @@ msgstr "Zbiegnięcie taboru"
 #: ../EVC/TrainSubsystems/brake.cpp:86
 msgid "Train data changed"
 msgstr "Zmieniono dane pociągu"
+
+msgid "ETCS brake test required. Confirm to proceed."
+msgstr "Wymagany test hamulców. Potwierdź aby rozpocząć."
+
+msgid "ETCS brake test recommended."
+msgstr "Zalecany test hamulców"
+
+#: ../DMI/window/menu_settings.cpp:37 ../DMI/window/menu_tests.cpp:14
+msgid "Component testing"
+msgstr "Testowanie podzespołów"
+
+#: ../DMI/window/menu_tests.cpp:35
+msgid "In progress..."
+msgstr "Wykonywanie testu..."
+
+msgid "Braking test..."
+msgstr "Wykonywanie testu..."
+
+msgid "Test in progress..."
+msgstr "Wykonywanie testu..."
+
+msgid "Test failed!"
+msgstr "Niepowodzenie testu!"
+
+msgid "Test successful!"
+msgstr "Test poprawny!"
+
+#: ../DMI/window/menu_tests.cpp:44
+msgid "OK"
+msgstr "OK"
+
+#: ../DMI/window/menu_tests.cpp:48
+msgid "Failed"
+msgstr "Niepowodzenie"
+
+#: ../DMI/window/menu_tests.cpp:53
+msgid "Type"
+msgstr "Rodzaj"
+
