@@ -35,15 +35,12 @@ jobs:
     - name: Build
       run: cmake --build ${{github.workspace}}/build --config RelWithDebInfo
 
-    - name: Install
-      run: cmake --install ${{github.workspace}}/build --prefix ${{github.workspace}}/dist
-
     - name: Publish
       uses: actions/upload-artifact@v4
       with:
         name: build-win64-sr${{matrix.sr_flag}}
         path: |
-          ${{github.workspace}}/dist
+          ${{github.workspace}}/build
 
   build_wasm:
     name: Build for WASM
