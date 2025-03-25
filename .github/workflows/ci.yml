@@ -30,20 +30,17 @@ jobs:
         path: ${{github.workspace}}/locales
 
     - name: Configure
-      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=Release -A x64 -DSIMRAIL=${{matrix.sr_flag}}
+      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=RelWithDebInfo -A x64 -DSIMRAIL=${{matrix.sr_flag}}
 
     - name: Build
-      run: cmake --build ${{github.workspace}}/build --config Release
-
-    - name: Install
-      run: cmake --install ${{github.workspace}}/build --prefix ${{github.workspace}}/dist
+      run: cmake --build ${{github.workspace}}/build --config RelWithDebInfo
 
     - name: Publish
       uses: actions/upload-artifact@v4
       with:
         name: build-win64-sr${{matrix.sr_flag}}
         path: |
-          ${{github.workspace}}/dist
+          ${{github.workspace}}/build
 
   build_wasm:
     name: Build for WASM
