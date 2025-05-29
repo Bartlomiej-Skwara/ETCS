@@ -6,18 +6,20 @@
 
 #include "sdl_platform.h"
 #include "sdl_gfx/gfx_primitives.h"
+#include "console_tools.h"
 #include "platform_runtime.h"
 #include <algorithm>
 #include <fstream>
 #include <cmath>
-#include <SDL.h>
-#include <SDL_ttf.h>
 
 int main(int argc, char *argv[])
 {
 	std::vector<std::string> args;
 	for (int i = 1; i < argc; i++)
 		args.push_back(std::string(argv[i]));
+#ifdef __ANDROID__
+	android_external_storage_dir = SDL_AndroidGetExternalStoragePath();
+#endif
 	platform = std::make_unique<SdlPlatform>(platform_size_w, platform_size_h, args);
 	on_platform_ready();
 	static_cast<SdlPlatform*>(platform.get())->event_loop();
@@ -60,78 +62,17 @@ std::string SdlPlatform::SdlPlatform::get_config(const std::string_view key, con
 		return std::string(def);
 	return it->second;
 }
-#ifdef __ANDROID__
-std::string android_external_storage_dir;
-std::string get_files_dir(FileType type)
-{
-    if (android_external_storage_dir == "") android_external_storage_dir = std::string(SDL_AndroidGetExternalStoragePath())+"/";
-	return android_external_storage_dir;
-}
-#elif defined(__unix__)
-#include <string>
-#include <limits.h>
-#include <unistd.h>
-std::string getexepath()
-{
-  char result[ PATH_MAX ];
-  ssize_t count = readlink( "/proc/self/exe", result, PATH_MAX );
-  return std::string( result, (count > 0) ? count : 0 );
-}
-#include <filesystem>
-std::string get_files_dir(FileType type)
-{
-	switch (type)
-	{
-		case ETCS_ASSET_FILE:
-			{
-				auto exepath = std::filesystem::path(getexepath()).remove_filename();
-				if (exepath.parent_path().filename() != "bin")
-					return "";
-				if (exepath == "/bin/")
-					return "/usr/share/ETCS/";
-				return exepath / "../share/ETCS/";
-			}
-		case ETCS_CONFIG_FILE:
-			{
-				auto exepath = std::filesystem::path(getexepath()).remove_filename();
-				if (exepath.parent_path().filename() != "bin")
-					return "";
-				if (exepath.parent_path().parent_path().filename() == "usr")
-					return exepath / "../../etc/ETCS/";
-				return exepath / "../etc/ETCS/";
-			}
-		case ETCS_STORAGE_FILE:
-			{
-				const char* wd  = getenv("OWD");
-				if (wd)
-					return std::string(wd)+"/";
-				return "";
-			}
-		default:
-			return "";
-	}
-}
-#else
-#include <string>
-#include <windows.h>
-std::string getexepath()
-{
-  char result[ MAX_PATH ];
-  return std::string( result, GetModuleFileName( NULL, result, MAX_PATH ) );
-}
-#include <filesystem>
-std::string get_files_dir(FileType type)
-{
-	return std::filesystem::path(getexepath()).remove_filename().string();
-}
-#endif
 SdlPlatform::SdlPlatform(float virtual_w, float virtual_h, const std::vector<std::string> &args) :
+	virtual_w(virtual_w),
+	virtual_h(virtual_h),
 	assets_dir(get_files_dir(ETCS_ASSET_FILE)),
 	config_dir(get_files_dir(ETCS_CONFIG_FILE)),
 	storage_dir(get_files_dir(ETCS_STORAGE_FILE)),
 	bus_socket_impl(config_dir, poller, args),
 	fstream_file_impl()
 {
+	setup_crash_handler();
+
 	SDL_Init(SDL_INIT_EVERYTHING);
 
 	load_config(args);
@@ -142,12 +83,14 @@ SdlPlatform::SdlPlatform(float virtual_w, float virtual_h, const std::vector<std
 	int xpos = std::stoi(get_config("xpos", "0"));
 	int ypos = std::stoi(get_config("ypos", "0"));
 	bool borderless = get_config("borderless") == "true";
-	bool rotate = get_config("rotateScreen") == "true";
+	rotate = get_config("rotateScreen") == "true";
 	bool ontop = get_config("alwaysOnTop") == "true";
 	bool hidecursor = get_config("hideCursor") == "true";
+	touch = get_config("touch") == "true";
 	std::string title = get_config("title") == "" ? "SdlPlatform" : get_config("title");
 
 	int flags = 0;
+	flags |= SDL_WINDOW_ALLOW_HIGHDPI;
 	if (borderless)
 		flags |= SDL_WINDOW_BORDERLESS;
 	if (fullscreen)
@@ -166,25 +109,7 @@ SdlPlatform::SdlPlatform(float virtual_w, float virtual_h, const std::vector<std
 
 	sdlrend = SDL_CreateRenderer(sdlwindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_TARGETTEXTURE);
 
-	int wx, wy;
-	SDL_GetWindowSize(sdlwindow, &wx, &wy);
-	float sx = wx / virtual_w;
-	float sy = wy / virtual_h;
-	s = std::min(sx, sy);
-	if (sx > sy) {
-		ox = (wx - wy * (virtual_w / virtual_h)) * 0.5f;
-		oy = 0.0f;
-	} else {
-		ox = 0.0f;
-		oy = (wy - wx * (virtual_h / virtual_w)) * 0.5f;
-	}
-	if (rotate) {
-		s *= -1.0f;
-		ox += wx - ox * 2.0f;
-		oy += wy - oy * 2.0f;
-	}
-
-	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, s == std::floor(s) ? "0" : "1");
+	calc_scale();
 
 	TTF_Init();
 
@@ -222,6 +147,29 @@ SdlPlatform::~SdlPlatform() {
 	//SDL_DestroyRenderer(sdlrend);
 	SDL_DestroyWindow(sdlwindow);
 	SDL_Quit();
+}
+
+void SdlPlatform::calc_scale() {
+	SDL_GetRendererOutputSize(sdlrend, &wx, &wy);
+	int px,py;
+	SDL_GetWindowSize(sdlwindow, &px, &py);
+	dpiscale = wx / (float)px;
+	float sx = wx / virtual_w;
+	float sy = wy / virtual_h;
+	s = std::min(sx, sy);
+	if (sx > sy) {
+		ox = (wx - wy * (virtual_w / virtual_h)) * 0.5f;
+		oy = 0.0f;
+	} else {
+		ox = 0.0f;
+		oy = (wy - wx * (virtual_h / virtual_w)) * 0.5f;
+	}
+	if (rotate) {
+		s *= -1.0f;
+		ox += wx - ox * 2.0f;
+		oy += wy - oy * 2.0f;
+	}
+	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, s == std::floor(s) ? "0" : "1");
 }
 
 std::unique_ptr<SdlPlatform::BusSocket> SdlPlatform::open_socket(const std::string_view channel, uint32_t tid) {
@@ -265,31 +213,63 @@ PlatformUtil::Promise<SdlPlatform::InputEvent> SdlPlatform::on_input_event() {
 bool SdlPlatform::poll_sdl() {
 	SDL_Event ev;
 	if (SDL_PollEvent(&ev)) {
-		if (ev.type == SDL_QUIT || ev.type == SDL_WINDOWEVENT_CLOSE) {
+		if (ev.type == SDL_QUIT || ev.type == SDL_WINDOWEVENT_CLOSE)
+		{
 			on_close_list.fulfill_all(false);
 		}
-		else if (ev.type == SDL_MOUSEBUTTONDOWN || ev.type == SDL_MOUSEBUTTONUP) {
+		else if (touch && (ev.type == SDL_FINGERDOWN || ev.type == SDL_FINGERUP || ev.type == SDL_FINGERMOTION))
+		{
+			SDL_TouchFingerEvent tfe = ev.tfinger;
+			InputEvent ev;
+			if (tfe.type == SDL_FINGERMOTION)
+			{
+				if (tfe.pressure > 0)
+				{
+					ev.action = InputEvent::Action::Move;
+					ev.x = (tfe.x*wx - ox) / s;
+					ev.y = (tfe.y*wy - oy) / s;
+					on_input_list.fulfill_all(ev, false);
+				}
+			}
+			else
+			{
+				ev.action = tfe.type == SDL_FINGERDOWN ? InputEvent::Action::Press : InputEvent::Action::Release;
+				ev.x = (tfe.x*wx - ox) / s;
+				ev.y = (tfe.y*wy - oy) / s;
+				on_input_list.fulfill_all(ev, false);
+			}
+		}
+		else if (ev.type == SDL_MOUSEBUTTONDOWN || ev.type == SDL_MOUSEBUTTONUP)
+		{
 			SDL_MouseButtonEvent sdlev = ev.button;
 			if (sdlev.button == SDL_BUTTON_LEFT) {
 				InputEvent ev;
 				ev.action = (sdlev.state == SDL_PRESSED) ? InputEvent::Action::Press : InputEvent::Action::Release;
-				ev.x = (sdlev.x - ox) / s;
-				ev.y = (sdlev.y - oy) / s;
+				ev.x = (sdlev.x * dpiscale - ox) / s;
+				ev.y = (sdlev.y * dpiscale - oy) / s;
 
 				on_input_list.fulfill_all(ev, false);
 			}
 		}
-		else if (ev.type == SDL_MOUSEMOTION) {
+		else if (ev.type == SDL_MOUSEMOTION)
+		{
 			SDL_MouseMotionEvent sdlev = ev.motion;
 			if (sdlev.state & SDL_BUTTON_LMASK) {
 				InputEvent ev;
 				ev.action = InputEvent::Action::Move;
-				ev.x = (sdlev.x - ox) / s;
-				ev.y = (sdlev.y - oy) / s;
+				ev.x = (sdlev.x * dpiscale - ox) / s;
+				ev.y = (sdlev.y * dpiscale - oy) / s;
 
 				on_input_list.fulfill_all(ev, false);
 			}
 		}
+        else if (ev.type == SDL_WINDOWEVENT && (ev.window.event == SDL_WINDOWEVENT_RESIZED || ev.window.event == SDL_WINDOWEVENT_SIZE_CHANGED))
+		{
+            calc_scale();
+			loaded_fonts.clear();
+			void startWindows();
+			startWindows();
+        }
 		return true;
 	}
 	return false;
