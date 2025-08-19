@@ -328,12 +328,12 @@ void route_suitability_information::handle()
 void plain_text_information::handle()
 {
     PlainTextMessage m = *(PlainTextMessage*)linked_packets.front().get();
-    add_message(m, *ref);
+    add_message(m, ref);
 }
 void fixed_text_information::handle()
 {
     FixedTextMessage m = *(FixedTextMessage*)linked_packets.front().get();
-    add_message(m, *ref);
+    add_message(m, ref);
 }
 void geographical_position_information::handle()
 {
@@ -565,7 +565,7 @@ void level_crossing_information::handle()
 void vbc_order::handle()
 {
     VirtualBaliseCoverOrder &vbco = *(VirtualBaliseCoverOrder*)linked_packets.front().get();
-    virtual_balise_cover vbc = {(int)vbco.NID_C, (int)vbco.NID_VBCMK, get_milliseconds()+vbco.T_VBC.get_value()};
+    virtual_balise_cover vbc = {(int)vbco.NID_C, (int)vbco.NID_VBCMK, timestamp, vbco.T_VBC.get_value()};
     if (vbco.Q_VBCO == vbco.Q_VBCO.SetVBC)
         set_vbc(vbc);
     else

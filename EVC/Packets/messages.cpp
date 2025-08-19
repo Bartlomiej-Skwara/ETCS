@@ -269,6 +269,7 @@ void balise_group_passed()
 void update_track_comm()
 {
     update_radio();
+    update_vbc();
     if (pending_telegrams.empty()) {
         check_linking();
         if (reading) {
@@ -658,7 +659,7 @@ void handle_telegrams(std::vector<eurobalise_telegram> message, dist_base dist, 
     }
     if (VERSION_X(m_version) > VERSION_X(operated_version))
         operate_version(m_version, false);
-    std::set<virtual_balise_cover> old_vbcs = vbcs;
+    std::list<virtual_balise_cover> old_vbcs = vbcs;
     for (auto it = old_vbcs.begin(); it != old_vbcs.end(); ++it) {
         if (it->NID_C != nid_bg.NID_C)
             remove_vbc(*it);
@@ -942,7 +943,7 @@ struct accepted_condition
 std::map<level_filter_data, accepted_condition> level_filter_index;
 bool level_filter(std::shared_ptr<etcs_information> info, const std::list<std::shared_ptr<etcs_information>> &message) 
 {
-    if (info->infill && ((level != Level::N1 && (!ongoing_transition || ongoing_transition->leveldata.level != Level::N1 || (level != Level::N2 && level != Level::N3))) || (mode != Mode::FS && mode != Mode::OS)))
+    if (info->infill && ((level != Level::N1 && (!ongoing_transition || ongoing_transition->leveldata.level != Level::N1 || (level != Level::N2 && level != Level::N3))) || (mode != Mode::FS && mode != Mode::LS)))
         return false;
     accepted_condition s = level_filter_index[{info->index_level, level, info->fromRBC != nullptr}];
     if (!s.reject && info->infill)
@@ -1411,9 +1412,15 @@ std::vector<etcs_information*> construct_information(ETCS_packet *packet, eurora
     } else if (packet_num == 70) {
         info.push_back(new route_suitability_information());
     } else if (packet_num == 72) {
-        info.push_back(new plain_text_information());
+        auto pti = new plain_text_information();
+        PlainTextMessage *m = (PlainTextMessage*)packet;
+        pti->location_based = m->D_TEXTDISPLAY != m->D_TEXTDISPLAY.NotDistanceLimited;
+        info.push_back(pti);
     } else if (packet_num == 76) {
-        info.push_back(new fixed_text_information());
+        auto fti = new fixed_text_information();
+        FixedTextMessage *m = (FixedTextMessage*)packet;
+        fti->location_based = m->D_TEXTDISPLAY != m->D_TEXTDISPLAY.NotDistanceLimited;
+        info.push_back(fti);
     } else if (packet_num == 79) {
         info.push_back(new geographical_position_information());
     } else if (packet_num == 88) {
