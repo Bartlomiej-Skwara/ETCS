@@ -151,7 +151,10 @@ void SetParameters()
         }
         bit_manipulator r(std::move(message));
         eurobalise_telegram t(r);
-        pending_telegrams.push_back({t,{distance::from_odometer(dist_base(odometer_value-odometer_reference, odometer_orientation)), get_milliseconds()}});
+
+        double raw_odo = odometer_value-odometer_reference;
+        if (odometer_orientation == -1) raw_odo -= L_locomotive;
+        pending_telegrams.push_back({t,{distance::from_odometer(dist_base(raw_odo, odometer_orientation)), get_milliseconds()}});
     };
     manager.AddParameter(p);
 
@@ -195,6 +198,13 @@ void SetParameters()
     p = new ORserver::Parameter("etcs::obu_tr");
     p->GetValue = []() {
         return obu_tr_status;
+    };
+    manager.AddParameter(p);
+
+    p = new ORserver::Parameter("etcs::tr_obu");
+    p->SetValue = [](string val) {
+        auto data = json::parse(val);
+        handle_tr_inputs(data);
     };
     manager.AddParameter(p);
 
@@ -465,6 +475,7 @@ void start_or_iface()
     register_parameter("train_orientation");
     register_parameter("stm::command");
     register_parameter("stm::+::isolated");
+    register_parameter("etcs::tr_obu");
     register_parameter("etcs::isolated");
     register_parameter("etcs::failed");
     register_parameter("gsmr::active");

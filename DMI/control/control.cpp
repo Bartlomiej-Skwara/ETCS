@@ -26,6 +26,7 @@
 #include "../window/menu_tests.h"
 #include "../window/menu_ntc.h"
 #include "../window/track_ahead_free.h"
+#include "../speed/gauge.h"
 #include <functional>
 subwindow *active = nullptr;
 std::string active_name;
@@ -39,6 +40,7 @@ void startWindows()
     setupTimeHour();
     setupGpsPos();
 
+    prevMaxSpeed = 0;
     active_windows.clear();
     etcs_default_window.construct();
     default_window = &etcs_default_window;

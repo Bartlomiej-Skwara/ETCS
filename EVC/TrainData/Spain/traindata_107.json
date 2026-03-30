@@ -1,7 +1,7 @@
 {
 	"Simple" : {
-        "length": 200,
-        "speed": 330,
+        "length": 202,
+        "speed": 300,
         "cant_deficiency": 150,
         "t_traction_cutoff": 0.3,
         "airtight": 1,
@@ -20,7 +20,7 @@
             "emergency": {
                 "normal": {
                     "curves": [
-                        {"speed": 0, "value": 1.1, "kdry": [{"confidence": 50, "value": 1}], "kwet": 0.8}
+                        {"speed": 0, "value": 1.1, "kdry": [{"confidence": 50, "value": 0.8}], "kwet": 0.9}
                     ],
                     "build_up_time": 5,
                     "validity": "...."
@@ -73,18 +73,18 @@
                     }
                 },
                 "kn+": [
-                    {"speed": 0, "value": 1}
+                    {"speed": 0, "value": 0}
                 ],
                 "kn-": [
-                    {"speed": 0, "value": 1}
+                    {"speed": 0, "value": 0}
                 ]
             }
             
         }
     },
     "Doble" : {
-        "length": 400,
-        "speed": 330,
+        "length": 404,
+        "speed": 300,
         "cant_deficiency": 150,
         "t_traction_cutoff": 0.3,
         "airtight": 1,
@@ -101,7 +101,7 @@
             "emergency": {
                 "normal": {
                     "curves": [
-                        {"speed": 0, "value": 1.1, "kdry": [{"confidence": 50, "value": 1}], "kwet": 0.8}
+                        {"speed": 0, "value": 1.1, "kdry": [{"confidence": 50, "value": 0.8}], "kwet": 0.9}
                     ],
                     "build_up_time": 5,
                     "validity": "...."
@@ -154,10 +154,10 @@
                     }
                 },
                 "kn+": [
-                    {"speed": 0, "value": 1}
+                    {"speed": 0, "value": 0}
                 ],
                 "kn-": [
-                    {"speed": 0, "value": 1}
+                    {"speed": 0, "value": 0}
                 ]
             }
             

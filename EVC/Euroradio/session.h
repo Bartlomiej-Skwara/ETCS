@@ -56,6 +56,7 @@ class communication_session
     std::deque<std::shared_ptr<euroradio_message_traintotrack>> tx_list;
     std::list<msg_expecting_ack> pending_ack;
     std::set<int> pending_errors;
+    std::map<bg_id, std::set<bg_id>> prvlrbgs;
     int version;
     communication_session(contact_info contact, bool isRBC) : isRBC(isRBC), contact(contact), version(-1) {}
     void open(int ntries);
@@ -76,6 +77,8 @@ class communication_session
     void setup_connection();
     void report_error(int num);
 };
+const unsigned int ContactLastRBC = 16383;
+const uint64_t UseShortNumber=std::numeric_limits<uint64_t>::max();
 extern communication_session *supervising_rbc;
 extern communication_session *accepting_rbc;
 extern communication_session *handing_over_rbc;

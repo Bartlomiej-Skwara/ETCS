@@ -1,15 +1,20 @@
 {
-    "A330" : {
-        "length": 80,
-        "speed": 330,
-        "cant_deficiency": 100,
+	"162.12" : {
+        "length": 70,
+        "speed": 200,
+        "cant_deficiency": 150,
         "t_traction_cutoff": 0.3,
         "airtight": 1,
         "axle_load_category": "C2",
         "loading_gauge": "G1",
         "traction_systems": [
+            {"name": "DC3kV", "nid_ctraction": 15},
+            {"name": "DC3kV", "nid_ctraction": 16},
+            {"name": "AC25kV", "nid_ctraction": 12},
+            {"name": "AC25kV", "nid_ctraction": 13},
             {"name": "AC25kV", "nid_ctraction": 17},
-            {"name": "AC25kV", "nid_ctraction": 18}
+            {"name": "AC25kV", "nid_ctraction": 18},
+            {"name": "DIESEL"}
         ],
         "brakes": {
             "emergency": {
@@ -24,26 +29,14 @@
             "service": {
                 "normal": {
                     "curves": [
-                        {"speed": 0, "value": 0.9},
-						{"speed": 13.8889, "value": 0.9},
-						{"speed": 27.7778, "value": 0.9},
-						{"speed": 41.6667, "value": 0.92},
-						{"speed": 55.5556, "value": 0.73},
-						{"speed": 69.4444, "value": 0.72},
-						{"speed": 83.3333, "value": 0.71}
+                        {"speed": 0, "value": 0.8}
                     ],
                     "build_up_time": 0.5,
                     "validity": "1..."
                 },
                 "no_dynamic": {
                     "curves": [
-                        {"speed": 0, "value": 0.88},
-						{"speed": 13.8889, "value": 0.88},
-						{"speed": 27.7778, "value": 0.88},
-						{"speed": 41.6667, "value": 0.9},
-						{"speed": 55.5556, "value": 0.71},
-						{"speed": 69.4444, "value": 0.7},
-						{"speed": 83.3333, "value": 0.69}
+                        {"speed": 0, "value": 0.7}
                     ],
                     "build_up_time": 5,
                     "validity": "0..."

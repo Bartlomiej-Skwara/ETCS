@@ -10,17 +10,13 @@
 #include <atomic>
 #include <optional>
 #include <functional>
+#include <SDL.h>
+#include <SDL_ttf.h>
 #include "platform.h"
 #include "bus_socket_impl.h"
 #include "libc_time_impl.h"
 #include "fstream_file_impl.h"
 #include "console_fd_poller.h"
-
-struct SDL_Renderer;
-struct SDL_Texture;
-struct SDL_Window;
-struct _TTF_Font;
-typedef struct _TTF_Font TTF_Font;
 
 class SdlPlatform final : public UiPlatform {
 private:
@@ -60,6 +56,11 @@ private:
 	int audio_volume;
 	std::map<std::tuple<float, bool, std::string>, std::shared_ptr<SdlFontWrapper>> loaded_fonts;
 	float s, ox, oy;
+	float dpiscale;
+	float virtual_w, virtual_h;
+	bool rotate;
+	int wx, wy;
+	bool touch;
 	std::multimap<int64_t, PlatformUtil::Fulfiller<void>> timer_queue;
 	PlatformUtil::FulfillerList<void> on_close_list;
 	PlatformUtil::FulfillerList<void> on_quit_list;
@@ -81,6 +82,7 @@ private:
 	void mixer_func(int16_t *buffer, size_t len);
 	bool poll_sdl();
 	void draw_polygon_filled(const std::vector<std::pair<float, float>> &poly);
+	void calc_scale();
 
 public:
 	class SdlImage final : public Image

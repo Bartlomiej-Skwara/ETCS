@@ -22,7 +22,7 @@ std::map<bg_id, double> stored_locacc;
 bool position_valid=false;
 void from_json(const json &pos, lrbg_info &lrbg)
 {
-    lrbg = {bg_id({pos["NID_C"], pos["NID_BG"]}), pos["Direction"], dist_base(pos["Position"], pos["Orientation"]), pos["Q_LOCACC"]};
+    lrbg = {bg_id({pos["NID_C"], pos["NID_BG"]}), pos["Direction"], dist_base(pos["Position"], pos["Orientation"]), pos["OriginalOrientation"], pos["Q_LOCACC"]};
 }
 void to_json(json &pos, const lrbg_info &lrbg)
 {
@@ -31,6 +31,7 @@ void to_json(json &pos, const lrbg_info &lrbg)
     pos["Q_LOCACC"] = lrbg.locacc;
     pos["Direction"] = lrbg.dir;
     pos["Orientation"] = lrbg.position.orientation;
+    pos["OriginalOrientation"] = lrbg.original_orientation;
     pos["Position"] = lrbg.position.dist;
 }
 void load_train_position()
@@ -57,7 +58,7 @@ void save_train_position()
         position_valid = true;
     json pos;
     for (auto it = orbgs.begin(); it != orbgs.end(); ++it) {
-        if ((it->second & 1) == 0) {
+        if ((it->second & ORBG_UNLINKED) == 0) {
             pos["LRBG"] = it->first;
             pos["OdometerOffset"] = odometer_reference;
             break;
@@ -74,7 +75,7 @@ optional<std::pair<double, double>> get_linked_bg_location(bg_id nid_bg)
     for (auto it = linking.begin(); it != linking.end(); ++it) {
         if (it->nid_bg == solr->nid_lrbg) {
             for (auto it2 = it; it2 != linking.end(); ++it2) {
-                if (it2->nid_bg.NID_BG == NID_BG_t::Unknown)
+                if (it2->nid_bg.NID_BG == bg_id::Unknown)
                     break;
                 if (it2->nid_bg == nid_bg)
                     return std::pair<double,double>(it2->dist-it->dist, it2->locacc);
@@ -83,7 +84,7 @@ optional<std::pair<double, double>> get_linked_bg_location(bg_id nid_bg)
         }
         if (it->nid_bg == nid_bg) {
             for (auto it2 = it; it2 != linking.end(); ++it2) {
-                if (it2->nid_bg.NID_BG == NID_BG_t::Unknown)
+                if (it2->nid_bg.NID_BG == bg_id::Unknown)
                     break;
                 if (it2->nid_bg == solr->nid_lrbg)
                     return std::pair<double,double>(it->dist-it2->dist, it2->locacc);
@@ -105,7 +106,7 @@ void position_update_bg_passed(bg_id id, bool linked, dist_base pos, int dir)
 #endif
     if (stored_locacc.find(id) == stored_locacc.end())
         stored_locacc[id] = Q_NVLOCACC;
-    orbgs.push_front({{id, dir, pos, stored_locacc[id]}, linked ? 0 : 1});
+    orbgs.push_front({{id, dir, pos, pos.orientation, stored_locacc[id]}, linked ? 0 : 1});
     if (linked && (!pos_report_params || pos_report_params->LRBG))
         position_report_reasons[9] = true;
     int lrbg_count = 0;
@@ -113,8 +114,8 @@ void position_update_bg_passed(bg_id id, bool linked, dist_base pos, int dir)
     int count = 0;
     for (auto it = orbgs.begin(); it != orbgs.end();) {
         ++count;
-        bool unlinked = (it->second & 1) != 0;
-        bool buffer = (it->second & 2) != 0;
+        bool unlinked = (it->second & ORBG_UNLINKED) != 0;
+        bool buffer = (it->second & ORBG_BUFFER) != 0;
         if (!unlinked) {
             if (lrbg_count >= 8 && !buffer) {
                 it = orbgs.erase(it);
@@ -157,7 +158,7 @@ void relocate()
         newsolr = orbgs.front().first.nid_lrbg;
     } else {
         for (auto it = orbgs.begin(); it != orbgs.end(); ++it) {
-            if (it->second & 1)
+            if ((it->second & ORBG_UNLINKED) != 0)
                 continue;
             bool link = false;
             for (auto &l : linking) {
@@ -174,7 +175,7 @@ void relocate()
 #else
     bool any = false;
     for (auto it = orbgs.begin(); it != orbgs.end(); ++it) {
-        if ((it->second & 1) == 0) {
+        if ((it->second & ORBG_UNLINKED) == 0) {
             any = true;
             newsolr = it->first.nid_lrbg;
             break;
@@ -439,9 +440,9 @@ void update_linking(Linking link, bool infill, bg_id ref_bg)
         link_data d;
         d.dist = cumdist+l.D_LINK.get_value(link.Q_SCALE);
         d.locacc = l.Q_LOCACC;
-        d.nid_bg = {l.Q_NEWCOUNTRY == Q_NEWCOUNTRY_t::SameCountry ? current_NID_C : l.NID_C, (int)l.NID_BG};
+        d.nid_bg = {l.Q_NEWCOUNTRY == l.Q_NEWCOUNTRY.SameCountry ? current_NID_C : l.NID_C, l.NID_BG == l.NID_BG.Unknown ? bg_id::Unknown : (int)l.NID_BG};
         d.reaction = l.Q_LINKREACTION;
-        d.reverse_dir = l.Q_LINKORIENTATION == Q_LINKORIENTATION_t::Reverse;
+        d.reverse_dir = l.Q_LINKORIENTATION == l.Q_LINKORIENTATION.Reverse;
         current_NID_C = d.nid_bg.NID_C;
         links.push_back(d);
         cumdist = d.dist;

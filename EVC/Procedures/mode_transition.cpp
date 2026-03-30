@@ -61,7 +61,7 @@ void initialize_mode_transitions()
     c[30] = [](){return !cab_active[0] && !cab_active[1] && !ps_signal;};
     c[31] = [](){return MA && SSP_begin() < dist_base::max && !get_gradient().empty() && (level == Level::N2 || level==Level::N3) && !requested_mode_profile;};
     c[32] = [](){return MA && SSP_begin() < dist_base::max && !get_gradient().empty() && level == Level::N1 && MA->get_v_main() > 0 && !requested_mode_profile;};
-    c[34] = [](){return !mode_profiles.empty() && mode_profiles.front().mode == Mode::OS && mode_profiles.front().start.max < d_maxsafefront(mode_profiles.front().start)  && (level == Level::N1 || level == Level::N2 || level==Level::N3);};
+    c[34] = [](){return !mode_profiles.empty() && mode_profiles.front().mode == Mode::OS && mode_profiles.front().start.max < d_maxsafefront(mode_profiles.front().start) && (level == Level::N1 || level == Level::N2 || level==Level::N3);};
     c[37] = [](){return false;};
     c[39] = [](){return (level == Level::N1 || level == Level::N2 || level==Level::N3) && !MA;};
     c[40] = [](){return !mode_profiles.empty() && mode_profiles.front().mode == Mode::OS && mode_profiles.front().start.max < d_maxsafefront(mode_profiles.front().start);};
@@ -92,8 +92,8 @@ void initialize_mode_transitions()
     c[70] = [](){return mode_to_ack==Mode::LS && mode_acknowledged;};
     c[71] = [](){return !mode_profiles.empty() && mode_profiles.front().mode == Mode::LS && mode_profiles.front().start.max < d_maxsafefront(mode_profiles.front().start)  && (level == Level::N1 || level == Level::N2 || level==Level::N3);};
     c[72] = [](){return !mode_profiles.empty() && mode_profiles.front().mode == Mode::LS && mode_profiles.front().start.max < d_maxsafefront(mode_profiles.front().start);};
-    c[73] = [](){return !(in_mode_ack_area && mode_to_ack == Mode::LS) && !mode_profiles.empty() && mode_profiles.front().mode == Mode::OS && mode_profiles.front().start.max < d_maxsafefront(mode_profiles.front().start);};
-    c[74] = [](){return !(in_mode_ack_area && mode_to_ack == Mode::OS) && !mode_profiles.empty() && mode_profiles.front().mode == Mode::LS && mode_profiles.front().start.max < d_maxsafefront(mode_profiles.front().start);};
+    c[73] = [](){return !(in_mode_ack_area && *in_mode_ack_area == Mode::LS) && !mode_profiles.empty() && mode_profiles.front().mode == Mode::OS && mode_profiles.front().start.max < d_maxsafefront(mode_profiles.front().start);};
+    c[74] = [](){return !(in_mode_ack_area && *in_mode_ack_area == Mode::OS) && !mode_profiles.empty() && mode_profiles.front().mode == Mode::LS && mode_profiles.front().start.max < d_maxsafefront(mode_profiles.front().start);};
     
     // Out of SRS conditions
     c[75] = [](){return !isolated;};
@@ -209,6 +209,13 @@ void initialize_mode_transitions()
     transitions.push_back({Mode::SN, Mode::IS, {1}, 1});
     transitions.push_back({Mode::RV, Mode::IS, {1}, 1});
 
+    transitions.push_back({Mode::SB, Mode::NL, {46}, 6});
+    transitions.push_back({Mode::SH, Mode::NL, {46}, 5});
+    transitions.push_back({Mode::FS, Mode::NL, {46}, 6});
+    transitions.push_back({Mode::LS, Mode::NL, {46}, 6});
+    transitions.push_back({Mode::SR, Mode::NL, {46}, 6});
+    transitions.push_back({Mode::OS, Mode::NL, {46}, 6});
+
     // Out of SRS conditions
     transitions.push_back({ Mode::IS, Mode::SB, {75}, 1 });
     transitions.push_back({ Mode::NP, Mode::SF, {76}, 1 });
@@ -279,6 +286,7 @@ void update_mode_status()
                 it.first.dir = 1-it.first.dir;
             it.first.position.orientation = odometer_orientation;
         }
+        update_odometer();
         void reset_eurobalise_data();
         reset_eurobalise_data();
     }
@@ -328,6 +336,8 @@ void update_mode_status()
             SH_speed = {};
         if (mode == Mode::RV)
             RV_speed = speed_restriction(rv_supervision->speed, distance::from_odometer(dist_base::min), distance::from_odometer(dist_base::max), false);
+        else
+            RV_speed = {};
 
         if (mode == Mode::FS) {
             int64_t time = get_milliseconds();

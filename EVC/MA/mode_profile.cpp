@@ -9,7 +9,7 @@
 #include "mode_profile.h"
 #include "../Procedures/mode_transition.h"
 std::list<mode_profile> mode_profiles;
-bool in_mode_ack_area;
+optional<Mode> in_mode_ack_area;
 bool mode_timer_started = false;
 int64_t mode_timer;
 optional<mode_profile> requested_mode_profile;
@@ -27,9 +27,13 @@ void update_mode_profile()
             return false;
         }});
     }
-    in_mode_ack_area = false;
+
+    in_mode_ack_area = {};
     if (mode_profiles.empty()) {
-        requested_mode_profile = {};
+        requested_mode_profile = {};    
+        if ((mode_to_ack == Mode::OS || mode_to_ack == Mode::LS || mode_to_ack == Mode::SH) && mode_to_ack != mode) {
+            mode_acknowledgeable = mode_acknowledged = false;
+        }
         return;
     }
     mode_profile first = mode_profiles.front();
@@ -50,23 +54,30 @@ void update_mode_profile()
     }
     for (auto it = mode_profiles.begin(); it != mode_profiles.end(); ++it) {
         mode_profile &p = *it;
-        if (d_estfront > p.start.est-p.acklength) {
-            if (mode_acknowledged && mode_to_ack == p.mode) {
-                if (it != mode_profiles.begin()) {
-                    mode_profiles.erase(mode_profiles.begin(), it);
-                    calculate_SvL();
-                }
-                return;
+        if (mode_acknowledged && mode_to_ack == p.mode) {
+            if (it != mode_profiles.begin()) {
+                mode_profiles.erase(mode_profiles.begin(), it);
+                calculate_SvL();
             }
-            in_mode_ack_area = true;
+            if (mode == p.mode)
+                mode_acknowledged = false;
+            else
+                // Wait for mode transition to execute before running the rest of update_mode_profile()
+                return;
+        }
+        if (d_estfront > p.start.est-p.acklength && d_maxsafefront(p.start) <= p.start.max) {
+            in_mode_ack_area = p.mode;
             requested_mode_profile = p;
-            if (mode != p.mode && V_est < p.speed) {
+            if (V_est < p.speed && mode != p.mode) {
                 mode_acknowledgeable = true;
                 mode_acknowledged = false;
-                mode_to_ack = first.mode;
-                break;
+                mode_to_ack = p.mode;
             }
+            break;
         }
+    }
+    if ((mode_to_ack == Mode::OS || mode_to_ack == Mode::LS || mode_to_ack == Mode::SH) && mode_to_ack != mode && (!in_mode_ack_area || mode_to_ack != *in_mode_ack_area)) {
+        mode_acknowledgeable = mode_acknowledged = false;
     }
     if (d_maxsafefront(first.start) > first.start.max) {
         requested_mode_profile = first;
@@ -77,8 +88,11 @@ void update_mode_profile()
             } else if (mode == Mode::SH && (!SH_speed || SH_speed->speed != requested_mode_profile->speed)) {
                 SH_speed = speed_restriction(requested_mode_profile->speed, distance::from_odometer(dist_base::min), distance::from_odometer(dist_base::max), false);
                 recalculate_MRSP();
+            } else if (mode == Mode::LS && (!LS_speed || LS_speed->speed != requested_mode_profile->speed)) {
+                LS_speed = speed_restriction(requested_mode_profile->speed, distance::from_odometer(dist_base::min), distance::from_odometer(dist_base::max), false);
+                recalculate_MRSP();
             }
-        } else {
+        } else if (!in_mode_ack_area || *in_mode_ack_area == first.mode) {
             mode_timer_started = true;
             mode_timer = get_milliseconds();
             mode_acknowledgeable = true;
@@ -116,9 +130,6 @@ void reset_mode_profile(distance ref, bool infill)
     } else {
         mode_profiles.clear();
     }
-    if ((mode_to_ack == Mode::OS || mode_to_ack == Mode::LS || mode_to_ack == Mode::SH) && mode_to_ack != mode) {
-        mode_acknowledgeable = mode_acknowledged = false;
-    }
 }
 void set_mode_profile(ModeProfile profile, distance ref, bool infill)
 {
@@ -131,25 +142,20 @@ void set_mode_profile(ModeProfile profile, distance ref, bool infill)
         start += it->D_MAMODE.get_value(profile.Q_SCALE);
         mode_profile p;
         p.start = start;
-        p.length = it->L_MAMODE == L_MAMODE_t::Infinity ? std::numeric_limits<float>::max() : it->L_MAMODE.get_value(profile.Q_SCALE);
+        p.length = it->L_MAMODE == it->L_MAMODE.Infinity ? std::numeric_limits<float>::max() : it->L_MAMODE.get_value(profile.Q_SCALE);
         p.acklength = it->L_ACKMAMODE.get_value(profile.Q_SCALE);
-        switch (it->M_MAMODE)
-        {
-            case M_MAMODE_t::OS:
-                p.mode = Mode::OS;
-                p.speed = V_NVONSIGHT;
-                break;
-            case M_MAMODE_t::LS:
-                p.mode = Mode::LS;
-                p.speed = V_NVLIMSUPERV;
-                break;
-            case M_MAMODE_t::SH:
-                p.mode = Mode::SH;
-                p.speed = V_NVSHUNT;
-                break;
+        if (it->M_MAMODE == it->M_MAMODE.OS) {
+            p.mode = Mode::OS;
+            p.speed = V_NVONSIGHT;
+        } else if (it->M_MAMODE == it->M_MAMODE.LS) {
+            p.mode = Mode::LS;
+            p.speed = V_NVLIMSUPERV;
+        } else if (it->M_MAMODE == it->M_MAMODE.SH) {
+            p.mode = Mode::SH;
+            p.speed = V_NVSHUNT;
         }
-        p.start_SvL = it->Q_MAMODE==Q_MAMODE_t::BeginningIsSvL;
-        if (it->V_MAMODE != V_MAMODE_t::UseNationalValue)
+        p.start_SvL = it->Q_MAMODE == it->Q_MAMODE.BeginningIsSvL;
+        if (it->V_MAMODE != it->V_MAMODE.UseNationalValue)
             p.speed = it->V_MAMODE.get_value();
         mode_profiles.push_back(p);
     }

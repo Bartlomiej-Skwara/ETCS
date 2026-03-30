@@ -20,6 +20,7 @@
 #include "../OnboardTests/onboard_test.h"
 #include "../Packets/vbc.h"
 #include "../STM/stm.h"
+#include "../TrainSubsystems/train_interface.h"
 #include "../Version/version.h"
 #include "dmi.h"
 #include "platform_runtime.h"
@@ -393,7 +394,7 @@ json data_view_window()
         fields.push_back(build_field("", ""));
         int i = 1;
         for (auto &vbc : vbcs) {
-            fields.push_back(build_numeric_field("VBC #"+std::to_string(i++)+" set code", std::to_string(vbc.NID_VBCMK)));
+            fields.push_back(build_numeric_field("VBC #"+std::to_string(i++)+" set code", std::to_string(vbc.NID_VBCMK|(vbc.NID_C<<6)|((vbc.validity/86400000LL)<<16))));
         }
     }
     j["WindowDefinition"] = build_data_view_window(get_text("Data view"), fields);
@@ -914,7 +915,7 @@ void update_dmi_windows()
             (V_est == 0 && driver_id_valid && (mode == Mode::SB || mode == Mode::FS || mode == Mode::LS || mode == Mode::SR || mode == Mode::OS || mode == Mode::UN || mode == Mode::SN)
                 && level_valid && (level == Level::N0 || level == Level::N1 || level == Level::NTC || ((level == Level::N2 || level == Level::N3) && supervising_rbc && supervising_rbc->status == session_status::Established))) ||
             (V_est == 0 && mode == Mode::PT && (level == Level::N1 || ((level == Level::N2 || level == Level::N3) && trip_exit_acknowledged && supervising_rbc && supervising_rbc->status == session_status::Established && emergency_stops.empty())));
-        enabled_buttons["Non Leading"] = false;
+        enabled_buttons["Non Leading"] = V_est == 0 && driver_id_valid && level_valid && (mode == Mode::SB || mode == Mode::SH || mode == Mode::FS || mode == Mode::LS || mode == Mode::SR || mode == Mode::OS) && nl_signal;
         enabled_buttons["Radio Data"] = V_est == 0 && driver_id_valid && level_valid &&
             (mode == Mode::SB || mode == Mode::FS || mode == Mode::LS || mode == Mode::SR || mode == Mode::OS || mode == Mode::NL || mode == Mode::PT || mode == Mode::UN || mode == Mode::SN);
         
@@ -1472,7 +1473,7 @@ void validate_data_entry(std::string name, json &result)
         } else {
             std::string t = get_text("VBC code");
             uint32_t num = stoi(result[get_text("VBC code")].get<std::string>());
-            set_vbc({(int)(num>>6) & 1023, (int)(num & 63), (num>>16)*86400000LL+get_milliseconds()});
+            set_vbc({(int)(num>>6) & 1023, (int)(num & 63), get_milliseconds(), (num>>16)*86400000LL});
             active_dialog_step = "S1";
         }
     } else if (name == get_text("Validate remove VBC")) {
@@ -1488,7 +1489,7 @@ void validate_data_entry(std::string name, json &result)
             return;
         } else {
             uint32_t num = stoi(result[get_text("VBC code")].get<std::string>());
-            remove_vbc({(int)(num>>6) & 1023, (int)(num & 63), (num>>16)*86400000LL+get_milliseconds()});
+            remove_vbc({(int)(num>>6) & 1023, (int)(num & 63), 0, 0});
             active_dialog_step = "S1";
         }
     } else if (name == get_text("Brightness")) {
@@ -1599,7 +1600,7 @@ void update_dialog_step(std::string step, std::string step2)
         } else if (step == "TrainRunningNumber") {
             active_dialog_step = "S1-2";
         } else if (step == "ContactLastRBC" || step == "UseShortNumber") {
-            set_supervising_rbc(step == "ContactLastRBC" ? contact_info({0,NID_RBC_t::ContactLastRBC,0}) : contact_info({0,0,NID_RADIO_t::UseShortNumber}));
+            set_supervising_rbc(step == "ContactLastRBC" ? contact_info({0,ContactLastRBC,0}) : contact_info({0,0,UseShortNumber}));
             som_status = A31;
         } else if (step == "EnterRBCdata") {
             active_dialog_step = "S3-3";
@@ -1656,9 +1657,7 @@ void update_dialog_step(std::string step, std::string step2)
             }
             if (V_est == 0 && (level == Level::N2 || level == Level::N3)) {
                 if (supervising_rbc && supervising_rbc->status == session_status::Established && emergency_stops.empty()) {
-                    SH_request *req = new SH_request();
-                    fill_message(req);
-                    supervising_rbc->queue(std::shared_ptr<SH_request>(req));
+                    supervising_rbc->queue(std::make_shared<SH_request>());
                 }
             }
             if (mode == Mode::SH) {
@@ -1667,10 +1666,14 @@ void update_dialog_step(std::string step, std::string step2)
                 active_dialog = dialog_sequence::Shunting;
                 active_dialog_step = "D1";
             }
-        } else if (step == "MaintainShunting" || step == "NonLeading") {
+        } else if (step == "NonLeading") {
+            active_dialog = dialog_sequence::None;
+            if (V_est == 0 && nl_signal)
+                trigger_condition(46);
+        } else if (step == "MaintainShunting") {
             active_dialog = dialog_sequence::None;
         } else if (step == "ContactLastRBC" || step == "UseShortNumber") {
-            set_supervising_rbc(step == "ContactLastRBC" ? contact_info({0,NID_RBC_t::ContactLastRBC,0}) : contact_info({0,0,NID_RADIO_t::UseShortNumber}));
+            set_supervising_rbc(step == "ContactLastRBC" ? contact_info({0,ContactLastRBC,0}) : contact_info({0,0,UseShortNumber}));
             if (supervising_rbc)
                 supervising_rbc->open(N_tries_radio);
             active_dialog_step = "S8";
