@@ -1,4 +1,4 @@
-/*
+﻿/*
  * European Train Control System
  * Copyright (C) 2019-2023  César Benito <cesarbema2009@hotmail.com>
  * 
@@ -484,7 +484,10 @@ void delete_linking()
 }
 void delete_linking(const distance &d)
 {
-    if (link_expected != linking.end() && link_expected->min() > d.min)
+    //this conditions has to be same or accepting even bigger range of distance
+    //if link_expected is not cleared but in the loop it's erased then iterator is invalidated
+    //and EVC will go into infinite loop in check_linking function
+    if (link_expected != linking.end() && link_expected->dist > d.min)
         link_expected = linking.end();
     for (auto it = linking.begin(); it != linking.end(); ++it) {
         if (it->dist > d.min) {
