@@ -1,4 +1,4 @@
-/*
+﻿/*
  * European Train Control System
  * Copyright (C) 2019-2023  César Benito <cesarbema2009@hotmail.com>
  * 
@@ -216,6 +216,12 @@ void SetParameters()
     p = new ORserver::Parameter("etcs::vperm");
     p->GetValue = []() {
         return std::to_string(V_perm*3.6);
+    };
+    manager.AddParameter(p);
+
+    p = new ORserver::Parameter("etcs::vrelease");
+    p->GetValue = []() {
+        return std::to_string(V_release * 3.6);
     };
     manager.AddParameter(p);
 
