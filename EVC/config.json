@@ -129,6 +129,43 @@
           }
        ]
     },
+	"SimRail/LM-4268":{
+       "SpeedDial":240,
+       "STMLayout":"stm_bombardier.json",
+       "AvailableNTC":[
+          26
+       ],
+       "UnsupportedLevels":[
+          0
+       ],
+       "PlaySoundOnRadioStatusChange":true,
+       "MessageWhenDriverIdEntered":true,
+       "MessageWhenLevelSelected":true,
+       "MessageWhenRunningNumberEntered":true,
+       "MessageWhenTrainDataEntered":true,
+       "MessageWhenModeAck":true,
+       "MessageWhenLevelAck":true,
+       "EnteringModeMessageIsTimeDependent":true,
+       "DisplayTimeToPermitted":true,
+       "ConstTrainDataValues":[
+          {
+             "Field":"LoadingGauge",
+             "Value":"GC"
+          },
+          {
+             "Field":"AxleLoadCategory",
+             "Value":"A"
+          },
+          {
+             "Field":"Airtight",
+             "Value":"No"
+          },
+          {
+             "Field":"TrainCategory",
+             "Value":"PASS 3"
+          }
+       ]
+    },
     "406":{
        "TrainData":"TrainData/DB/traindata_406.json",
        "SpeedDial":400,
