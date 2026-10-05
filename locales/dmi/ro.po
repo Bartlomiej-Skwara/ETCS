@@ -1,18 +1,24 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: ETCS DMI\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-10-05 17:01+0200\n"
-"PO-Revision-Date: 2026-09-05 19:18+0000\n"
-"Last-Translator: Marc Artigues <m.artiguesalvarez@icloud.com>\n"
-"Language-Team: Spanish <https://sts.simkol.pl/projects/simrail/etcs-dmi/es/"
-">\n"
-"Language: es\n"
+"PO-Revision-Date: 2023-11-27 12:46+0000\n"
+"Last-Translator: vladabrudan83 (Romanian Team) <vladabrudan83@gmail.com>\n"
+"Language-Team: Romanian <https://sts.simkol.pl:18443/projects/simrail/etcs-"
+"dmi/ro/>\n"
+"Language: ro\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.7\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2;\n"
+"X-Generator: Weblate 4.14.2\n"
 
 #: ../DMI/graphics/display.cpp:44
 msgid "EVC not connected!"
@@ -25,46 +31,44 @@ msgstr ""
 #: ../DMI/language/language.cpp:43 ../DMI/window/nav_buttons.cpp:51
 msgctxt "Navigation bar"
 msgid "Main"
-msgstr "Menú"
+msgstr "Principal"
 
 #: ../DMI/language/language.cpp:44 ../DMI/window/nav_buttons.cpp:52
 msgctxt "Navigation bar"
 msgid ""
 "Over-\n"
 "ride"
-msgstr "Rebase"
+msgstr ""
 
 #: ../DMI/language/language.cpp:45 ../DMI/window/nav_buttons.cpp:53
 msgctxt "Navigation bar"
 msgid ""
 "Data\n"
 "view"
-msgstr "Datos"
+msgstr ""
 
 #: ../DMI/language/language.cpp:46 ../DMI/window/nav_buttons.cpp:54
 msgctxt "Navigation bar"
 msgid "Spec"
-msgstr "Especial"
+msgstr ""
 
 #: ../DMI/window/brightness.cpp:13 ../DMI/window/menu_settings.cpp:21
 msgid "Brightness"
-msgstr "Brillo"
+msgstr ""
 
 #: ../DMI/window/data_entry.cpp:16 ../DMI/window/data_entry.cpp:17
 #: ../DMI/window/data_validation.cpp:19 ../DMI/window/keyboard.cpp:250
 #: ../DMI/window/keyboard.cpp:257 ../DMI/window/track_ahead_free.cpp:27
 msgid "Yes"
-msgstr "Sí"
+msgstr ""
 
 #: ../DMI/window/data_entry.cpp:62
 msgid " entry complete?"
-msgstr " ¿ Entrada completa ?"
+msgstr ""
 
 #: ../DMI/window/driver_id.cpp:16
 msgid "TRN"
 msgstr ""
-"Número de\n"
-"Tren"
 
 #: ../DMI/window/fixed_train_data.cpp:15 ../DMI/window/fixed_train_data.cpp:19
 #: ../DMI/window/fixed_train_data.cpp:25
@@ -72,148 +76,146 @@ msgid ""
 "Enter\n"
 "data"
 msgstr ""
-"Int.\n"
-"Datos"
 
 #: ../DMI/window/keyboard.cpp:249 ../DMI/window/keyboard.cpp:253
 msgid "No"
-msgstr "No"
+msgstr ""
 
 #: ../DMI/window/menu_main.cpp:20
 msgid "Main"
-msgstr "Principal"
+msgstr ""
 
 #: ../DMI/window/menu_main.cpp:22
 msgid "Start"
-msgstr "Inicio"
+msgstr ""
 
 #: ../DMI/window/menu_main.cpp:26
 msgid "Driver ID"
-msgstr "ID Maquinista"
+msgstr ""
 
 #: ../DMI/window/menu_main.cpp:30
 msgid "Train Data"
-msgstr "Datos Tren"
+msgstr ""
 
 #: ../DMI/window/menu_main.cpp:34
 msgid "Level"
-msgstr "Nivel"
+msgstr ""
 
 #: ../DMI/window/menu_main.cpp:38
 msgid "Train running number"
-msgstr "Número de Tren"
+msgstr ""
 
 #: ../DMI/window/menu_main.cpp:42
 msgid "Exit Shunting"
-msgstr "Fin Maniobras"
+msgstr ""
 
 #: ../DMI/window/menu_main.cpp:42
 msgid "Shunting"
-msgstr "Maniobras"
+msgstr ""
 
 #: ../DMI/window/menu_main.cpp:46
 msgid "Non-Leading"
-msgstr "Non Leading"
+msgstr ""
 
 #: ../DMI/window/menu_main.cpp:50
 msgid "Maintain shunting"
-msgstr "Mantener Maniobra"
+msgstr ""
 
 #: ../DMI/window/menu_main.cpp:51
 msgid "Radio data"
-msgstr "Datos Radio"
+msgstr ""
 
 #: ../DMI/window/menu_main.cpp:56
 msgid "Continue in SM"
-msgstr "Continuar en SM"
+msgstr ""
 
 #: ../DMI/window/menu_main.cpp:56
 msgid "Initiate SM"
-msgstr "Iniciar SM"
+msgstr ""
 
 #: ../DMI/window/menu_main.cpp:60
 msgid "Exit SM"
-msgstr "Salir de SM"
+msgstr ""
 
 #: ../DMI/window/menu_ntc.cpp:11
 msgid "NTC data entry"
-msgstr "Entrada de Datos NTC"
+msgstr ""
 
 #: ../DMI/window/menu_ntc.cpp:20
 msgid "End of data entry"
-msgstr "Fin Entrada Datos"
+msgstr ""
 
 #: ../DMI/window/menu_override.cpp:12
 msgid "Override"
-msgstr "Rebase"
+msgstr ""
 
 #: ../DMI/window/menu_override.cpp:14
 msgid "EoA"
-msgstr "EOA"
+msgstr ""
 
 #: ../DMI/window/menu_radio.cpp:18
 msgid "RBC data"
-msgstr "Conexión RBC"
+msgstr ""
 
 #: ../DMI/window/menu_radio.cpp:20
 msgid "Contact last RBC"
-msgstr "Contactar Último RBC"
+msgstr ""
 
 #: ../DMI/window/menu_radio.cpp:24
 msgid "Use short number"
-msgstr "Usar Número Corto"
+msgstr ""
 
 #: ../DMI/window/menu_radio.cpp:28
 msgid "Enter RBC data"
-msgstr "Introducir Datos RBC"
+msgstr ""
 
 #: ../DMI/window/menu_radio.cpp:32
 msgid "Radio Network ID"
-msgstr "ID Red de Radio"
+msgstr ""
 
 #: ../DMI/window/menu_settings.cpp:11
 msgid "Settings"
-msgstr "Ajustes"
+msgstr ""
 
 #: ../DMI/window/menu_settings.cpp:13
 msgid "Language"
-msgstr "Idioma"
+msgstr ""
 
 #: ../DMI/window/menu_settings.cpp:17 ../DMI/window/volume.cpp:13
 msgid "Volume"
-msgstr "Volumen"
+msgstr ""
 
 #: ../DMI/window/menu_settings.cpp:25
 msgid "System version"
-msgstr "Versión del Sistema"
+msgstr ""
 
 #: ../DMI/window/menu_settings.cpp:29
 msgid "Set VBC"
-msgstr "Establecimiento VBC"
+msgstr ""
 
 #: ../DMI/window/menu_settings.cpp:33
 msgid "Remove VBC"
-msgstr "Suprimir VBC"
+msgstr ""
 
 #: ../DMI/window/menu_spec.cpp:11
 msgid "Special"
-msgstr "Especial"
+msgstr ""
 
 #: ../DMI/window/menu_spec.cpp:13
 msgid "Adhesion"
-msgstr "Adherencia"
+msgstr ""
 
 #: ../DMI/window/menu_spec.cpp:17
 msgid "SR Speed/Distance"
-msgstr "Datos SR Velocidad / Distancia"
+msgstr ""
 
 #: ../DMI/window/menu_spec.cpp:21
 msgid "Train integrity"
-msgstr "Integridad del Tren"
+msgstr ""
 
 #: ../DMI/window/menu_spec.cpp:26
 msgid "BMM reaction inhibition"
-msgstr "Inhibición de Reacción BMM"
+msgstr ""
 
 #: ../DMI/window/train_data.cpp:14 ../DMI/window/train_data.cpp:18
 #: ../DMI/window/train_data.cpp:24
@@ -221,8 +223,3 @@ msgid ""
 "Select\n"
 "type"
 msgstr ""
-"Sel.\n"
-"Tipo"
-
-#~ msgid "DEL"
-#~ msgstr "Del"

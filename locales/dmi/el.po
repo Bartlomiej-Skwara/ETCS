@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ETCS DMI\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-05 15:12+0200\n"
+"POT-Creation-Date: 2026-10-05 17:01+0200\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -16,6 +16,34 @@ msgstr ""
 #: ../DMI/graphics/display.cpp:55
 msgid "Train serie not selected!"
 msgstr ""
+
+#: ../DMI/language/language.cpp:43 ../DMI/window/nav_buttons.cpp:51
+msgctxt "Navigation bar"
+msgid "Main"
+msgstr "Μενού"
+
+#: ../DMI/language/language.cpp:44 ../DMI/window/nav_buttons.cpp:52
+msgctxt "Navigation bar"
+msgid ""
+"Over-\n"
+"ride"
+msgstr ""
+"κατα-\n"
+"πατώ"
+
+#: ../DMI/language/language.cpp:45 ../DMI/window/nav_buttons.cpp:53
+msgctxt "Navigation bar"
+msgid ""
+"Data\n"
+"view"
+msgstr ""
+"Δεδο-\n"
+"μένα"
+
+#: ../DMI/language/language.cpp:46 ../DMI/window/nav_buttons.cpp:54
+msgctxt "Navigation bar"
+msgid "Spec"
+msgstr "Ειδικός"
 
 #: ../DMI/window/brightness.cpp:13 ../DMI/window/menu_settings.cpp:21
 msgid "Brightness"
@@ -194,30 +222,6 @@ msgid ""
 msgstr ""
 "Sel.\n"
 "ο τύπος"
-
-#~ msgctxt "Navigation bar"
-#~ msgid "Main"
-#~ msgstr "Μενού"
-
-#~ msgctxt "Navigation bar"
-#~ msgid ""
-#~ "Over-\n"
-#~ "ride"
-#~ msgstr ""
-#~ "κατα-\n"
-#~ "πατώ"
-
-#~ msgctxt "Navigation bar"
-#~ msgid ""
-#~ "Data\n"
-#~ "view"
-#~ msgstr ""
-#~ "Δεδο-\n"
-#~ "μένα"
-
-#~ msgctxt "Navigation bar"
-#~ msgid "Spec"
-#~ msgstr "Ειδικός"
 
 #~ msgid "DEL"
 #~ msgstr "ΑΠΟ"

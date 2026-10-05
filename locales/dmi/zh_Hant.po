@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-05 15:12+0200\n"
+"POT-Creation-Date: 2026-10-05 17:01+0200\n"
 "PO-Revision-Date: 2026-08-19 14:33+0000\n"
 "Last-Translator: Rin Hsu <rinnyanneko@outlook.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://sts.simkol.pl/"
@@ -29,6 +29,32 @@ msgstr ""
 #: ../DMI/graphics/display.cpp:55
 msgid "Train serie not selected!"
 msgstr ""
+
+#: ../DMI/language/language.cpp:43 ../DMI/window/nav_buttons.cpp:51
+msgctxt "Navigation bar"
+msgid "Main"
+msgstr "主畫面"
+
+#: ../DMI/language/language.cpp:44 ../DMI/window/nav_buttons.cpp:52
+msgctxt "Navigation bar"
+msgid ""
+"Over-\n"
+"ride"
+msgstr "超控"
+
+#: ../DMI/language/language.cpp:45 ../DMI/window/nav_buttons.cpp:53
+msgctxt "Navigation bar"
+msgid ""
+"Data\n"
+"view"
+msgstr ""
+"資訊\n"
+"總覽"
+
+#: ../DMI/language/language.cpp:46 ../DMI/window/nav_buttons.cpp:54
+msgctxt "Navigation bar"
+msgid "Spec"
+msgstr "其他"
 
 #: ../DMI/window/brightness.cpp:13 ../DMI/window/menu_settings.cpp:21
 msgid "Brightness"
@@ -205,28 +231,6 @@ msgid ""
 msgstr ""
 "選擇\n"
 "類型"
-
-#~ msgctxt "Navigation bar"
-#~ msgid "Main"
-#~ msgstr "主畫面"
-
-#~ msgctxt "Navigation bar"
-#~ msgid ""
-#~ "Over-\n"
-#~ "ride"
-#~ msgstr "超控"
-
-#~ msgctxt "Navigation bar"
-#~ msgid ""
-#~ "Data\n"
-#~ "view"
-#~ msgstr ""
-#~ "資訊\n"
-#~ "總覽"
-
-#~ msgctxt "Navigation bar"
-#~ msgid "Spec"
-#~ msgstr "其他"
 
 #~ msgid "DEL"
 #~ msgstr "刪除"

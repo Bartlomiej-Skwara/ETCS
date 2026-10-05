@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-05 15:12+0200\n"
+"POT-Creation-Date: 2026-10-05 17:01+0200\n"
 "PO-Revision-Date: 2024-12-15 01:41+0000\n"
 "Last-Translator: \"Rostyslav Kudlak (Ukrainian team)\" "
 "<rostyk.kudlak@gmail.com>\n"
@@ -31,6 +31,36 @@ msgstr ""
 #: ../DMI/graphics/display.cpp:55
 msgid "Train serie not selected!"
 msgstr ""
+
+#: ../DMI/language/language.cpp:43 ../DMI/window/nav_buttons.cpp:51
+msgctxt "Navigation bar"
+msgid "Main"
+msgstr ""
+"Головне\n"
+"меню"
+
+#: ../DMI/language/language.cpp:44 ../DMI/window/nav_buttons.cpp:52
+msgctxt "Navigation bar"
+msgid ""
+"Over-\n"
+"ride"
+msgstr ""
+"замі-\n"
+"нити"
+
+#: ../DMI/language/language.cpp:45 ../DMI/window/nav_buttons.cpp:53
+msgctxt "Navigation bar"
+msgid ""
+"Data\n"
+"view"
+msgstr ""
+"Перегляд\n"
+"даних"
+
+#: ../DMI/language/language.cpp:46 ../DMI/window/nav_buttons.cpp:54
+msgctxt "Navigation bar"
+msgid "Spec"
+msgstr "Спец."
 
 #: ../DMI/window/brightness.cpp:13 ../DMI/window/menu_settings.cpp:21
 msgid "Brightness"
@@ -209,29 +239,3 @@ msgid ""
 msgstr ""
 "Виберіть\n"
 "тип"
-
-#~ msgctxt "Navigation bar"
-#~ msgid "Main"
-#~ msgstr ""
-#~ "Головне\n"
-#~ "меню"
-
-#~ msgctxt "Navigation bar"
-#~ msgid ""
-#~ "Over-\n"
-#~ "ride"
-#~ msgstr ""
-#~ "замі-\n"
-#~ "нити"
-
-#~ msgctxt "Navigation bar"
-#~ msgid ""
-#~ "Data\n"
-#~ "view"
-#~ msgstr ""
-#~ "Перегляд\n"
-#~ "даних"
-
-#~ msgctxt "Navigation bar"
-#~ msgid "Spec"
-#~ msgstr "Спец."

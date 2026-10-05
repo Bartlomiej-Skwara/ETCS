@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-05 15:12+0200\n"
+"POT-Creation-Date: 2026-10-05 17:01+0200\n"
 "PO-Revision-Date: 2024-04-23 05:20+0000\n"
 "Last-Translator: \"Loongeron (Russian team)\" <loongeron.ilia@gmail.com>\n"
 "Language-Team: Russian <https://sts.simkol.pl:18443/projects/simrail/etcs-"
@@ -30,6 +30,34 @@ msgstr ""
 #: ../DMI/graphics/display.cpp:55
 msgid "Train serie not selected!"
 msgstr ""
+
+#: ../DMI/language/language.cpp:43 ../DMI/window/nav_buttons.cpp:51
+msgctxt "Navigation bar"
+msgid "Main"
+msgstr "Меню"
+
+#: ../DMI/language/language.cpp:44 ../DMI/window/nav_buttons.cpp:52
+msgctxt "Navigation bar"
+msgid ""
+"Over-\n"
+"ride"
+msgstr ""
+"Пропу-\n"
+"стить"
+
+#: ../DMI/language/language.cpp:45 ../DMI/window/nav_buttons.cpp:53
+msgctxt "Navigation bar"
+msgid ""
+"Data\n"
+"view"
+msgstr ""
+"Просмотр\n"
+"данных"
+
+#: ../DMI/language/language.cpp:46 ../DMI/window/nav_buttons.cpp:54
+msgctxt "Navigation bar"
+msgid "Spec"
+msgstr "Характеристики"
 
 #: ../DMI/window/brightness.cpp:13 ../DMI/window/menu_settings.cpp:21
 msgid "Brightness"
@@ -206,30 +234,6 @@ msgid ""
 msgstr ""
 "Выберите\n"
 "тип"
-
-#~ msgctxt "Navigation bar"
-#~ msgid "Main"
-#~ msgstr "Меню"
-
-#~ msgctxt "Navigation bar"
-#~ msgid ""
-#~ "Over-\n"
-#~ "ride"
-#~ msgstr ""
-#~ "Пропу-\n"
-#~ "стить"
-
-#~ msgctxt "Navigation bar"
-#~ msgid ""
-#~ "Data\n"
-#~ "view"
-#~ msgstr ""
-#~ "Просмотр\n"
-#~ "данных"
-
-#~ msgctxt "Navigation bar"
-#~ msgid "Spec"
-#~ msgstr "Характеристики"
 
 #~ msgid "DEL"
 #~ msgstr "Удалить"

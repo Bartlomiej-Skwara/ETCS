@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ETCS DMI\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-05 15:12+0200\n"
+"POT-Creation-Date: 2026-10-05 17:01+0200\n"
 "PO-Revision-Date: 2026-08-10 08:22+0000\n"
 "Last-Translator: Aurélien Corbel <bb27307@live.fr>\n"
 "Language-Team: French <https://sts.simkol.pl/projects/simrail/etcs-dmi/fr/>\n"
@@ -20,6 +20,30 @@ msgstr ""
 #: ../DMI/graphics/display.cpp:55
 msgid "Train serie not selected!"
 msgstr ""
+
+#: ../DMI/language/language.cpp:43 ../DMI/window/nav_buttons.cpp:51
+msgctxt "Navigation bar"
+msgid "Main"
+msgstr "Menu"
+
+#: ../DMI/language/language.cpp:44 ../DMI/window/nav_buttons.cpp:52
+msgctxt "Navigation bar"
+msgid ""
+"Over-\n"
+"ride"
+msgstr "Franchir"
+
+#: ../DMI/language/language.cpp:45 ../DMI/window/nav_buttons.cpp:53
+msgctxt "Navigation bar"
+msgid ""
+"Data\n"
+"view"
+msgstr "Données"
+
+#: ../DMI/language/language.cpp:46 ../DMI/window/nav_buttons.cpp:54
+msgctxt "Navigation bar"
+msgid "Spec"
+msgstr "Spécial"
 
 #: ../DMI/window/brightness.cpp:13 ../DMI/window/menu_settings.cpp:21
 msgid "Brightness"
@@ -196,26 +220,6 @@ msgid ""
 msgstr ""
 "Sél.\n"
 "Type"
-
-#~ msgctxt "Navigation bar"
-#~ msgid "Main"
-#~ msgstr "Menu"
-
-#~ msgctxt "Navigation bar"
-#~ msgid ""
-#~ "Over-\n"
-#~ "ride"
-#~ msgstr "Franchir"
-
-#~ msgctxt "Navigation bar"
-#~ msgid ""
-#~ "Data\n"
-#~ "view"
-#~ msgstr "Données"
-
-#~ msgctxt "Navigation bar"
-#~ msgid "Spec"
-#~ msgstr "Spécial"
 
 #~ msgid "DEL"
 #~ msgstr "DU"
