@@ -2,69 +2,46 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ETCS DMI\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-10 13:53+0200\n"
+"POT-Creation-Date: 2026-10-05 15:12+0200\n"
+"PO-Revision-Date: 2025-10-28 13:56+0000\n"
+"Last-Translator: Bartłomiej Skwara <bartek@skwara.me>\n"
+"Language-Team: Swedish <https://sts.simkol.pl/projects/simrail/etcs-dmi/sv/"
+">\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: POEditor.com\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.11\n"
 
-#: c:\etcs\src\dmi\language\language.cpp:43
-#: c:\etcs\src\dmi\window\nav_buttons.cpp:51
-msgctxt "Navigation bar"
-msgid "Main"
-msgstr "Primär"
-
-#: c:\etcs\src\dmi\language\language.cpp:44
-#: c:\etcs\src\dmi\window\nav_buttons.cpp:52
-msgctxt "Navigation bar"
-msgid ""
-"Over-\n"
-"ride"
+#: ../DMI/graphics/display.cpp:44
+msgid "EVC not connected!"
 msgstr ""
-"Över-\n"
-"skrid"
 
-#: c:\etcs\src\dmi\language\language.cpp:45
-#: c:\etcs\src\dmi\window\nav_buttons.cpp:53
-msgctxt "Navigation bar"
-msgid ""
-"Data\n"
-"view"
-msgstr "Data-\n"
-"vy"
+#: ../DMI/graphics/display.cpp:55
+msgid "Train serie not selected!"
+msgstr ""
 
-#: c:\etcs\src\dmi\language\language.cpp:46
-#: c:\etcs\src\dmi\window\nav_buttons.cpp:54
-msgctxt "Navigation bar"
-msgid "Spec"
-msgstr "Speciellt"
-
-#: c:\etcs\src\dmi\window\brightness.cpp:13
-#: c:\etcs\src\dmi\window\menu_settings.cpp:21
+#: ../DMI/window/brightness.cpp:13 ../DMI/window/menu_settings.cpp:21
 msgid "Brightness"
 msgstr "Ljusstyrka"
 
-#: c:\etcs\src\dmi\window\data_entry.cpp:16
-#: c:\etcs\src\dmi\window\data_entry.cpp:17
-#: c:\etcs\src\dmi\window\data_validation.cpp:19
-#: c:\etcs\src\dmi\window\keyboard.cpp:245
-#: c:\etcs\src\dmi\window\keyboard.cpp:252
-#: c:\etcs\src\dmi\window\track_ahead_free.cpp:27
+#: ../DMI/window/data_entry.cpp:16 ../DMI/window/data_entry.cpp:17
+#: ../DMI/window/data_validation.cpp:19 ../DMI/window/keyboard.cpp:250
+#: ../DMI/window/keyboard.cpp:257 ../DMI/window/track_ahead_free.cpp:27
 msgid "Yes"
 msgstr "Ja"
 
-#: c:\etcs\src\dmi\window\data_entry.cpp:62
+#: ../DMI/window/data_entry.cpp:62
 msgid " entry complete?"
 msgstr " fullständig inmatning?"
 
-#: c:\etcs\src\dmi\window\driver_id.cpp:16
+#: ../DMI/window/driver_id.cpp:16
 msgid "TRN"
 msgstr "NTRÅG"
 
-#: c:\etcs\src\dmi\window\fixed_train_data.cpp:15
-#: c:\etcs\src\dmi\window\fixed_train_data.cpp:19
-#: c:\etcs\src\dmi\window\fixed_train_data.cpp:25
+#: ../DMI/window/fixed_train_data.cpp:15 ../DMI/window/fixed_train_data.cpp:19
+#: ../DMI/window/fixed_train_data.cpp:25
 msgid ""
 "Enter\n"
 "data"
@@ -72,135 +49,150 @@ msgstr ""
 "Inmata\n"
 "data"
 
-#: c:\etcs\src\dmi\window\keyboard.cpp:244
-#: c:\etcs\src\dmi\window\keyboard.cpp:248
+#: ../DMI/window/keyboard.cpp:249 ../DMI/window/keyboard.cpp:253
 msgid "No"
 msgstr "Nej"
 
-#: c:\etcs\src\dmi\window\menu_main.cpp:20
+#: ../DMI/window/menu_main.cpp:20
 msgid "Main"
-msgstr ""
+msgstr "Primär"
 
-#: c:\etcs\src\dmi\window\menu_main.cpp:22
+#: ../DMI/window/menu_main.cpp:22
 msgid "Start"
 msgstr "Start"
 
-#: c:\etcs\src\dmi\window\menu_main.cpp:26
+#: ../DMI/window/menu_main.cpp:26
 msgid "Driver ID"
 msgstr "Förar-ID"
 
-#: c:\etcs\src\dmi\window\menu_main.cpp:30
+#: ../DMI/window/menu_main.cpp:30
 msgid "Train Data"
 msgstr "Förardata"
 
-#: c:\etcs\src\dmi\window\menu_main.cpp:34
+#: ../DMI/window/menu_main.cpp:34
 msgid "Level"
 msgstr "Nivå"
 
-#: c:\etcs\src\dmi\window\menu_main.cpp:38
+#: ../DMI/window/menu_main.cpp:38
 msgid "Train running number"
 msgstr "Tågnummer"
 
-#: c:\etcs\src\dmi\window\menu_main.cpp:42
+#: ../DMI/window/menu_main.cpp:42
 msgid "Exit Shunting"
 msgstr "Avsluta Rangering"
 
-#: c:\etcs\src\dmi\window\menu_main.cpp:42
+#: ../DMI/window/menu_main.cpp:42
 msgid "Shunting"
 msgstr "Rangering"
 
-#: c:\etcs\src\dmi\window\menu_main.cpp:46
+#: ../DMI/window/menu_main.cpp:46
 msgid "Non-Leading"
 msgstr "Icke-Ledande"
 
-#: c:\etcs\src\dmi\window\menu_main.cpp:47
+#: ../DMI/window/menu_main.cpp:50
 msgid "Maintain shunting"
 msgstr "Behåll rangering"
 
-#: c:\etcs\src\dmi\window\menu_main.cpp:48
+#: ../DMI/window/menu_main.cpp:51
 msgid "Radio data"
 msgstr "Radiodata"
 
-#: c:\etcs\src\dmi\window\menu_ntc.cpp:11
+#: ../DMI/window/menu_main.cpp:56
+msgid "Continue in SM"
+msgstr ""
+
+#: ../DMI/window/menu_main.cpp:56
+msgid "Initiate SM"
+msgstr ""
+
+#: ../DMI/window/menu_main.cpp:60
+#, fuzzy
+#| msgid "Exit Shunting"
+msgid "Exit SM"
+msgstr "Avsluta manövrar"
+
+#: ../DMI/window/menu_ntc.cpp:11
 msgid "NTC data entry"
 msgstr "NTC-datainmatning"
 
-#: c:\etcs\src\dmi\window\menu_ntc.cpp:20
+#: ../DMI/window/menu_ntc.cpp:20
 msgid "End of data entry"
 msgstr "Slut på datainmatning"
 
-#: c:\etcs\src\dmi\window\menu_override.cpp:12
+#: ../DMI/window/menu_override.cpp:12
 msgid "Override"
 msgstr "Överskrid"
 
-#: c:\etcs\src\dmi\window\menu_override.cpp:14
+#: ../DMI/window/menu_override.cpp:14
 msgid "EoA"
 msgstr "EoA"
 
-#: c:\etcs\src\dmi\window\menu_radio.cpp:18
+#: ../DMI/window/menu_radio.cpp:18
 msgid "RBC data"
 msgstr "RBC data"
 
-#: c:\etcs\src\dmi\window\menu_radio.cpp:20
+#: ../DMI/window/menu_radio.cpp:20
 msgid "Contact last RBC"
 msgstr "Kontakta senaste RBC"
 
-#: c:\etcs\src\dmi\window\menu_radio.cpp:24
+#: ../DMI/window/menu_radio.cpp:24
 msgid "Use short number"
 msgstr "Använd kort nummer"
 
-#: c:\etcs\src\dmi\window\menu_radio.cpp:28
+#: ../DMI/window/menu_radio.cpp:28
 msgid "Enter RBC data"
 msgstr "Ange RBC-data"
 
-#: c:\etcs\src\dmi\window\menu_radio.cpp:32
+#: ../DMI/window/menu_radio.cpp:32
 msgid "Radio Network ID"
 msgstr "Radionätverks-ID"
 
-#: c:\etcs\src\dmi\window\menu_settings.cpp:11
+#: ../DMI/window/menu_settings.cpp:11
 msgid "Settings"
 msgstr "Inställningar"
 
-#: c:\etcs\src\dmi\window\menu_settings.cpp:13
+#: ../DMI/window/menu_settings.cpp:13
 msgid "Language"
 msgstr "Språk"
 
-#: c:\etcs\src\dmi\window\menu_settings.cpp:17
-#: c:\etcs\src\dmi\window\volume.cpp:13
+#: ../DMI/window/menu_settings.cpp:17 ../DMI/window/volume.cpp:13
 msgid "Volume"
 msgstr "Volym"
 
-#: c:\etcs\src\dmi\window\menu_settings.cpp:25
+#: ../DMI/window/menu_settings.cpp:25
 msgid "System version"
 msgstr "Systemversion"
 
-#: c:\etcs\src\dmi\window\menu_settings.cpp:29
+#: ../DMI/window/menu_settings.cpp:29
 msgid "Set VBC"
 msgstr "Lägg till VBC"
 
-#: c:\etcs\src\dmi\window\menu_settings.cpp:33
+#: ../DMI/window/menu_settings.cpp:33
 msgid "Remove VBC"
 msgstr "Ta bort VBC"
 
-#: c:\etcs\src\dmi\window\menu_spec.cpp:11
+#: ../DMI/window/menu_spec.cpp:11
 msgid "Special"
 msgstr "Speciell"
 
-#: c:\etcs\src\dmi\window\menu_spec.cpp:13
+#: ../DMI/window/menu_spec.cpp:13
 msgid "Adhesion"
 msgstr "Adhesion"
 
-#: c:\etcs\src\dmi\window\menu_spec.cpp:17
+#: ../DMI/window/menu_spec.cpp:17
 msgid "SR Speed/Distance"
 msgstr "SR Hastighet/Avstånd"
 
-#: c:\etcs\src\dmi\window\menu_spec.cpp:21
+#: ../DMI/window/menu_spec.cpp:21
 msgid "Train integrity"
 msgstr "Tåg integritet"
 
-#: c:\etcs\src\dmi\window\train_data.cpp:14
-#: c:\etcs\src\dmi\window\train_data.cpp:18
-#: c:\etcs\src\dmi\window\train_data.cpp:24
+#: ../DMI/window/menu_spec.cpp:26
+msgid "BMM reaction inhibition"
+msgstr ""
+
+#: ../DMI/window/train_data.cpp:14 ../DMI/window/train_data.cpp:18
+#: ../DMI/window/train_data.cpp:24
 msgid ""
 "Select\n"
 "type"
@@ -208,5 +200,27 @@ msgstr ""
 "Välj\n"
 "typ"
 
+#~ msgctxt "Navigation bar"
+#~ msgid "Main"
+#~ msgstr "Main"
+
+#~ msgctxt "Navigation bar"
+#~ msgid ""
+#~ "Over-\n"
+#~ "ride"
+#~ msgstr ""
+#~ "Åsido-\n"
+#~ "sätta"
+
+#~ msgctxt "Navigation bar"
+#~ msgid ""
+#~ "Data\n"
+#~ "view"
+#~ msgstr "Data"
+
+#~ msgctxt "Navigation bar"
+#~ msgid "Spec"
+#~ msgstr "Särskild"
+
 #~ msgid "DEL"
-#~ msgstr "DEL"
+#~ msgstr "AV"

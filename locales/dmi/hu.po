@@ -2,75 +2,47 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ETCS DMI\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-10 13:53+0200\n"
-"PO-Revision-Date: 2023-11-01 08:26+0000\n"
-"Last-Translator: Kukac (Hungarian team) <hectorgames19980915@gmail.com>\n"
-"Language-Team: Hungarian <https://sts.simkol.pl:18443/projects/simrail/"
-"etcs-dmi/hu/>\n"
+"POT-Creation-Date: 2026-10-05 15:12+0200\n"
+"PO-Revision-Date: 2024-05-03 08:48+0000\n"
+"Last-Translator: \"M.R. Hector (Hungarian team)\" "
+"<hectorgames19980915@gmail.com>\n"
+"Language-Team: Hungarian <https://sts.simkol.pl:18443/projects/simrail/etcs-"
+"dmi/hu/>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.2\n"
+"X-Generator: Weblate 4.18.2\n"
 
-#: c:\etcs\src\dmi\language\language.cpp:43
-#: c:\etcs\src\dmi\window\nav_buttons.cpp:51
-msgctxt "Navigation bar"
-msgid "Main"
-msgstr "Fő"
-
-#: c:\etcs\src\dmi\language\language.cpp:44
-#: c:\etcs\src\dmi\window\nav_buttons.cpp:52
-msgctxt "Navigation bar"
-msgid ""
-"Over-\n"
-"ride"
+#: ../DMI/graphics/display.cpp:44
+msgid "EVC not connected!"
 msgstr ""
-"Felül-\n"
-"bírálás"
 
-#: c:\etcs\src\dmi\language\language.cpp:45
-#: c:\etcs\src\dmi\window\nav_buttons.cpp:53
-msgctxt "Navigation bar"
-msgid ""
-"Data\n"
-"view"
+#: ../DMI/graphics/display.cpp:55
+msgid "Train serie not selected!"
 msgstr ""
-"Adat\n"
-"Kilátás"
 
-#: c:\etcs\src\dmi\language\language.cpp:46
-#: c:\etcs\src\dmi\window\nav_buttons.cpp:54
-msgctxt "Navigation bar"
-msgid "Spec"
-msgstr "Különleges"
-
-#: c:\etcs\src\dmi\window\brightness.cpp:13
-#: c:\etcs\src\dmi\window\menu_settings.cpp:21
+#: ../DMI/window/brightness.cpp:13 ../DMI/window/menu_settings.cpp:21
 msgid "Brightness"
 msgstr "Fényerősség"
 
-#: c:\etcs\src\dmi\window\data_entry.cpp:16
-#: c:\etcs\src\dmi\window\data_entry.cpp:17
-#: c:\etcs\src\dmi\window\data_validation.cpp:19
-#: c:\etcs\src\dmi\window\keyboard.cpp:245
-#: c:\etcs\src\dmi\window\keyboard.cpp:252
-#: c:\etcs\src\dmi\window\track_ahead_free.cpp:27
+#: ../DMI/window/data_entry.cpp:16 ../DMI/window/data_entry.cpp:17
+#: ../DMI/window/data_validation.cpp:19 ../DMI/window/keyboard.cpp:250
+#: ../DMI/window/keyboard.cpp:257 ../DMI/window/track_ahead_free.cpp:27
 msgid "Yes"
 msgstr "Igen"
 
-#: c:\etcs\src\dmi\window\data_entry.cpp:62
+#: ../DMI/window/data_entry.cpp:62
 msgid " entry complete?"
 msgstr " teljes belépés?"
 
-#: c:\etcs\src\dmi\window\driver_id.cpp:16
+#: ../DMI/window/driver_id.cpp:16
 msgid "TRN"
 msgstr "NTRAIN"
 
-#: c:\etcs\src\dmi\window\fixed_train_data.cpp:15
-#: c:\etcs\src\dmi\window\fixed_train_data.cpp:19
-#: c:\etcs\src\dmi\window\fixed_train_data.cpp:25
+#: ../DMI/window/fixed_train_data.cpp:15 ../DMI/window/fixed_train_data.cpp:19
+#: ../DMI/window/fixed_train_data.cpp:25
 msgid ""
 "Enter\n"
 "data"
@@ -78,141 +50,178 @@ msgstr ""
 "Int.\n"
 "adat"
 
-#: c:\etcs\src\dmi\window\keyboard.cpp:244
-#: c:\etcs\src\dmi\window\keyboard.cpp:248
+#: ../DMI/window/keyboard.cpp:249 ../DMI/window/keyboard.cpp:253
 msgid "No"
 msgstr "Nem"
 
-#: c:\etcs\src\dmi\window\menu_main.cpp:20
+#: ../DMI/window/menu_main.cpp:20
 msgid "Main"
 msgstr "Fő"
 
-#: c:\etcs\src\dmi\window\menu_main.cpp:22
+#: ../DMI/window/menu_main.cpp:22
 msgid "Start"
 msgstr "Rajt"
 
-#: c:\etcs\src\dmi\window\menu_main.cpp:26
+#: ../DMI/window/menu_main.cpp:26
 msgid "Driver ID"
 msgstr "Vezetői azonosító"
 
-#: c:\etcs\src\dmi\window\menu_main.cpp:30
+#: ../DMI/window/menu_main.cpp:30
 msgid "Train Data"
 msgstr "Vonatadatok"
 
-#: c:\etcs\src\dmi\window\menu_main.cpp:34
+#: ../DMI/window/menu_main.cpp:34
 msgid "Level"
 msgstr "Szint"
 
-#: c:\etcs\src\dmi\window\menu_main.cpp:38
+#: ../DMI/window/menu_main.cpp:38
 msgid "Train running number"
 msgstr "Vonatszám"
 
-#: c:\etcs\src\dmi\window\menu_main.cpp:42
+#: ../DMI/window/menu_main.cpp:42
 msgid "Exit Shunting"
 msgstr "Vége a manővereknek"
 
-#: c:\etcs\src\dmi\window\menu_main.cpp:42
+#: ../DMI/window/menu_main.cpp:42
 msgid "Shunting"
 msgstr "Manővereket"
 
-#: c:\etcs\src\dmi\window\menu_main.cpp:46
+#: ../DMI/window/menu_main.cpp:46
 msgid "Non-Leading"
 msgstr "Kettős tapadás"
 
-#: c:\etcs\src\dmi\window\menu_main.cpp:47
+#: ../DMI/window/menu_main.cpp:50
 msgid "Maintain shunting"
 msgstr "Tartsa manővert"
 
-#: c:\etcs\src\dmi\window\menu_main.cpp:48
+#: ../DMI/window/menu_main.cpp:51
 msgid "Radio data"
 msgstr "Rádiós adatok"
 
-#: c:\etcs\src\dmi\window\menu_ntc.cpp:11
+#: ../DMI/window/menu_main.cpp:56
+msgid "Continue in SM"
+msgstr "Haladj tovább SM-ben"
+
+#: ../DMI/window/menu_main.cpp:56
+msgid "Initiate SM"
+msgstr "SM kezdeményezése"
+
+#: ../DMI/window/menu_main.cpp:60
+msgid "Exit SM"
+msgstr "Lépj ki az SM-ből"
+
+#: ../DMI/window/menu_ntc.cpp:11
 msgid "NTC data entry"
 msgstr "NTC adatbevitel"
 
-#: c:\etcs\src\dmi\window\menu_ntc.cpp:20
+#: ../DMI/window/menu_ntc.cpp:20
 msgid "End of data entry"
 msgstr "Az adatbevitel vége"
 
-#: c:\etcs\src\dmi\window\menu_override.cpp:12
+#: ../DMI/window/menu_override.cpp:12
 msgid "Override"
 msgstr "Túlfutás"
 
-#: c:\etcs\src\dmi\window\menu_override.cpp:14
+#: ../DMI/window/menu_override.cpp:14
 msgid "EoA"
 msgstr "EoA"
 
-#: c:\etcs\src\dmi\window\menu_radio.cpp:18
+#: ../DMI/window/menu_radio.cpp:18
 msgid "RBC data"
 msgstr "RBC adatok"
 
-#: c:\etcs\src\dmi\window\menu_radio.cpp:20
+#: ../DMI/window/menu_radio.cpp:20
 msgid "Contact last RBC"
 msgstr "Lépjen kapcsolatba az utolsó RBC-vel"
 
-#: c:\etcs\src\dmi\window\menu_radio.cpp:24
+#: ../DMI/window/menu_radio.cpp:24
 msgid "Use short number"
 msgstr "Rövid számot használjon"
 
-#: c:\etcs\src\dmi\window\menu_radio.cpp:28
+#: ../DMI/window/menu_radio.cpp:28
 msgid "Enter RBC data"
 msgstr "Írja be az RBC-adatokat"
 
-#: c:\etcs\src\dmi\window\menu_radio.cpp:32
+#: ../DMI/window/menu_radio.cpp:32
 msgid "Radio Network ID"
 msgstr "Rádióhálózat azonosítója"
 
-#: c:\etcs\src\dmi\window\menu_settings.cpp:11
+#: ../DMI/window/menu_settings.cpp:11
 msgid "Settings"
 msgstr "Beállítások"
 
-#: c:\etcs\src\dmi\window\menu_settings.cpp:13
+#: ../DMI/window/menu_settings.cpp:13
 msgid "Language"
 msgstr "Nyelv"
 
-#: c:\etcs\src\dmi\window\menu_settings.cpp:17
-#: c:\etcs\src\dmi\window\volume.cpp:13
+#: ../DMI/window/menu_settings.cpp:17 ../DMI/window/volume.cpp:13
 msgid "Volume"
 msgstr "Hangerő"
 
-#: c:\etcs\src\dmi\window\menu_settings.cpp:25
+#: ../DMI/window/menu_settings.cpp:25
 msgid "System version"
 msgstr "Rendszerverzió"
 
-#: c:\etcs\src\dmi\window\menu_settings.cpp:29
+#: ../DMI/window/menu_settings.cpp:29
 msgid "Set VBC"
 msgstr "Adja hozzá a VBC-t"
 
-#: c:\etcs\src\dmi\window\menu_settings.cpp:33
+#: ../DMI/window/menu_settings.cpp:33
 msgid "Remove VBC"
 msgstr "Távolítsa el a VBC-t"
 
-#: c:\etcs\src\dmi\window\menu_spec.cpp:11
+#: ../DMI/window/menu_spec.cpp:11
 msgid "Special"
 msgstr "Különleges"
 
-#: c:\etcs\src\dmi\window\menu_spec.cpp:13
+#: ../DMI/window/menu_spec.cpp:13
 msgid "Adhesion"
 msgstr "Tapadás"
 
-#: c:\etcs\src\dmi\window\menu_spec.cpp:17
+#: ../DMI/window/menu_spec.cpp:17
 msgid "SR Speed/Distance"
 msgstr "SR sebesség/távolság"
 
-#: c:\etcs\src\dmi\window\menu_spec.cpp:21
+#: ../DMI/window/menu_spec.cpp:21
 msgid "Train integrity"
 msgstr "A vonat integritása"
 
-#: c:\etcs\src\dmi\window\train_data.cpp:14
-#: c:\etcs\src\dmi\window\train_data.cpp:18
-#: c:\etcs\src\dmi\window\train_data.cpp:24
+#: ../DMI/window/menu_spec.cpp:26
+msgid "BMM reaction inhibition"
+msgstr "BMM reakció gátlása"
+
+#: ../DMI/window/train_data.cpp:14 ../DMI/window/train_data.cpp:18
+#: ../DMI/window/train_data.cpp:24
 msgid ""
 "Select\n"
 "type"
 msgstr ""
 "Válaszd ki\n"
 "típus"
+
+#~ msgctxt "Navigation bar"
+#~ msgid "Main"
+#~ msgstr "Fő"
+
+#~ msgctxt "Navigation bar"
+#~ msgid ""
+#~ "Over-\n"
+#~ "ride"
+#~ msgstr ""
+#~ "Felül-\n"
+#~ "bírálás"
+
+#~ msgctxt "Navigation bar"
+#~ msgid ""
+#~ "Data\n"
+#~ "view"
+#~ msgstr ""
+#~ "Adat\n"
+#~ "Kilátás"
+
+#~ msgctxt "Navigation bar"
+#~ msgid "Spec"
+#~ msgstr "Különleges"
 
 #~ msgid "DEL"
 #~ msgstr "A"

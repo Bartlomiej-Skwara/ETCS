@@ -7,401 +7,580 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-10 13:53+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"POT-Creation-Date: 2025-02-28 14:39+0100\n"
+"PO-Revision-Date: 2026-02-27 12:11+0000\n"
+"Last-Translator: \"Rostyslav Kudlak (Ukrainian team)\" "
+"<rostyk.kudlak@gmail.com>\n"
+"Language-Team: Ukrainian <https://sts.simkol.pl/projects/simrail/etcs-evc/uk/"
+">\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.2.2\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 5.11\n"
 "X-Poedit-Basepath: ../../EVC\n"
 "X-Poedit-KeywordsList: get_text;get_text_context:c1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: c:\etcs\src\evc\dmi\text_messages.cpp:117
-msgid "Level crossing not protected"
-msgstr ""
+#: ../EVC/DMI/dmi.cpp:150 ../EVC/DMI/dmi.cpp:180
+msgid " confirmed"
+msgstr " підтвержено"
 
-#: c:\etcs\src\evc\dmi\text_messages.cpp:118
-msgid "Acknowledgement"
-msgstr ""
-
-#: c:\etcs\src\evc\dmi\windows.cpp:77 c:\etcs\src\evc\dmi\windows.cpp:287
-#: c:\etcs\src\evc\dmi\windows.cpp:1072
-msgid "Driver ID"
-msgstr ""
-
-#: c:\etcs\src\evc\dmi\windows.cpp:86 c:\etcs\src\evc\dmi\windows.cpp:107
-#: c:\etcs\src\evc\dmi\windows.cpp:920
+#: ../EVC/DMI/dmi.cpp:159 ../EVC/DMI/windows.cpp:110 ../EVC/DMI/windows.cpp:131
+#: ../EVC/DMI/windows.cpp:159 ../EVC/DMI/windows.cpp:1097
 msgid "Level 0"
-msgstr ""
+msgstr "Рівень 0"
 
-#: c:\etcs\src\evc\dmi\windows.cpp:89 c:\etcs\src\evc\dmi\windows.cpp:110
-#: c:\etcs\src\evc\dmi\windows.cpp:922
+#: ../EVC/DMI/dmi.cpp:162 ../EVC/DMI/windows.cpp:113 ../EVC/DMI/windows.cpp:134
+#: ../EVC/DMI/windows.cpp:161 ../EVC/DMI/windows.cpp:1099
 msgid "Level 1"
-msgstr ""
+msgstr "Рівень 1"
 
-#: c:\etcs\src\evc\dmi\windows.cpp:92 c:\etcs\src\evc\dmi\windows.cpp:113
-#: c:\etcs\src\evc\dmi\windows.cpp:924
+#: ../EVC/DMI/dmi.cpp:165 ../EVC/DMI/windows.cpp:116 ../EVC/DMI/windows.cpp:137
+#: ../EVC/DMI/windows.cpp:163 ../EVC/DMI/windows.cpp:1101
 msgid "Level 2"
-msgstr ""
+msgstr "Рівень 2"
 
-#: c:\etcs\src\evc\dmi\windows.cpp:95 c:\etcs\src\evc\dmi\windows.cpp:116
-#: c:\etcs\src\evc\dmi\windows.cpp:926
+#: ../EVC/DMI/dmi.cpp:169 ../EVC/DMI/windows.cpp:119 ../EVC/DMI/windows.cpp:140
+#: ../EVC/DMI/windows.cpp:165 ../EVC/DMI/windows.cpp:1103
 msgid "Level 3"
-msgstr ""
+msgstr "Рівень 3"
 
-#: c:\etcs\src\evc\dmi\windows.cpp:131
-msgid "Level "
-msgstr ""
+#: ../EVC/DMI/text_messages.cpp:116
+msgid "Level crossing not protected"
+msgstr "Нерегульований переїзд"
 
-#: c:\etcs\src\evc\dmi\windows.cpp:140 c:\etcs\src\evc\dmi\windows.cpp:916
+#: ../EVC/DMI/text_messages.cpp:117
+msgid "Acknowledgement"
+msgstr "Підтвердження"
+
+#: ../EVC/DMI/windows.cpp:101 ../EVC/DMI/windows.cpp:364
+#: ../EVC/DMI/windows.cpp:1378
+msgid "Driver ID"
+msgstr "ID машиніста"
+
+#: ../EVC/DMI/windows.cpp:173 ../EVC/DMI/windows.cpp:1093
 msgid "Level"
-msgstr ""
+msgstr "Рівень"
 
-#: c:\etcs\src\evc\dmi\windows.cpp:146 c:\etcs\src\evc\dmi\windows.cpp:289
-#: c:\etcs\src\evc\dmi\windows.cpp:944
+#: ../EVC/DMI/windows.cpp:179 ../EVC/DMI/windows.cpp:366
+#: ../EVC/DMI/windows.cpp:1125
 msgid "Train running number"
-msgstr ""
+msgstr "Номер рейсу поїзда"
 
-#: c:\etcs\src\evc\dmi\windows.cpp:153 c:\etcs\src\evc\dmi\windows.cpp:299
-#: c:\etcs\src\evc\dmi\windows.cpp:1082 c:\etcs\src\evc\dmi\windows.cpp:1245
+#: ../EVC/DMI/windows.cpp:186 ../EVC/DMI/windows.cpp:389
+#: ../EVC/DMI/windows.cpp:1392 ../EVC/DMI/windows.cpp:1555
 msgid "RBC ID"
-msgstr ""
+msgstr "RBC ID"
 
-#: c:\etcs\src\evc\dmi\windows.cpp:154 c:\etcs\src\evc\dmi\windows.cpp:300
-#: c:\etcs\src\evc\dmi\windows.cpp:1083
+#: ../EVC/DMI/windows.cpp:187 ../EVC/DMI/windows.cpp:390
+#: ../EVC/DMI/windows.cpp:1393
 msgid "RBC phone number"
-msgstr ""
+msgstr "Телефон RBC"
 
-#: c:\etcs\src\evc\dmi\windows.cpp:158 c:\etcs\src\evc\dmi\windows.cpp:1081
-#: c:\etcs\src\evc\dmi\windows.cpp:1244
+#: ../EVC/DMI/windows.cpp:191 ../EVC/DMI/windows.cpp:1391
+#: ../EVC/DMI/windows.cpp:1554
 msgid "RBC data"
-msgstr ""
+msgstr "Дані RBC"
 
-#: c:\etcs\src\evc\dmi\windows.cpp:168 c:\etcs\src\evc\dmi\windows.cpp:297
-#: c:\etcs\src\evc\dmi\windows.cpp:1092
+#: ../EVC/DMI/windows.cpp:201 ../EVC/DMI/windows.cpp:387
+#: ../EVC/DMI/windows.cpp:1402
 msgid "Radio network ID"
-msgstr ""
+msgstr "ID радіомережі"
 
-#: c:\etcs\src\evc\dmi\windows.cpp:184 c:\etcs\src\evc\dmi\windows.cpp:200
-#: c:\etcs\src\evc\dmi\windows.cpp:965 c:\etcs\src\evc\dmi\windows.cpp:1229
+#: ../EVC/DMI/windows.cpp:217 ../EVC/DMI/windows.cpp:277
+#: ../EVC/DMI/windows.cpp:1150 ../EVC/DMI/windows.cpp:1539
 msgid "Train data"
-msgstr ""
+msgstr "Дані поїзда"
 
-#: c:\etcs\src\evc\dmi\windows.cpp:184 c:\etcs\src\evc\dmi\windows.cpp:291
-#: c:\etcs\src\evc\dmi\windows.cpp:1060
+#: ../EVC/DMI/windows.cpp:217 ../EVC/DMI/windows.cpp:369
+#: ../EVC/DMI/windows.cpp:1359
 msgid "Train type"
-msgstr ""
+msgstr "Тип поїзда"
 
-#: c:\etcs\src\evc\dmi\windows.cpp:192 c:\etcs\src\evc\dmi\windows.cpp:292
-#: c:\etcs\src\evc\dmi\windows.cpp:991 c:\etcs\src\evc\dmi\windows.cpp:1230
-msgid "Length (m)"
-msgstr ""
-
-#: c:\etcs\src\evc\dmi\windows.cpp:193 c:\etcs\src\evc\dmi\windows.cpp:996
-#: c:\etcs\src\evc\dmi\windows.cpp:1234
-msgid "Brake percentage"
-msgstr ""
-
-#: c:\etcs\src\evc\dmi\windows.cpp:194 c:\etcs\src\evc\dmi\windows.cpp:995
-#: c:\etcs\src\evc\dmi\windows.cpp:1238
-msgid "Max speed (km/h)"
-msgstr ""
-
-#: c:\etcs\src\evc\dmi\windows.cpp:195 c:\etcs\src\evc\dmi\windows.cpp:992
-msgid "Loading gauge"
-msgstr ""
-
-#: c:\etcs\src\evc\dmi\windows.cpp:195
-msgid "Out of GC"
-msgstr ""
-
-#: c:\etcs\src\evc\dmi\windows.cpp:196 c:\etcs\src\evc\dmi\windows.cpp:994
-#: c:\etcs\src\evc\dmi\windows.cpp:997
-msgid "Train category"
-msgstr ""
-
-#: c:\etcs\src\evc\dmi\windows.cpp:196 c:\etcs\src\evc\dmi\windows.cpp:1000
+#: ../EVC/DMI/windows.cpp:228 ../EVC/DMI/windows.cpp:1155
+#: ../EVC/DMI/windows.cpp:1276
 msgid "PASS 1"
-msgstr ""
+msgstr "PASS 1"
 
-#: c:\etcs\src\evc\dmi\windows.cpp:196 c:\etcs\src\evc\dmi\windows.cpp:1003
+#: ../EVC/DMI/windows.cpp:228 ../EVC/DMI/windows.cpp:1157
+#: ../EVC/DMI/windows.cpp:1280
 msgid "PASS 2"
-msgstr ""
+msgstr "PASS 2"
 
-#: c:\etcs\src\evc\dmi\windows.cpp:196 c:\etcs\src\evc\dmi\windows.cpp:1006
+#: ../EVC/DMI/windows.cpp:228 ../EVC/DMI/windows.cpp:1159
+#: ../EVC/DMI/windows.cpp:1284
 msgid "PASS 3"
-msgstr ""
+msgstr "PASS 3"
 
-#: c:\etcs\src\evc\dmi\windows.cpp:197 c:\etcs\src\evc\dmi\windows.cpp:1009
+#: ../EVC/DMI/windows.cpp:229 ../EVC/DMI/windows.cpp:1161
+#: ../EVC/DMI/windows.cpp:1288
 msgid "TILT 1"
-msgstr ""
+msgstr "TILT 1"
 
-#: c:\etcs\src\evc\dmi\windows.cpp:197 c:\etcs\src\evc\dmi\windows.cpp:1012
+#: ../EVC/DMI/windows.cpp:229 ../EVC/DMI/windows.cpp:1163
+#: ../EVC/DMI/windows.cpp:1292
 msgid "TILT 2"
-msgstr ""
+msgstr "TILT 2"
 
-#: c:\etcs\src\evc\dmi\windows.cpp:197 c:\etcs\src\evc\dmi\windows.cpp:1015
+#: ../EVC/DMI/windows.cpp:229 ../EVC/DMI/windows.cpp:1165
+#: ../EVC/DMI/windows.cpp:1296
 msgid "TILT 3"
-msgstr ""
+msgstr "TILT 3"
 
-#: c:\etcs\src\evc\dmi\windows.cpp:197 c:\etcs\src\evc\dmi\windows.cpp:1018
+#: ../EVC/DMI/windows.cpp:230 ../EVC/DMI/windows.cpp:1167
+#: ../EVC/DMI/windows.cpp:1300
 msgid "TILT 4"
-msgstr ""
+msgstr "TILT 4"
 
-#: c:\etcs\src\evc\dmi\windows.cpp:197 c:\etcs\src\evc\dmi\windows.cpp:1021
+#: ../EVC/DMI/windows.cpp:230 ../EVC/DMI/windows.cpp:1169
+#: ../EVC/DMI/windows.cpp:1304
 msgid "TILT 5"
-msgstr ""
+msgstr "TILT 5"
 
-#: c:\etcs\src\evc\dmi\windows.cpp:197 c:\etcs\src\evc\dmi\windows.cpp:1024
+#: ../EVC/DMI/windows.cpp:230 ../EVC/DMI/windows.cpp:1171
+#: ../EVC/DMI/windows.cpp:1308
 msgid "TILT 6"
-msgstr ""
+msgstr "TILT 6"
 
-#: c:\etcs\src\evc\dmi\windows.cpp:197 c:\etcs\src\evc\dmi\windows.cpp:1027
+#: ../EVC/DMI/windows.cpp:231 ../EVC/DMI/windows.cpp:1173
+#: ../EVC/DMI/windows.cpp:1312
 msgid "TILT 7"
-msgstr ""
+msgstr "TILT 7"
 
-#: c:\etcs\src\evc\dmi\windows.cpp:198 c:\etcs\src\evc\dmi\windows.cpp:1030
+#: ../EVC/DMI/windows.cpp:231 ../EVC/DMI/windows.cpp:1175
+#: ../EVC/DMI/windows.cpp:1316
 msgid "FP 1"
-msgstr ""
+msgstr "FP 1"
 
-#: c:\etcs\src\evc\dmi\windows.cpp:198
-msgid "FP 2"
-msgstr ""
+#: ../EVC/DMI/windows.cpp:231
+msgid "FP2"
+msgstr "FP2"
 
-#: c:\etcs\src\evc\dmi\windows.cpp:198 c:\etcs\src\evc\dmi\windows.cpp:1036
+#: ../EVC/DMI/windows.cpp:232 ../EVC/DMI/windows.cpp:1179
+#: ../EVC/DMI/windows.cpp:1324
 msgid "FP 3"
-msgstr ""
+msgstr "FP 3"
 
-#: c:\etcs\src\evc\dmi\windows.cpp:198 c:\etcs\src\evc\dmi\windows.cpp:1039
+#: ../EVC/DMI/windows.cpp:232 ../EVC/DMI/windows.cpp:1181
+#: ../EVC/DMI/windows.cpp:1328
 msgid "FP 4"
-msgstr ""
+msgstr "FP 4"
 
-#: c:\etcs\src\evc\dmi\windows.cpp:198 c:\etcs\src\evc\dmi\windows.cpp:1042
+#: ../EVC/DMI/windows.cpp:232 ../EVC/DMI/windows.cpp:1183
+#: ../EVC/DMI/windows.cpp:1332
 msgid "FG 1"
-msgstr ""
+msgstr "FG 1"
 
-#: c:\etcs\src\evc\dmi\windows.cpp:198 c:\etcs\src\evc\dmi\windows.cpp:1045
+#: ../EVC/DMI/windows.cpp:233 ../EVC/DMI/windows.cpp:1185
+#: ../EVC/DMI/windows.cpp:1336
 msgid "FG 2"
-msgstr ""
+msgstr "FG 2"
 
-#: c:\etcs\src\evc\dmi\windows.cpp:198 c:\etcs\src\evc\dmi\windows.cpp:1048
+#: ../EVC/DMI/windows.cpp:233 ../EVC/DMI/windows.cpp:1187
+#: ../EVC/DMI/windows.cpp:1340
 msgid "FG 3"
-msgstr ""
+msgstr "FG 3"
 
-#: c:\etcs\src\evc\dmi\windows.cpp:198 c:\etcs\src\evc\dmi\windows.cpp:1051
+#: ../EVC/DMI/windows.cpp:233 ../EVC/DMI/windows.cpp:1189
+#: ../EVC/DMI/windows.cpp:1344
 msgid "FG 4"
-msgstr ""
+msgstr "FG 4"
 
-#: c:\etcs\src\evc\dmi\windows.cpp:199 c:\etcs\src\evc\dmi\windows.cpp:993
+#: ../EVC/DMI/windows.cpp:241 ../EVC/DMI/windows.cpp:370
+#: ../EVC/DMI/windows.cpp:1153 ../EVC/DMI/windows.cpp:1273
+msgid "Train category"
+msgstr "Категорія поїзда"
+
+#: ../EVC/DMI/windows.cpp:244 ../EVC/DMI/windows.cpp:371
+#: ../EVC/DMI/windows.cpp:1152 ../EVC/DMI/windows.cpp:1224
+#: ../EVC/DMI/windows.cpp:1540
+msgid "Length (m)"
+msgstr "Довжина (м)"
+
+#: ../EVC/DMI/windows.cpp:245 ../EVC/DMI/windows.cpp:372
+#: ../EVC/DMI/windows.cpp:1271 ../EVC/DMI/windows.cpp:1544
+msgid "Brake percentage"
+msgstr "Гальмування у відсотках"
+
+#: ../EVC/DMI/windows.cpp:246 ../EVC/DMI/windows.cpp:1269
+#: ../EVC/DMI/windows.cpp:1548
+msgid "Max speed (km/h)"
+msgstr "Макс. шв.(км/год)"
+
+#: ../EVC/DMI/windows.cpp:249 ../EVC/DMI/windows.cpp:375
+#: ../EVC/DMI/windows.cpp:1239
+msgid "A"
+msgstr "A"
+
+#: ../EVC/DMI/windows.cpp:249 ../EVC/DMI/windows.cpp:375
+#: ../EVC/DMI/windows.cpp:1241
+msgid "HS17"
+msgstr "HS17"
+
+#: ../EVC/DMI/windows.cpp:249 ../EVC/DMI/windows.cpp:375
+#: ../EVC/DMI/windows.cpp:1243
+msgid "B1"
+msgstr "B1"
+
+#: ../EVC/DMI/windows.cpp:249 ../EVC/DMI/windows.cpp:375
+#: ../EVC/DMI/windows.cpp:1245
+msgid "B2"
+msgstr "B2"
+
+#: ../EVC/DMI/windows.cpp:249 ../EVC/DMI/windows.cpp:375
+#: ../EVC/DMI/windows.cpp:1247
+msgid "C2"
+msgstr "C2"
+
+#: ../EVC/DMI/windows.cpp:249 ../EVC/DMI/windows.cpp:375
+#: ../EVC/DMI/windows.cpp:1249
+msgid "C3"
+msgstr "C3"
+
+#: ../EVC/DMI/windows.cpp:249 ../EVC/DMI/windows.cpp:375
+#: ../EVC/DMI/windows.cpp:1251
+msgid "C4"
+msgstr "C4"
+
+#: ../EVC/DMI/windows.cpp:249 ../EVC/DMI/windows.cpp:375
+#: ../EVC/DMI/windows.cpp:1253
+msgid "D2"
+msgstr "D2"
+
+#: ../EVC/DMI/windows.cpp:249 ../EVC/DMI/windows.cpp:375
+#: ../EVC/DMI/windows.cpp:1255
+msgid "D3"
+msgstr "D3"
+
+#: ../EVC/DMI/windows.cpp:249 ../EVC/DMI/windows.cpp:375
+#: ../EVC/DMI/windows.cpp:1257
+msgid "D4"
+msgstr "D4"
+
+#: ../EVC/DMI/windows.cpp:249 ../EVC/DMI/windows.cpp:375
+#: ../EVC/DMI/windows.cpp:1259
+msgid "D4XL"
+msgstr "D4XL"
+
+#: ../EVC/DMI/windows.cpp:249 ../EVC/DMI/windows.cpp:375
+#: ../EVC/DMI/windows.cpp:1261
+msgid "E4"
+msgstr "E4"
+
+#: ../EVC/DMI/windows.cpp:249 ../EVC/DMI/windows.cpp:375
+#: ../EVC/DMI/windows.cpp:1263
+msgid "E5"
+msgstr "E5"
+
+#: ../EVC/DMI/windows.cpp:257 ../EVC/DMI/windows.cpp:376
+#: ../EVC/DMI/windows.cpp:1238
 msgid "Axle load category"
-msgstr ""
+msgstr "Категорія навантаження на вісь"
 
-#: c:\etcs\src\evc\dmi\windows.cpp:227 c:\etcs\src\evc\dmi\windows.cpp:1192
-#: c:\etcs\src\evc\dmi\windows.cpp:1198 c:\etcs\src\evc\dmi\windows.cpp:1202
-msgid " data"
-msgstr ""
-
-#: c:\etcs\src\evc\dmi\windows.cpp:236 c:\etcs\src\evc\dmi\windows.cpp:1130
-msgid "Adhesion"
-msgstr ""
-
-#: c:\etcs\src\evc\dmi\windows.cpp:236
-msgid "Non slippery rail"
-msgstr ""
-
-#: c:\etcs\src\evc\dmi\windows.cpp:236 c:\etcs\src\evc\dmi\windows.cpp:1131
-msgid "Slippery rail"
-msgstr ""
-
-#: c:\etcs\src\evc\dmi\windows.cpp:243 c:\etcs\src\evc\dmi\windows.cpp:1123
-#: c:\etcs\src\evc\dmi\windows.cpp:1253
-msgid "SR speed (km/h)"
-msgstr ""
-
-#: c:\etcs\src\evc\dmi\windows.cpp:244 c:\etcs\src\evc\dmi\windows.cpp:1124
-#: c:\etcs\src\evc\dmi\windows.cpp:1250
-msgid "SR distance (m)"
-msgstr ""
-
-#: c:\etcs\src\evc\dmi\windows.cpp:246 c:\etcs\src\evc\dmi\windows.cpp:1121
-#: c:\etcs\src\evc\dmi\windows.cpp:1249
-msgid "SR speed/distance"
-msgstr ""
-
-#: c:\etcs\src\evc\dmi\windows.cpp:252 c:\etcs\src\evc\dmi\windows.cpp:1117
-msgid "Language"
-msgstr ""
-
-#: c:\etcs\src\evc\dmi\windows.cpp:258 c:\etcs\src\evc\dmi\windows.cpp:1133
-msgid "Set VBC"
-msgstr ""
-
-#: c:\etcs\src\evc\dmi\windows.cpp:258 c:\etcs\src\evc\dmi\windows.cpp:264
-#: c:\etcs\src\evc\dmi\windows.cpp:1163 c:\etcs\src\evc\dmi\windows.cpp:1164
-#: c:\etcs\src\evc\dmi\windows.cpp:1180
-msgid "VBC code"
-msgstr ""
-
-#: c:\etcs\src\evc\dmi\windows.cpp:264 c:\etcs\src\evc\dmi\windows.cpp:1142
-msgid "Remove VBC"
-msgstr ""
-
-#: c:\etcs\src\evc\dmi\windows.cpp:293
-msgid "Brake percentaje"
-msgstr ""
-
-#: c:\etcs\src\evc\dmi\windows.cpp:294
-msgid "Maximum speed (km/h)"
-msgstr ""
-
-#: c:\etcs\src\evc\dmi\windows.cpp:295
-msgid "Airtight"
-msgstr ""
-
-#: c:\etcs\src\evc\dmi\windows.cpp:295
+#: ../EVC/DMI/windows.cpp:261 ../EVC/DMI/windows.cpp:378
+#: ../EVC/DMI/windows.cpp:1267
 msgid "Yes"
-msgstr ""
+msgstr "Так"
 
-#: c:\etcs\src\evc\dmi\windows.cpp:295
+#: ../EVC/DMI/windows.cpp:261 ../EVC/DMI/windows.cpp:378
 msgid "No"
-msgstr ""
+msgstr "НІ"
 
-#: c:\etcs\src\evc\dmi\windows.cpp:309
+#: ../EVC/DMI/windows.cpp:262 ../EVC/DMI/windows.cpp:378
+#: ../EVC/DMI/windows.cpp:1266
+msgid "Airtight"
+msgstr "Нагнітання тиску"
+
+#: ../EVC/DMI/windows.cpp:266 ../EVC/DMI/windows.cpp:380
+#: ../EVC/DMI/windows.cpp:1227
+msgid "G1"
+msgstr "G1"
+
+#: ../EVC/DMI/windows.cpp:266 ../EVC/DMI/windows.cpp:380
+#: ../EVC/DMI/windows.cpp:1229
+msgid "GA"
+msgstr "GA"
+
+#: ../EVC/DMI/windows.cpp:266 ../EVC/DMI/windows.cpp:380
+#: ../EVC/DMI/windows.cpp:1231
+msgid "GB"
+msgstr "GB"
+
+#: ../EVC/DMI/windows.cpp:266 ../EVC/DMI/windows.cpp:380
+#: ../EVC/DMI/windows.cpp:1233
+msgid "GC"
+msgstr "GC"
+
+#: ../EVC/DMI/windows.cpp:266 ../EVC/DMI/windows.cpp:380
+msgid "Out of GC"
+msgstr "Поза межами GC"
+
+#: ../EVC/DMI/windows.cpp:274 ../EVC/DMI/windows.cpp:381
+#: ../EVC/DMI/windows.cpp:1226
+msgid "Loading gauge"
+msgstr "Габарит рухомого складу"
+
+#: ../EVC/DMI/windows.cpp:304 ../EVC/DMI/windows.cpp:1502
+#: ../EVC/DMI/windows.cpp:1508 ../EVC/DMI/windows.cpp:1512
+msgid " data"
+msgstr " дані"
+
+#: ../EVC/DMI/windows.cpp:313 ../EVC/DMI/windows.cpp:1440
+msgid "Adhesion"
+msgstr "Зчеплення"
+
+#: ../EVC/DMI/windows.cpp:313 ../EVC/DMI/windows.cpp:1441
+msgid "Slippery rail"
+msgstr "Cлизька рейка"
+
+#: ../EVC/DMI/windows.cpp:313
+msgid "Non slippery rail"
+msgstr "Неслизька рейка"
+
+#: ../EVC/DMI/windows.cpp:320 ../EVC/DMI/windows.cpp:1433
+#: ../EVC/DMI/windows.cpp:1563
+msgid "SR speed (km/h)"
+msgstr "Швидкість SR (км/год)"
+
+#: ../EVC/DMI/windows.cpp:321 ../EVC/DMI/windows.cpp:1435
+#: ../EVC/DMI/windows.cpp:1560
+msgid "SR distance (m)"
+msgstr "Відстань SR (м)"
+
+#: ../EVC/DMI/windows.cpp:323 ../EVC/DMI/windows.cpp:1431
+#: ../EVC/DMI/windows.cpp:1559
+msgid "SR speed/distance"
+msgstr "Швидкість/відстань SR"
+
+#: ../EVC/DMI/windows.cpp:329 ../EVC/DMI/windows.cpp:1427
+msgid "Language"
+msgstr "Мова"
+
+#: ../EVC/DMI/windows.cpp:335 ../EVC/DMI/windows.cpp:1443
+msgid "Set VBC"
+msgstr "Встановити VBC"
+
+#: ../EVC/DMI/windows.cpp:335 ../EVC/DMI/windows.cpp:341
+#: ../EVC/DMI/windows.cpp:1473 ../EVC/DMI/windows.cpp:1474
+#: ../EVC/DMI/windows.cpp:1490
+msgid "VBC code"
+msgstr "Код VBC"
+
+#: ../EVC/DMI/windows.cpp:341 ../EVC/DMI/windows.cpp:1452
+msgid "Remove VBC"
+msgstr "Прибрати VBC"
+
+#: ../EVC/DMI/windows.cpp:373
+msgid "Maximum speed (km/h)"
+msgstr "Максимальна швидкість (км/год)"
+
+#: ../EVC/DMI/windows.cpp:399
 msgid "Data view"
-msgstr ""
+msgstr "Перегляд даних"
 
-#: c:\etcs\src\evc\dmi\windows.cpp:315
+#: ../EVC/DMI/windows.cpp:405
 msgid "System version"
-msgstr ""
+msgstr "Версія системи"
 
-#: c:\etcs\src\evc\dmi\windows.cpp:315
+#: ../EVC/DMI/windows.cpp:405
 msgid "Operated system version"
-msgstr ""
+msgstr "Версія операційної системи"
 
-#: c:\etcs\src\evc\dmi\windows.cpp:406 c:\etcs\src\evc\dmi\windows.cpp:514
+#: ../EVC/DMI/windows.cpp:513 ../EVC/DMI/windows.cpp:642
 msgid "Radio network registration failed"
-msgstr ""
+msgstr "Реєстрація радіомережі не вдалася"
 
-#: c:\etcs\src\evc\dmi\windows.cpp:417
+#: ../EVC/DMI/windows.cpp:527
 msgid "Train is rejected"
-msgstr ""
+msgstr "Поїзд відхилено"
 
-#: c:\etcs\src\evc\dmi\windows.cpp:679
+#: ../EVC/DMI/windows.cpp:831
 msgid "Shunting request failed"
-msgstr ""
+msgstr "Запит на маневрування не вдалося виконати"
 
-#: c:\etcs\src\evc\dmi\windows.cpp:970 c:\etcs\src\evc\dmi\windows.cpp:974
+#: ../EVC/DMI/windows.cpp:1116
+msgid "Level selected"
+msgstr "Рівень вибрано"
+
+#: ../EVC/DMI/windows.cpp:1135
+msgid "Train running number entered"
+msgstr "Номер рейсу поїзда вибрано"
+
+#: ../EVC/DMI/windows.cpp:1153 ../EVC/DMI/windows.cpp:1273
+msgid "TrainCategory"
+msgstr "Категорія_поїзда"
+
+#: ../EVC/DMI/windows.cpp:1177 ../EVC/DMI/windows.cpp:1320
+msgid "FP 2"
+msgstr "FP 2"
+
+#: ../EVC/DMI/windows.cpp:1202 ../EVC/DMI/windows.cpp:1206
 msgid "Validate train data"
-msgstr ""
+msgstr "Перевірка даних про поїзд"
 
-#: c:\etcs\src\evc\dmi\windows.cpp:1138 c:\etcs\src\evc\dmi\windows.cpp:1151
+#: ../EVC/DMI/windows.cpp:1226
+msgid "LoadingGauge"
+msgstr "ВантажнийРозмір"
+
+#: ../EVC/DMI/windows.cpp:1238
+msgid "AxleLoadCategory"
+msgstr "Категорія навантаження на вісь"
+
+#: ../EVC/DMI/windows.cpp:1363
+msgid "Train data entered"
+msgstr "Дані про поїзд внесено"
+
+#: ../EVC/DMI/windows.cpp:1389
+msgid "Driver ID entered"
+msgstr "ID машиніста записано"
+
+#: ../EVC/DMI/windows.cpp:1448 ../EVC/DMI/windows.cpp:1461
 msgid "Validate set VBC"
-msgstr ""
+msgstr "Перевірка встановленого VBC"
 
-#: c:\etcs\src\evc\dmi\windows.cpp:1147 c:\etcs\src\evc\dmi\windows.cpp:1168
+#: ../EVC/DMI/windows.cpp:1457 ../EVC/DMI/windows.cpp:1478
 msgid "Validate remove VBC"
-msgstr ""
+msgstr "Підтвердження видалення VBC"
 
-#: c:\etcs\src\evc\dmi\windows.cpp:1184
+#: ../EVC/DMI/windows.cpp:1494
 msgid "Brightness"
-msgstr ""
+msgstr "Яскравість"
 
-#: c:\etcs\src\evc\dmi\windows.cpp:1186
+#: ../EVC/DMI/windows.cpp:1496
 msgid "Volume"
-msgstr ""
+msgstr "Гучність"
 
-#: c:\etcs\src\evc\dmi\windows.cpp:1198 c:\etcs\src\evc\dmi\windows.cpp:1202
+#: ../EVC/DMI/windows.cpp:1508 ../EVC/DMI/windows.cpp:1512
 msgid "Validate "
-msgstr ""
+msgstr "Підтвердити "
 
-#: c:\etcs\src\evc\dmi\windows.cpp:1395
-#: c:\etcs\src\evc\procedures\train_trip.cpp:40
+#: ../EVC/DMI/windows.cpp:1705 ../EVC/Procedures/train_trip.cpp:40
 msgid "SH refused"
-msgstr ""
+msgstr "SH відхилено"
 
-#: c:\etcs\src\evc\euroradio\session.cpp:126
-#: c:\etcs\src\evc\procedures\train_trip.cpp:43
+#: ../EVC/Euroradio/session.cpp:138 ../EVC/Procedures/train_trip.cpp:43
 msgid "Trackside not compatible"
-msgstr ""
+msgstr "Не сумісний з колією"
 
-#: c:\etcs\src\evc\procedures\mode_transition.cpp:325
+#: ../EVC/OnboardTests/main_brake_test.cpp:48
+msgid "ETCS brake test required. Confirm to proceed."
+msgstr "Потрібно виконати перевірку гальм ETCS. Підтвердіть."
+
+#: ../EVC/OnboardTests/main_brake_test.cpp:53
+msgid "ETCS brake test recommended."
+msgstr "Рекомендується перевірка гальм ETCS."
+
+#: ../EVC/OnboardTests/main_brake_test.cpp:102
+msgid "Test failed!"
+msgstr "Тест невдалий!"
+
+#: ../EVC/OnboardTests/main_brake_test.cpp:116
+msgid "Test in progress..."
+msgstr "Виконується перевірка..."
+
+#: ../EVC/OnboardTests/main_brake_test.cpp:125
+#: ../EVC/OnboardTests/main_brake_test.cpp:139
+msgid "Braking test..."
+msgstr "Перевірка гальмування..."
+
+#: ../EVC/OnboardTests/main_brake_test.cpp:154
+msgid "Test successful!"
+msgstr "Перевірка успішна!"
+
+#: ../EVC/OnboardTests/self_test.cpp:23
+msgid "Self test OK"
+msgstr "Самоперевірка ОК"
+
+#: ../EVC/OnboardTests/self_test.cpp:25
+msgid "System failure!"
+msgstr "Збій системи!"
+
+#: ../EVC/Procedures/mode_transition.cpp:334
 msgid "Entering FS"
-msgstr ""
+msgstr "Вхід в режим FS"
 
-#: c:\etcs\src\evc\procedures\mode_transition.cpp:332
+#: ../EVC/Procedures/mode_transition.cpp:346
 msgid "Entering OS"
-msgstr ""
+msgstr "Вхід в режим OS"
 
-#: c:\etcs\src\evc\procedures\train_trip.cpp:26
+#: ../EVC/Procedures/train_trip.cpp:26
 msgid "Unauthorized passing of EoA/LoA"
-msgstr ""
+msgstr "Проїзд без дозволу повз EoA/LoA"
 
-#: c:\etcs\src\evc\procedures\train_trip.cpp:30
-#: c:\etcs\src\evc\trainsubsystems\brake.cpp:30
+#: ../EVC/Procedures/train_trip.cpp:30 ../EVC/TrainSubsystems/brake.cpp:35
 msgid "Balise read error"
-msgstr ""
+msgstr "Помилка зчитування балансу"
 
-#: c:\etcs\src\evc\procedures\train_trip.cpp:34
+#: ../EVC/Procedures/train_trip.cpp:34
 msgid "No MA received at level transition"
-msgstr ""
+msgstr "Під час переходу з рівня на рівень не отримано жодної МА"
 
-#: c:\etcs\src\evc\procedures\train_trip.cpp:37
-#: c:\etcs\src\evc\trainsubsystems\brake.cpp:64
+#: ../EVC/Procedures/train_trip.cpp:37 ../EVC/TrainSubsystems/brake.cpp:70
 msgid "Communication error"
-msgstr ""
+msgstr "Помилка зв'язку"
 
-#: c:\etcs\src\evc\procedures\train_trip.cpp:46
+#: ../EVC/Procedures/train_trip.cpp:46
 msgid "SR distance exceeded"
-msgstr ""
+msgstr "Перевищено відстань SR"
 
-#: c:\etcs\src\evc\procedures\train_trip.cpp:50
+#: ../EVC/Procedures/train_trip.cpp:50
 msgid "SH stop order"
-msgstr ""
+msgstr "SH стоп-наказ"
 
-#: c:\etcs\src\evc\procedures\train_trip.cpp:54
+#: ../EVC/Procedures/train_trip.cpp:54
 msgid "SR stop order"
-msgstr ""
+msgstr "SR стоп-наказ"
 
-#: c:\etcs\src\evc\procedures\train_trip.cpp:57
+#: ../EVC/Procedures/train_trip.cpp:57
 msgid "Emergency stop"
-msgstr ""
+msgstr "Аварійна зупинка"
 
-#: c:\etcs\src\evc\procedures\train_trip.cpp:60
+#: ../EVC/Procedures/train_trip.cpp:60
 msgid "No track description"
-msgstr ""
+msgstr "Немає опису колії"
 
-#: c:\etcs\src\evc\procedures\train_trip.cpp:71
+#: ../EVC/Procedures/train_trip.cpp:71
 msgid " brake demand"
-msgstr ""
+msgstr " гальмівна вимога"
 
-#: c:\etcs\src\evc\stm\stm.cpp:395
+#: ../EVC/STM/stm.cpp:411
 msgid " failed"
-msgstr ""
+msgstr " не вдалось"
 
-#: c:\etcs\src\evc\stm\stm.cpp:516
+#: ../EVC/STM/stm.cpp:527
 msgid " not available"
-msgstr ""
+msgstr " недоступно"
 
-#: c:\etcs\src\evc\trackconditions\route_suitability.cpp:43
+#: ../EVC/TrackConditions/route_suitability.cpp:78
 msgid "Route suitability - loading gauge"
-msgstr ""
+msgstr "Придатність маршруту - габарит навантаження"
 
-#: c:\etcs\src\evc\trackconditions\route_suitability.cpp:46
+#: ../EVC/TrackConditions/route_suitability.cpp:81
 msgid "Route suitability - axle load category"
-msgstr ""
+msgstr "Придатність маршруту - категорія навантаження на вісь"
 
-#: c:\etcs\src\evc\trackconditions\route_suitability.cpp:49
+#: ../EVC/TrackConditions/route_suitability.cpp:84
 msgid "Route suitability - traction system"
-msgstr ""
+msgstr "Придатність маршруту - система тяги"
 
-#: c:\etcs\src\evc\trainsubsystems\brake.cpp:50
+#: ../EVC/TrainSubsystems/brake.cpp:56
 msgid "Runaway movement"
-msgstr ""
+msgstr "Поїзд неконтрольовано котиться з місця"
 
-#: c:\etcs\src\evc\trainsubsystems\brake.cpp:86
+#: ../EVC/TrainSubsystems/brake.cpp:92
 msgid "Train data changed"
-msgstr ""
+msgstr "Дані про поїзд змінено"
+
+#: ../EVC/TrainSubsystems/brake.cpp:113
+msgid "PT distance exceeded"
+msgstr "Перевищено відстань PT"
+
+#: ../EVC/TrainSubsystems/brake.cpp:133
+msgid "RV distance exceeded"
+msgstr "Перевищено відстань RV"
+
+#~ msgid "Brake percentaje"
+#~ msgstr "Гальмування у відсотках"

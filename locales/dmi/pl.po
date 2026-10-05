@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ETCS DMI\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-09 11:03+0100\n"
+"POT-Creation-Date: 2026-10-05 15:12+0200\n"
 "PO-Revision-Date: 2023-11-13 06:51+0000\n"
 "Last-Translator: Bartłomiej Skwara <bartek@skwara.me>\n"
 "Language-Team: Polish <https://sts.simkol.pl:18443/projects/simrail/etcs-dmi/"
@@ -14,6 +14,14 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 4.14.2\n"
+
+#: ../DMI/graphics/display.cpp:44
+msgid "EVC not connected!"
+msgstr ""
+
+#: ../DMI/graphics/display.cpp:55
+msgid "Train serie not selected!"
+msgstr ""
 
 #: ../DMI/window/brightness.cpp:13 ../DMI/window/menu_settings.cpp:21
 msgid "Brightness"
@@ -82,25 +90,25 @@ msgstr "Jazda manewrowa"
 msgid "Non-Leading"
 msgstr "Nie prowadzi poc."
 
-#: ../DMI/window/menu_main.cpp:47
+#: ../DMI/window/menu_main.cpp:50
 msgid "Maintain shunting"
 msgstr ""
 "Manewrowanie\n"
 "prowadzone"
 
-#: ../DMI/window/menu_main.cpp:48
+#: ../DMI/window/menu_main.cpp:51
 msgid "Radio data"
 msgstr "Dane RBC"
 
-#: ../DMI/window/menu_main.cpp:53
+#: ../DMI/window/menu_main.cpp:56
 msgid "Continue in SM"
 msgstr ""
 
-#: ../DMI/window/menu_main.cpp:53
+#: ../DMI/window/menu_main.cpp:56
 msgid "Initiate SM"
 msgstr ""
 
-#: ../DMI/window/menu_main.cpp:57
+#: ../DMI/window/menu_main.cpp:60
 #, fuzzy
 #| msgid "Exit Shunting"
 msgid "Exit SM"
@@ -195,29 +203,29 @@ msgstr ""
 "Wybierz\n"
 "zestaw"
 
-msgctxt "Navigation bar"
-msgid "Main"
-msgstr ""
-"Menu\n"
-"główne"
+#~ msgctxt "Navigation bar"
+#~ msgid "Main"
+#~ msgstr ""
+#~ "Menu\n"
+#~ "główne"
 
-msgctxt "Navigation bar"
-msgid ""
-"Over-\n"
-"ride"
-msgstr "Pomiń"
+#~ msgctxt "Navigation bar"
+#~ msgid ""
+#~ "Over-\n"
+#~ "ride"
+#~ msgstr "Pomiń"
 
-msgctxt "Navigation bar"
-msgid ""
-"Data\n"
-"view"
-msgstr ""
-"Widok\n"
-"danych"
+#~ msgctxt "Navigation bar"
+#~ msgid ""
+#~ "Data\n"
+#~ "view"
+#~ msgstr ""
+#~ "Widok\n"
+#~ "danych"
 
-msgctxt "Navigation bar"
-msgid "Spec"
-msgstr "Spec."
+#~ msgctxt "Navigation bar"
+#~ msgid "Spec"
+#~ msgstr "Spec."
 
 #~ msgid "DEL"
 #~ msgstr "Z"

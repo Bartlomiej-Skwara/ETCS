@@ -7,79 +7,50 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-10 13:53+0200\n"
-"PO-Revision-Date: 2023-10-24 12:03+0000\n"
-"Last-Translator: Loongeron (Russian team) <loongeron.ilia@gmail.com>\n"
-"Language-Team: Russian <https://sts.simkol.pl:18443/projects/simrail/"
-"etcs-dmi/ru/>\n"
+"POT-Creation-Date: 2026-10-05 15:12+0200\n"
+"PO-Revision-Date: 2024-04-23 05:20+0000\n"
+"Last-Translator: \"Loongeron (Russian team)\" <loongeron.ilia@gmail.com>\n"
+"Language-Team: Russian <https://sts.simkol.pl:18443/projects/simrail/etcs-"
+"dmi/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.14.2\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.18.2\n"
 "X-Poedit-Basepath: ../../DMI\n"
 "X-Poedit-KeywordsList: get_text;get_text_context:1c,2\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: c:\etcs\src\dmi\language\language.cpp:43
-#: c:\etcs\src\dmi\window\nav_buttons.cpp:51
-msgctxt "Navigation bar"
-msgid "Main"
-msgstr "Меню"
-
-#: c:\etcs\src\dmi\language\language.cpp:44
-#: c:\etcs\src\dmi\window\nav_buttons.cpp:52
-msgctxt "Navigation bar"
-msgid ""
-"Over-\n"
-"ride"
+#: ../DMI/graphics/display.cpp:44
+msgid "EVC not connected!"
 msgstr ""
-"Пропу-\n"
-"стить"
 
-#: c:\etcs\src\dmi\language\language.cpp:45
-#: c:\etcs\src\dmi\window\nav_buttons.cpp:53
-msgctxt "Navigation bar"
-msgid ""
-"Data\n"
-"view"
+#: ../DMI/graphics/display.cpp:55
+msgid "Train serie not selected!"
 msgstr ""
-"Просмотр\n"
-"данных"
 
-#: c:\etcs\src\dmi\language\language.cpp:46
-#: c:\etcs\src\dmi\window\nav_buttons.cpp:54
-msgctxt "Navigation bar"
-msgid "Spec"
-msgstr "Характеристики"
-
-#: c:\etcs\src\dmi\window\brightness.cpp:13
-#: c:\etcs\src\dmi\window\menu_settings.cpp:21
+#: ../DMI/window/brightness.cpp:13 ../DMI/window/menu_settings.cpp:21
 msgid "Brightness"
 msgstr "Яркость"
 
-#: c:\etcs\src\dmi\window\data_entry.cpp:16
-#: c:\etcs\src\dmi\window\data_entry.cpp:17
-#: c:\etcs\src\dmi\window\data_validation.cpp:19
-#: c:\etcs\src\dmi\window\keyboard.cpp:245
-#: c:\etcs\src\dmi\window\keyboard.cpp:252
-#: c:\etcs\src\dmi\window\track_ahead_free.cpp:27
+#: ../DMI/window/data_entry.cpp:16 ../DMI/window/data_entry.cpp:17
+#: ../DMI/window/data_validation.cpp:19 ../DMI/window/keyboard.cpp:250
+#: ../DMI/window/keyboard.cpp:257 ../DMI/window/track_ahead_free.cpp:27
 msgid "Yes"
 msgstr "Да"
 
-#: c:\etcs\src\dmi\window\data_entry.cpp:62
+#: ../DMI/window/data_entry.cpp:62
 msgid " entry complete?"
 msgstr " запись завершена?"
 
-#: c:\etcs\src\dmi\window\driver_id.cpp:16
+#: ../DMI/window/driver_id.cpp:16
 msgid "TRN"
 msgstr "Поезд"
 
-#: c:\etcs\src\dmi\window\fixed_train_data.cpp:15
-#: c:\etcs\src\dmi\window\fixed_train_data.cpp:19
-#: c:\etcs\src\dmi\window\fixed_train_data.cpp:25
+#: ../DMI/window/fixed_train_data.cpp:15 ../DMI/window/fixed_train_data.cpp:19
+#: ../DMI/window/fixed_train_data.cpp:25
 msgid ""
 "Enter\n"
 "data"
@@ -87,141 +58,178 @@ msgstr ""
 "Введите\n"
 "данные"
 
-#: c:\etcs\src\dmi\window\keyboard.cpp:244
-#: c:\etcs\src\dmi\window\keyboard.cpp:248
+#: ../DMI/window/keyboard.cpp:249 ../DMI/window/keyboard.cpp:253
 msgid "No"
 msgstr "Нет"
 
-#: c:\etcs\src\dmi\window\menu_main.cpp:20
+#: ../DMI/window/menu_main.cpp:20
 msgid "Main"
 msgstr "Меню"
 
-#: c:\etcs\src\dmi\window\menu_main.cpp:22
+#: ../DMI/window/menu_main.cpp:22
 msgid "Start"
 msgstr "Старт"
 
-#: c:\etcs\src\dmi\window\menu_main.cpp:26
+#: ../DMI/window/menu_main.cpp:26
 msgid "Driver ID"
 msgstr "ID Машиниста"
 
-#: c:\etcs\src\dmi\window\menu_main.cpp:30
+#: ../DMI/window/menu_main.cpp:30
 msgid "Train Data"
 msgstr "Данные поезда"
 
-#: c:\etcs\src\dmi\window\menu_main.cpp:34
+#: ../DMI/window/menu_main.cpp:34
 msgid "Level"
 msgstr "Уровень"
 
-#: c:\etcs\src\dmi\window\menu_main.cpp:38
+#: ../DMI/window/menu_main.cpp:38
 msgid "Train running number"
 msgstr "Номер поезда"
 
-#: c:\etcs\src\dmi\window\menu_main.cpp:42
+#: ../DMI/window/menu_main.cpp:42
 msgid "Exit Shunting"
 msgstr "Конец маневров"
 
-#: c:\etcs\src\dmi\window\menu_main.cpp:42
+#: ../DMI/window/menu_main.cpp:42
 msgid "Shunting"
 msgstr "Маневры"
 
-#: c:\etcs\src\dmi\window\menu_main.cpp:46
+#: ../DMI/window/menu_main.cpp:46
 msgid "Non-Leading"
 msgstr "Двойная тяга"
 
-#: c:\etcs\src\dmi\window\menu_main.cpp:47
+#: ../DMI/window/menu_main.cpp:50
 msgid "Maintain shunting"
 msgstr "Продолжение маневров"
 
-#: c:\etcs\src\dmi\window\menu_main.cpp:48
+#: ../DMI/window/menu_main.cpp:51
 msgid "Radio data"
 msgstr "Данные радиосвязи"
 
-#: c:\etcs\src\dmi\window\menu_ntc.cpp:11
+#: ../DMI/window/menu_main.cpp:56
+msgid "Continue in SM"
+msgstr "Продолжение в SM"
+
+#: ../DMI/window/menu_main.cpp:56
+msgid "Initiate SM"
+msgstr "Инициировать SM"
+
+#: ../DMI/window/menu_main.cpp:60
+msgid "Exit SM"
+msgstr "Выход SM"
+
+#: ../DMI/window/menu_ntc.cpp:11
 msgid "NTC data entry"
 msgstr "NTC ввод данных"
 
-#: c:\etcs\src\dmi\window\menu_ntc.cpp:20
+#: ../DMI/window/menu_ntc.cpp:20
 msgid "End of data entry"
 msgstr "Окончание ввода данных"
 
-#: c:\etcs\src\dmi\window\menu_override.cpp:12
+#: ../DMI/window/menu_override.cpp:12
 msgid "Override"
-msgstr "Пропустить"
+msgstr "Перегрузка"
 
-#: c:\etcs\src\dmi\window\menu_override.cpp:14
+#: ../DMI/window/menu_override.cpp:14
 msgid "EoA"
 msgstr "EoA"
 
-#: c:\etcs\src\dmi\window\menu_radio.cpp:18
+#: ../DMI/window/menu_radio.cpp:18
 msgid "RBC data"
 msgstr "Данные RBC"
 
-#: c:\etcs\src\dmi\window\menu_radio.cpp:20
+#: ../DMI/window/menu_radio.cpp:20
 msgid "Contact last RBC"
 msgstr "Связаться с последним RBC"
 
-#: c:\etcs\src\dmi\window\menu_radio.cpp:24
+#: ../DMI/window/menu_radio.cpp:24
 msgid "Use short number"
 msgstr "Использование короткого номера"
 
-#: c:\etcs\src\dmi\window\menu_radio.cpp:28
+#: ../DMI/window/menu_radio.cpp:28
 msgid "Enter RBC data"
 msgstr "Ввод данных по RBC"
 
-#: c:\etcs\src\dmi\window\menu_radio.cpp:32
+#: ../DMI/window/menu_radio.cpp:32
 msgid "Radio Network ID"
 msgstr "ID радиосети"
 
-#: c:\etcs\src\dmi\window\menu_settings.cpp:11
+#: ../DMI/window/menu_settings.cpp:11
 msgid "Settings"
 msgstr "Настройки"
 
-#: c:\etcs\src\dmi\window\menu_settings.cpp:13
+#: ../DMI/window/menu_settings.cpp:13
 msgid "Language"
 msgstr "Язык"
 
-#: c:\etcs\src\dmi\window\menu_settings.cpp:17
-#: c:\etcs\src\dmi\window\volume.cpp:13
+#: ../DMI/window/menu_settings.cpp:17 ../DMI/window/volume.cpp:13
 msgid "Volume"
 msgstr "Громкость"
 
-#: c:\etcs\src\dmi\window\menu_settings.cpp:25
+#: ../DMI/window/menu_settings.cpp:25
 msgid "System version"
 msgstr "Версия системы"
 
-#: c:\etcs\src\dmi\window\menu_settings.cpp:29
+#: ../DMI/window/menu_settings.cpp:29
 msgid "Set VBC"
 msgstr "Установить VBC"
 
-#: c:\etcs\src\dmi\window\menu_settings.cpp:33
+#: ../DMI/window/menu_settings.cpp:33
 msgid "Remove VBC"
 msgstr "Удалить VBC"
 
-#: c:\etcs\src\dmi\window\menu_spec.cpp:11
+#: ../DMI/window/menu_spec.cpp:11
 msgid "Special"
 msgstr "Специальный"
 
-#: c:\etcs\src\dmi\window\menu_spec.cpp:13
+#: ../DMI/window/menu_spec.cpp:13
 msgid "Adhesion"
 msgstr "Адгезия"
 
-#: c:\etcs\src\dmi\window\menu_spec.cpp:17
+#: ../DMI/window/menu_spec.cpp:17
 msgid "SR Speed/Distance"
 msgstr "SR Скорость/расстояние"
 
-#: c:\etcs\src\dmi\window\menu_spec.cpp:21
+#: ../DMI/window/menu_spec.cpp:21
 msgid "Train integrity"
 msgstr "Целостность поезда"
 
-#: c:\etcs\src\dmi\window\train_data.cpp:14
-#: c:\etcs\src\dmi\window\train_data.cpp:18
-#: c:\etcs\src\dmi\window\train_data.cpp:24
+#: ../DMI/window/menu_spec.cpp:26
+msgid "BMM reaction inhibition"
+msgstr "Подавление реакции BMM"
+
+#: ../DMI/window/train_data.cpp:14 ../DMI/window/train_data.cpp:18
+#: ../DMI/window/train_data.cpp:24
 msgid ""
 "Select\n"
 "type"
 msgstr ""
 "Выберите\n"
 "тип"
+
+#~ msgctxt "Navigation bar"
+#~ msgid "Main"
+#~ msgstr "Меню"
+
+#~ msgctxt "Navigation bar"
+#~ msgid ""
+#~ "Over-\n"
+#~ "ride"
+#~ msgstr ""
+#~ "Пропу-\n"
+#~ "стить"
+
+#~ msgctxt "Navigation bar"
+#~ msgid ""
+#~ "Data\n"
+#~ "view"
+#~ msgstr ""
+#~ "Просмотр\n"
+#~ "данных"
+
+#~ msgctxt "Navigation bar"
+#~ msgid "Spec"
+#~ msgstr "Характеристики"
 
 #~ msgid "DEL"
 #~ msgstr "Удалить"
