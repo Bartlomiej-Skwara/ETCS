@@ -88,7 +88,7 @@ jobs:
     - name: Publish
       uses: actions/upload-artifact@v4
       with:
-        name: build-wasm-sr${{matrix.sr_flag}}-verbose${{matrix.verbose_flag}}
+        name: build-wasm-sr${{matrix.sr_flag}}-verbose${{matrix.verbose_flag}}-msg_debug${{matrix.msg_consistency_flag}}
         path: |
           ${{github.workspace}}/build/DMI/dmi.wasm
           ${{github.workspace}}/build/EVC/evc.wasm
