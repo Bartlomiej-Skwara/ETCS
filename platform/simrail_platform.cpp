@@ -7,6 +7,7 @@
 #include "simrail_platform.h"
 #include "platform_runtime.h"
 #include "stb/stb_image.h"
+#include "../EVC/Packets/logging.h"
 
 using namespace PlatformUtil;
 
@@ -108,7 +109,7 @@ bool SimrailBasePlatform::write_file(const std::string_view path, const std::str
 }
 
 void SimrailBasePlatform::debug_print(const std::string_view msg) {
-	api::debug_print(msg.data(), msg.size());
+	log_message(msg);
 }
 
 Promise<void> SimrailBasePlatform::delay(int ms) {

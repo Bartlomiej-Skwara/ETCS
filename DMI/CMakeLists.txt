@@ -11,6 +11,7 @@ set (SOURCES init.cpp monitor.cpp graphics/drawing.cpp graphics/component.cpp gr
             window/train_data.cpp  STM/stm_objects.cpp ../EVC/Packets/STM/message.cpp
             planning/planning.cpp control/control.cpp state/gps_pos.cpp 
             language/language.cpp
+            ../EVC/Packets/logging.cpp
             ../EVC/Packets/io/io.cpp ../EVC/Packets/io/base64.cpp
             Config/config.cpp
             ../platform/platform.cpp ../platform/platform_runtime.cpp
