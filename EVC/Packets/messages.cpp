@@ -145,7 +145,7 @@ void check_linking()
         bool c3 = linked && link_bg!=linking.end() && link_bg != link_expected;
         if (c1 || c2 || c3) {
 #ifdef DEBUG_MSG_CONSISTENCY
-            platform->debug_print("Balise read error: check_linking() c1=" + std::to_string(c1) + " c2=" + std::to_string(c2) + " c3=" + std::to_string(c3));
+            log_debug("Balise read error: check_linking() c1=" + std::to_string(c1) + " c2=" + std::to_string(c2) + " c3=" + std::to_string(c3));
 #endif
             if (c2 || c3)
                 rams_lost_count++;
@@ -155,7 +155,7 @@ void check_linking()
                 if (supervising_rbc)
                     supervising_rbc->report_error(7);
 #ifdef DEBUG_MSG_CONSISTENCY
-                platform->debug_print("RAMS supervision");
+                log_debug("RAMS supervision");
 #endif
             } else {
                 if (supervising_rbc)
@@ -197,7 +197,7 @@ void balise_group_passed()
         if (l.nid_bg == bg_id({reading_nid_c, reading_nid_bg})) {
             if (dir != -1 && dir != l.reverse_dir) {
 #ifdef DEBUG_MSG_CONSISTENCY
-                platform->debug_print("Balise error: group passed in wrong direction. Expected " + std::to_string(l.reverse_dir) + ", passed " + std::to_string(dir));
+                log_debug("Balise error: group passed in wrong direction. Expected " + std::to_string(l.reverse_dir) + ", passed " + std::to_string(dir));
 #endif
                 if (supervising_rbc)
                     supervising_rbc->report_error(0);
@@ -255,7 +255,7 @@ void balise_group_passed()
                 linking_rejected = true;
                 rams_reposition_mitigation = {};
 #ifdef DEBUG_MSG_CONSISTENCY
-                platform->debug_print("RAMS reposition mitigation");
+                log_debug("RAMS reposition mitigation");
 #endif
                 if (supervising_rbc)
                     supervising_rbc->report_error(8);
@@ -529,7 +529,7 @@ void check_valid_data(std::vector<eurobalise_telegram> telegrams, dist_base bg_r
             if (!reading_bg_link || (link_expected != linking.end() && reading_bg_link->nid_bg == link_expected->nid_bg))
                 expect_next_linking();
 #ifdef DEBUG_MSG_CONSISTENCY
-            platform->debug_print("Balise error. Linked BG not accepted. accepted1="+std::to_string(accepted1)+", accepted2="+std::to_string(accepted2)+(reading_bg_link ? "" : ", unknown reference"));
+            log_debug("Balise error. Linked BG not accepted. accepted1="+std::to_string(accepted1)+", accepted2="+std::to_string(accepted2)+(reading_bg_link ? "" : ", unknown reference"));
 #endif
             if (supervising_rbc)
                 supervising_rbc->report_error(1);
@@ -550,7 +550,7 @@ void check_valid_data(std::vector<eurobalise_telegram> telegrams, dist_base bg_r
                 }
             }
 #ifdef DEBUG_MSG_CONSISTENCY
-            platform->debug_print("Balise error. Telegram not accepted. accepted1="+std::to_string(accepted1)+", accepted2="+std::to_string(accepted2));
+            log_debug("Balise error. Telegram not accepted. accepted1="+std::to_string(accepted1)+", accepted2="+std::to_string(accepted2));
 #endif
             if (supervising_rbc)
                 supervising_rbc->report_error(2);
@@ -676,7 +676,7 @@ void handle_telegrams(std::vector<eurobalise_telegram> message, dist_base dist, 
                 if ((dir == -1 && dp->Q_DIR != dp->Q_DIR.Both) || (dp->Q_DIR == dp->Q_DIR.Nominal && dir == 1) || (dp->Q_DIR == dp->Q_DIR.Reverse && dir == 0)) {
 #ifdef DEBUG_MSG_CONSISTENCY
                     if (dir == -1)
-                        platform->debug_print("Directional packet rejected due to unknown BG direction");
+                        log_debug("Directional packet rejected due to unknown BG direction");
 #endif
                     continue;
                 }
@@ -729,7 +729,7 @@ bool handle_radio_message(std::shared_ptr<euroradio_message> message, communicat
     }
     if (!pos && (message->NID_LRBG!=message->NID_LRBG.Unknown || !session->accept_unknown_position)) {
 #ifdef DEBUG_MSG_CONSISTENCY
-        platform->debug_print("Radio message rejected: unknown LRBG");
+        log_debug("Radio message rejected: unknown LRBG");
 #endif
         session->report_error(3);
         return false;
@@ -737,8 +737,13 @@ bool handle_radio_message(std::shared_ptr<euroradio_message> message, communicat
     switch (message->NID_MESSAGE) {
         case 15: {
             auto *emerg = (conditional_emergency_stop*)message.get();
-            if ((dir == -1 && emerg->Q_DIR != emerg->Q_DIR.Both) || (emerg->Q_DIR == emerg->Q_DIR.Nominal && dir == 1) || (emerg->Q_DIR == emerg->Q_DIR.Reverse && dir == 0))
+            if ((dir == -1 && emerg->Q_DIR != emerg->Q_DIR.Both) || (emerg->Q_DIR == emerg->Q_DIR.Nominal && dir == 1) || (emerg->Q_DIR == emerg->Q_DIR.Reverse && dir == 0)) {
+#ifdef DEBUG_MSG_CONSISTENCY
+                if (dir == -1)
+                    log_debug("Directional message rejected due to unknown LRBG direction");
+#endif
                 return false;
+            }
             shift = emerg->D_REF.get_value(emerg->Q_SCALE) * (dir == 1 ? -1 : 1);
             break;
         }
@@ -749,8 +754,13 @@ bool handle_radio_message(std::shared_ptr<euroradio_message> message, communicat
         }
         case 34: {
             auto *taf = (taf_request_message*)message.get();
-            if ((dir == -1 && taf->Q_DIR != taf->Q_DIR.Both) || (taf->Q_DIR == taf->Q_DIR.Nominal && dir == 1) || (taf->Q_DIR == taf->Q_DIR.Reverse && dir == 0))
+            if ((dir == -1 && taf->Q_DIR != taf->Q_DIR.Both) || (taf->Q_DIR == taf->Q_DIR.Nominal && dir == 1) || (taf->Q_DIR == taf->Q_DIR.Reverse && dir == 0)) {
+#ifdef DEBUG_MSG_CONSISTENCY
+                if (dir == -1)
+                    log_debug("Directional message rejected due to unknown LRBG direction");
+#endif
                 return false;
+            }
             shift = taf->D_REF.get_value(taf->Q_SCALE) * (dir == 1 ? -1 : 1);
             break;
         }
@@ -774,11 +784,7 @@ bool handle_radio_message(std::shared_ptr<euroradio_message> message, communicat
                 break;
             case 15:{
                 auto *emerg = (conditional_emergency_stop*)message.get();
-                if (pos && !((emerg->Q_DIR == emerg->Q_DIR.Nominal && dir == 1) && (emerg->Q_DIR == emerg->Q_DIR.Reverse && dir == 0))) {
-                    
-                    distance d = distance::from_odometer(d_estfront);
-                    info = new ces_information(d);
-                }
+                info = new ces_information(distance::from_odometer(d_estfront));
                 break;
             }
             case 16:
@@ -860,7 +866,7 @@ bool handle_radio_message(std::shared_ptr<euroradio_message> message, communicat
             if ((dir == -1 && dp->Q_DIR != dp->Q_DIR.Both) || (dp->Q_DIR == dp->Q_DIR.Nominal && dir == 1) || (dp->Q_DIR == dp->Q_DIR.Reverse && dir == 0)) {
 #ifdef DEBUG_MSG_CONSISTENCY
                 if (dir == -1)
-                    platform->debug_print("Directional packet rejected due to unknown LRBG direction");
+                    log_debug("Directional packet rejected due to unknown LRBG direction");
 #endif
                 continue;
             }
@@ -910,7 +916,7 @@ bool handle_radio_message(std::shared_ptr<euroradio_message> message, communicat
         for (auto &i : ordered_info) {
             if (i->location_based || i->index_level == 1) {
 #ifdef DEBUG_MSG_CONSISTENCY
-                platform->debug_print("Radio message rejected: location-based information sent with unknown LRBG");
+                log_debug("Radio message rejected: location-based information sent with unknown LRBG");
 #endif
                 session->report_error(3);
                 return false;
