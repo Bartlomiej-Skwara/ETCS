@@ -12,7 +12,8 @@ jobs:
     strategy:
       matrix:
         sr_flag: ["ON", "OFF"]
-
+        debug_flag: ["ON", "OFF"]
+        
     runs-on: windows-2022
 
     needs: compile_locales
@@ -30,7 +31,7 @@ jobs:
         path: ${{github.workspace}}/locales
 
     - name: Configure
-      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=Release -A x64 -DSIMRAIL=${{matrix.sr_flag}}
+      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=Release -A x64 -DSIMRAIL=${{matrix.sr_flag}} -DDEBUG_VERBOSE=${{matrix.debug_flag}} -DDEBUG_MSG_CONSISTENCY=${{matrix.debug_flag}} -DDEBUG_ODOMETER=${{matrix.debug_flag}}
 
     - name: Build
       run: cmake --build ${{github.workspace}}/build --config Release
@@ -41,7 +42,7 @@ jobs:
     - name: Publish
       uses: actions/upload-artifact@v4
       with:
-        name: build-win64-sr${{matrix.sr_flag}}
+        name: build-win64-sr${{matrix.sr_flag}}-msg_debug${{matrix.debug_flag}}
         path: |
           ${{github.workspace}}/dist
 
@@ -52,7 +53,7 @@ jobs:
       matrix:
         sr_flag: ["ON", "OFF"]
         verbose_flag: ["ON", "OFF"]
-        msg_consistency_flag: ["ON", "OFF"]
+        debug_flag: ["ON", "OFF"]
 
     runs-on: ubuntu-22.04
 
@@ -80,7 +81,7 @@ jobs:
         tar xf wasi-sdk-${WASI_VERSION_FULL}-linux.tar.gz --strip-components=1
 
     - name: Configure
-      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=Release -DSIMRAIL=${{matrix.sr_flag}} -DDEBUG_VERBOSE=${{matrix.verbose_flag}} -DDEBUG_MSG_CONSISTENCY=${{matrix.msg_consistency_flag}} -DWASI_HOST_EXE_SUFFIX= -DWASI_SDK_PREFIX=${{github.workspace}}/wasi-sdk -DCMAKE_TOOLCHAIN_FILE=${{github.workspace}}/utils/TC-wasi-sdk.cmake
+      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=Release -DSIMRAIL=${{matrix.sr_flag}} -DDEBUG_VERBOSE=${{matrix.verbose_flag}} -DDEBUG_MSG_CONSISTENCY=${{matrix.debug_flag}} -DDEBUG_ODOMETER=${{matrix.debug_flag}} -DWASI_HOST_EXE_SUFFIX= -DWASI_SDK_PREFIX=${{github.workspace}}/wasi-sdk -DCMAKE_TOOLCHAIN_FILE=${{github.workspace}}/utils/TC-wasi-sdk.cmake
 
     - name: Build
       run: cmake --build ${{github.workspace}}/build --config Release
@@ -88,7 +89,7 @@ jobs:
     - name: Publish
       uses: actions/upload-artifact@v4
       with:
-        name: build-wasm-sr${{matrix.sr_flag}}-verbose${{matrix.verbose_flag}}-msg_debug${{matrix.msg_consistency_flag}}
+        name: build-wasm-sr${{matrix.sr_flag}}-verbose${{matrix.verbose_flag}}-msg_debug${{matrix.debug_flag}}
         path: |
           ${{github.workspace}}/build/DMI/dmi.wasm
           ${{github.workspace}}/build/EVC/evc.wasm
