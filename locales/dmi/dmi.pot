@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-30 17:28+0200\n"
+"POT-Creation-Date: 2026-10-05 17:01+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,6 +23,30 @@ msgstr ""
 
 #: ../DMI/graphics/display.cpp:55
 msgid "Train serie not selected!"
+msgstr ""
+
+#: ../DMI/language/language.cpp:43 ../DMI/window/nav_buttons.cpp:51
+msgctxt "Navigation bar"
+msgid "Main"
+msgstr ""
+
+#: ../DMI/language/language.cpp:44 ../DMI/window/nav_buttons.cpp:52
+msgctxt "Navigation bar"
+msgid ""
+"Over-\n"
+"ride"
+msgstr ""
+
+#: ../DMI/language/language.cpp:45 ../DMI/window/nav_buttons.cpp:53
+msgctxt "Navigation bar"
+msgid ""
+"Data\n"
+"view"
+msgstr ""
+
+#: ../DMI/language/language.cpp:46 ../DMI/window/nav_buttons.cpp:54
+msgctxt "Navigation bar"
+msgid "Spec"
 msgstr ""
 
 #: ../DMI/window/brightness.cpp:13 ../DMI/window/menu_settings.cpp:21
@@ -170,10 +194,6 @@ msgstr ""
 msgid "Remove VBC"
 msgstr ""
 
-#: ../DMI/window/menu_settings.cpp:37 ../DMI/window/menu_tests.cpp:14
-msgid "Component testing"
-msgstr ""
-
 #: ../DMI/window/menu_spec.cpp:11
 msgid "Special"
 msgstr ""
@@ -192,22 +212,6 @@ msgstr ""
 
 #: ../DMI/window/menu_spec.cpp:26
 msgid "BMM reaction inhibition"
-msgstr ""
-
-#: ../DMI/window/menu_tests.cpp:35
-msgid "In progress..."
-msgstr ""
-
-#: ../DMI/window/menu_tests.cpp:44
-msgid "OK"
-msgstr ""
-
-#: ../DMI/window/menu_tests.cpp:48
-msgid "Failed"
-msgstr ""
-
-#: ../DMI/window/menu_tests.cpp:53
-msgid "Type"
 msgstr ""
 
 #: ../DMI/window/train_data.cpp:14 ../DMI/window/train_data.cpp:18
